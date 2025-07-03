@@ -1,0 +1,77 @@
+{
+  
+  "users": [
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2d",
+      "pseudonym": "Aldo G",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.464465856552124,
+      "headHeight": 1.7193095684051514,
+      "armHeight": 2.115349769592285
+    },
+    {
+      "uuid": "52dfe800-5c8d-4c5c-8a0f-a10c1ce28be4",
+      "pseudonym": "Artrevin",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.515727162361145,
+      "headHeight": 1.7749792337417603,
+      "armHeight": 2.1684532165527345
+    },
+    {
+      "uuid": "c124a70f-c7e4-4d05-9a88-11ad418b8ea7",
+      "pseudonym": "Pablo",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.5183180570602418,
+      "headHeight": 1.8172428607940674,
+      "armHeight": 2.2664566040039064
+    },
+    {
+      "uuid": "9d6a12a4-eba5-4a14-8500-bb54ba439af0",
+      "pseudonym": "AvgMortal",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4222934246063233,
+      "headHeight": 1.674788475036621,
+      "armHeight": 1.8238354921340943
+    },
+    {
+      "uuid": "17c08ad0-daa5-438f-99e6-de168f5766ef",
+      "pseudonym": "Dul",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2630741596221924,
+      "headHeight": 1.819839358329773,
+      "armHeight": 1.9679287672042847
+    },
+    {
+      "uuid": "94cb4dd3-ae89-4cbe-9040-4e309d8ecd71",
+      "pseudonym": "March",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.3749109506607056,
+      "headHeight": 1.6187090873718262,
+      "armHeight": 1.9685674905776978
+    },
+    {
+      "uuid": "ae620f63-9f98-4c91-8e67-0f510a7d2c98",
+      "pseudonym": "Ana",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4164597988128663,
+      "headHeight": 1.6685220003128052,
+      "armHeight": 2.023345470428467
+    },
+    {
+      "uuid": "0c38cbc8-3eab-4cd4-b044-d9666ad3857e",
+      "pseudonym": "Lukas",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4646108150482178,
+      "headHeight": 1.6643141508102418,
+      "armHeight": 2.095949411392212
+    }
+  ]
+}

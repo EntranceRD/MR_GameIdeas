@@ -1,0 +1,19 @@
+{
+  
+  "users": [
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2d",
+      "meassuresTaken": true,
+      "shoulderHeight": 1.4743517637252808,
+      "headHeight": 1.7724812030792237,
+      "armHeight": 2.142813205718994
+    },
+    {
+      "uuid": "52dfe800-5c8d-4c5c-8a0f-a10c1ce28be4",
+      "meassuresTaken": true,
+      "shoulderHeight": 1.5239087343215943,
+      "headHeight": 1.7684892416000367,
+      "armHeight": 2.221097707748413
+    }
+  ]
+}

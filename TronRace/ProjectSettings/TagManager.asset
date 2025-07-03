@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Wall Left
+  - Wall Right
+  - Wall Front
+  - Wall Back
+  - Floor
+  - Ceiling
+  - Surface 00
+  - Surface 01
+  - Surface 02
+  - Surface 03
+  - Surface 04
+  - Surface 05
+  - Surface 06
+  - Surface 07
+  - Kinect
+  - 
+  - 
+  - Nav Mesh
+  - Ghost
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

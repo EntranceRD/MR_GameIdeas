@@ -1,0 +1,248 @@
+{
+  
+  "users": [
+    {
+      "uuid": "b1f9d282-8473-4908-96d7-c3a9600ab31c",
+      "pseudonym": "Alvaro",
+      "meassuresTaken": false,
+      "level": 0,
+      "shoulderHeight": 1.352000117301941,
+      "headHeight": 1.690000057220459,
+      "armHeight": 2.0231945514678957
+    },
+    {
+      "uuid": "6b1e7515-4012-41b2-b481-0e5959621ff8",
+      "pseudonym": "Aisha",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.309999704360962,
+      "headHeight": 1.549999475479126,
+      "armHeight": 1.849999189376831
+    },
+    {
+      "uuid": "52dfe800-5c8d-4c5c-8a0f-a10c1ce28be4",
+      "pseudonym": "Artrevin",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4500000476837159,
+      "headHeight": 1.6900001764297486,
+      "armHeight": 2.0900001525878908
+    },
+    {
+      "uuid": "e9a01d1b-8055-4492-8340-c704fb34abaa",
+      "pseudonym": "Charles",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.549999475479126,
+      "headHeight": 1.849999189376831,
+      "armHeight": 2.149998903274536
+    },
+    {
+      "uuid": "c124a70f-c7e4-4d05-9a88-11ad418b8ea7",
+      "pseudonym": "Pablo",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.500000238418579,
+      "headHeight": 1.8000003099441529,
+      "armHeight": 2.200000047683716
+    },
+    {
+      "uuid": "94cb4dd3-ae89-4cbe-9040-4e309d8ecd71",
+      "pseudonym": "March",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.3749109506607056,
+      "headHeight": 1.6187090873718262,
+      "armHeight": 1.9685674905776978
+    },
+    {
+      "uuid": "ae620f63-9f98-4c91-8e67-0f510a7d2c98",
+      "pseudonym": "Ana",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4164597988128663,
+      "headHeight": 1.6685220003128052,
+      "armHeight": 2.023345470428467
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2e",
+      "pseudonym": "Manuel",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.350000023841858,
+      "headHeight": 1.5499999523162842,
+      "armHeight": 1.850000023841858
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2f",
+      "pseudonym": "Beto",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.5700000524520875,
+      "headHeight": 1.7699999809265137,
+      "armHeight": 2.200000047683716
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2g",
+      "pseudonym": "Gaby Tav",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.409999966621399,
+      "headHeight": 1.6100000143051148,
+      "armHeight": 1.9199999570846558
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2h",
+      "pseudonym": "Sammy",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2i",
+      "pseudonym": "Johnny",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2j",
+      "pseudonym": "Don Omar",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d05a831c2h",
+      "pseudonym": "Sammy",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2k",
+      "pseudonym": "Raul",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d09a831c2l",
+      "pseudonym": "Sophie",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d10a831c2m",
+      "pseudonym": "Laura",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d11a831c2n",
+      "pseudonym": "LuisMi",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d12a831c2o",
+      "pseudonym": "Marcelo Pug",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.2799999713897706,
+      "headHeight": 1.4500000476837159,
+      "armHeight": 1.7200000286102296
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2d",
+      "pseudonym": "Aldo G",
+      "meassuresTaken": false,
+      "level": 0,
+      "shoulderHeight": 1.0800000429153443,
+      "headHeight": 1.350000023841858,
+      "armHeight": 1.5887500047683716
+    },
+    {
+      "uuid": "ce897a7f-7fab-41f6-bd94-9dea3157c610",
+      "pseudonym": "Daniel",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4399999380111695,
+      "headHeight": 1.7999999523162842,
+      "armHeight": 2.163749933242798
+    },
+    {
+      "uuid": "cca93919-e8a7-4d6d-b9d4-736d09f2ee10",
+      "pseudonym": "peck",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.4399999380111695,
+      "headHeight": 1.7999999523162842,
+      "armHeight": 2.163749933242798
+    },
+    {
+      "uuid": "68e856a3-ca6e-49de-b3f3-e4da3c365dbb",
+      "pseudonym": "claudio valle",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.3600000143051148,
+      "headHeight": 1.7000000476837159,
+      "armHeight": 2.0359723567962648
+    },
+    {
+      "uuid": "7a880e31-32fb-40e8-9d88-f9baac6558a5",
+      "pseudonym": "hec",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.3920000791549683,
+      "headHeight": 1.7400000095367432,
+      "armHeight": 2.087083339691162
+    },
+    {
+      "uuid": "02db5ba8-043e-4c7d-9baa-959a38b9f0f6",
+      "pseudonym": "Mau",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.399999976158142,
+      "headHeight": 1.75,
+      "armHeight": 2.0998611450195314
+    },
+    {
+      "uuid": "71fb6a4f-d3ec-4466-8dcd-cd4324a0b91b",
+      "pseudonym": "Mario",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.3680000305175782,
+      "headHeight": 1.7100000381469727,
+      "armHeight": 2.048750162124634
+    },
+    {
+      "uuid": "aff69830-408d-4418-98ed-4a04270d9384",
+      "pseudonym": "aordonezp",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.343999981880188,
+      "headHeight": 1.6799999475479127,
+      "armHeight": 2.0104165077209474
+    }
+  ]
+}

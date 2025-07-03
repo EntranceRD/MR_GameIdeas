@@ -1,0 +1,119 @@
+{
+  "users": [
+    {
+      "pseudonym": "Aldo G",
+      "height": 1.72,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Alvaro",
+      "height": 1.69,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Mau",
+      "height": 1.71,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Mauricio Aupart",
+      "height": 1.76,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Pao Bolaños",
+      "height": 1.59,
+      "gender": 1
+    },
+    {
+      "pseudonym": "San",
+      "height": 1.69,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Omar",
+      "height": 1.90,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Gloria79",
+      "height": 1.68,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Tania",
+      "height": 1.68,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Alejandro76",
+      "height": 1.83,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Gaby",
+      "height": 1.66,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Alexa",
+      "height": 1.68,
+      "gender": 1
+    },
+    {
+      "pseudonym": "JBL",
+      "height": 1.75,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Katia",
+      "height": 1.63,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Artrevin",
+      "height": 1.70,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Ana",
+      "height": 1.64,
+      "gender": 1
+    },
+    {
+      "pseudonym": "March",
+      "height": 1.62,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Alvaro T",
+      "height": 1.83,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Juan Pablo",
+      "height": 1.85,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Rosy",
+      "height": 1.50,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Chio",
+      "height": 1.58,
+      "gender": 1
+    },
+    {
+      "pseudonym": "Fran",
+      "height": 1.79,
+      "gender": 0
+    },
+    {
+      "pseudonym": "Jose M",
+      "height": 1.83,
+      "gender": 0
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "uuid": "c124a70f-c7e4-4d05-9a88-11ad418b8ea7",
+      "pseudonym": "Pablo",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.5133569240570069,
+      "headHeight": 1.517459750175476,
+      "armHeight": 2.044771671295166
+    },
+    {
+      "uuid": "96afcf59-91bb-4892-a8bb-1a984d55adc6",
+      "pseudonym": "Vale",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.269681453704834,
+      "headHeight": 1.535316824913025,
+      "armHeight": 1.8109811544418336
+    },
+    {
+      "uuid": "7e68189e-38c7-4d33-9899-81d08a831c2d",
+      "pseudonym": "Aldo G",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.464465856552124,
+      "headHeight": 1.7193095684051514,
+      "armHeight": 2.115349769592285
+    },
+    {
+      "uuid": "52dfe800-5c8d-4c5c-8a0f-a10c1ce28be4",
+      "pseudonym": "Artrevin",
+      "meassuresTaken": true,
+      "level": 0,
+      "shoulderHeight": 1.515727162361145,
+      "headHeight": 1.7749792337417603,
+      "armHeight": 2.1684532165527345
+    }
+  ]
+}
