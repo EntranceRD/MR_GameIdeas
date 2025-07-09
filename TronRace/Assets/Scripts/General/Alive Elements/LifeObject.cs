@@ -20,7 +20,6 @@ namespace Entrance
         #endregion
 
         #region VARIABLES
-        private int varA = 0;
         public Action OnDie { get; set; }
         public Action OnTakeDamage { get; set; }
         public Action OnHeal { get; set; }
