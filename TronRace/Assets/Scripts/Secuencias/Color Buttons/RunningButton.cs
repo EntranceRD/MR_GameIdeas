@@ -5,17 +5,21 @@ using UnityEngine.AI;
 
 namespace Entrance 
 {
-    public class RunningButton : MonoBehaviour
+    public class RunningButton : ColorButton
     {
         #region UNITY METHODS
-        private void Start()
+        protected override void Start()
         {
             currentTarget = points.GetObject(0).position;
             agent.Warp(currentTarget);
             agent.SetDestination(currentTarget);
+            warpable.OnWarp = (surface) =>
+            {
+                agent.SetDestination(currentTarget);
+            };
         }
 
-        private void Update()
+        protected override void Update()
         {
             var dist = Vector3.Distance(transform.position, currentTarget);
             if (dist < minDistance)
@@ -34,6 +38,7 @@ namespace Entrance
         private float minDistance = 0.1f;
         [SerializeField]
         private NavMeshAgent agent;
+        [SerializeField] private WarpableObject warpable;
         private Vector3 currentTarget;
         private int currentTargetIndex = 0;
         #endregion
@@ -46,9 +51,9 @@ namespace Entrance
         #endregion
 
         #region PRIVATE METHODS
-        private void method()
+        protected override int ChooseWall()
         {
-            
+            return base.ChooseWall();
         }
         #endregion
     }
