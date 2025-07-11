@@ -22,6 +22,7 @@ namespace Entrance
         #endregion
 
         #region VARIABLES
+        [SerializeField,Range(4,9)] private int SequenceSize = 5;
         [SerializeField] private Color[] colors;
         [SerializeField] private ObjectGroup<UnityEngine.UI.Image> sequenceDisplay;
         private List<int>currentSequence;
@@ -36,7 +37,7 @@ namespace Entrance
         public void Restart() {
             //if (currentSequence == null) currentSequence = new List<int>();
             sequenceDisplay.SimpleIteration((display) => { display.enabled = false; });
-            currentSequence = CreateNewSequence(5);
+            currentSequence = CreateNewSequence(SequenceSize);
             DisplaySequence(currentSequence);
         }
         public List<int> GetCurrentSequence()
