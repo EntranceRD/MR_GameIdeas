@@ -28,6 +28,7 @@ namespace Entrance
         #endregion
 
         #region PUBLIC METHODS
+        public int GetMaxHealth() { return MaxHealth; }
         public void Heal(int heal)
         {
             Health = Math.Min(Health + heal, MaxHealth);

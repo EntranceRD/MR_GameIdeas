@@ -15,13 +15,17 @@ namespace Entrance
         {
             property = new MaterialPropertyBlock();
             mainTex = Shader.PropertyToID("_MainTex_ST");
+            mainTexVector.x = Tiling.x;
+            mainTexVector.y = Tiling.y;
         }
 
         private void Update()
         {
             rend.GetPropertyBlock(property);
-            mainTexVector.w +=Time.deltaTime*scrollSpeed;
+            mainTexVector.w +=Time.deltaTime*scrollSpeedX;
             mainTexVector.w %= 1;
+            mainTexVector.z += Time.deltaTime * scrollSpeedY;
+            mainTexVector.z %= 1;
             property.SetVector(mainTex, mainTexVector);
             rend.SetPropertyBlock(property);
         }
@@ -34,8 +38,11 @@ namespace Entrance
 
         private int mainTex = 0;
         private Vector4 mainTexVector = new Vector4(1, 1, 0, 0);
+        [SerializeField] private Vector2 Tiling = Vector2.one;
         [SerializeField,Range(0, 1)]
-        private float scrollSpeed = 0.5f;
+        private float scrollSpeedX = 0.5f;
+        [SerializeField,Range(0, 1)]
+        private float scrollSpeedY = 0.5f;
         #endregion
 
         public void Restart()
