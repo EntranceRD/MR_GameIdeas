@@ -54,6 +54,7 @@ namespace Entrance
         }
         public void Interact(Interaction.Touch touch)
         {
+            Debug.Log("Interaction");
             interactionTime.Tick(Time.deltaTime);
         }
         #endregion

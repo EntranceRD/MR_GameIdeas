@@ -37,7 +37,10 @@ namespace Entrance
                     var component = hit.transform.GetComponent<IInteractible>();
                     if (component != null)
                     {
-                        component.Interact(new Interaction.Touch());
+                        var pos = hit.transform.position;
+                        //component.Interact(new Interaction.Touch());
+                        //Debug.Log($"Interacting at point: {pos}");
+                        component.Interact(new Interaction.Touch(new General.Vec3(pos.x, pos.y,pos.z)));
                     }
                 }
             }

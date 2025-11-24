@@ -22,10 +22,10 @@ namespace Entrance
         #region PUBLIC METHODS
         public void Call()
         {
-            @event.Invoke();
+            @event?.Invoke();
         }
         public void AddAction(UnityAction action) {
-            @event.AddListener(action);
+            @event?.AddListener(action);
         }
         #endregion
 
