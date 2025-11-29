@@ -80,7 +80,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.11",
+      "version": "2.0.23",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -89,7 +89,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.vscode": {
-      "version": "1.2.3",
+      "version": "1.2.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -117,7 +117,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.27",
+      "version": "1.1.33",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -128,7 +128,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.6",
+      "version": "3.0.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -181,38 +181,6 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.com"
-    },
-    "org.nuget.system.buffers": {
-      "version": "4.4.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://unitynuget-registry.azurewebsites.net"
-    },
-    "org.nuget.system.memory": {
-      "version": "4.5.3",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "org.nuget.system.buffers": "4.4.0",
-        "org.nuget.system.numerics.vectors": "4.4.0",
-        "org.nuget.system.runtime.compilerservices.unsafe": "4.5.2"
-      },
-      "url": "https://unitynuget-registry.azurewebsites.net"
-    },
-    "org.nuget.system.numerics.vectors": {
-      "version": "4.4.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://unitynuget-registry.azurewebsites.net"
-    },
-    "org.nuget.system.runtime.compilerservices.unsafe": {
-      "version": "4.5.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://unitynuget-registry.azurewebsites.net"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

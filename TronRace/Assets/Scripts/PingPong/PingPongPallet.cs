@@ -13,6 +13,7 @@ namespace Entrance
             if(ball!=null){
                 ball.ChangeMovingDirection();
                 ball.BounceRandom(angleGenerator);
+                scoreManager.AddPointsByRacket(pointHit);
             }
         }
         private void Start()
@@ -28,6 +29,8 @@ namespace Entrance
 
         #region VARIABLES
         [SerializeField] private RandomAngleGenerator angleGenerator;
+        [SerializeField] private ScoreManager scoreManager;
+        int pointHit = 1;
         #endregion
 
         #region PUBLIC METHODS

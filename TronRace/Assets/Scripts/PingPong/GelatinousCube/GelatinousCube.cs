@@ -10,6 +10,11 @@ namespace Entrance
     public class GelatinousCube : MonoBehaviour, IInteractible
     {
         #region UNITY METHODS
+        private void Awake()
+        {
+            scoreManager = FindObjectOfType<ScoreManager>();
+        }
+
         private void Start()
         {
             interactionTime.OnFinish = () =>
@@ -21,6 +26,14 @@ namespace Entrance
             block = new MaterialPropertyBlock();
             life.OnDie = () => { 
                 pool.Recycle();
+
+                if (drop.isTimes2) { 
+                    scoreManager.ApplyTimes2();
+                }else 
+                {
+                    scoreManager.AddPoints(drop.selectedModifier);
+                }
+
                 if (position != null) { 
                     position.free = true;
                 }
@@ -37,9 +50,12 @@ namespace Entrance
         #region VARIABLES
         [SerializeField] private LifeObject life;
         [SerializeField] private PoolableObject pool;
-
-        [SerializeField]private Timer interactionTime;
+        [SerializeField] private Timer interactionTime;
         [SerializeField] private Renderer rend;
+
+        [SerializeField] private GelatinousCubeDrop drop;
+        [SerializeField] private ScoreManager scoreManager;
+
         [SerializeField, Range(0, 100)] private int damagePerInteraction=20;
         public Action<Interaction.Touch> OnInteract { get; set; }
         private MaterialPropertyBlock block;
@@ -54,7 +70,7 @@ namespace Entrance
         }
         public void Interact(Interaction.Touch touch)
         {
-            Debug.Log("Interaction");
+            //Debug.Log("Interaction");
             interactionTime.Tick(Time.deltaTime);
         }
         #endregion
