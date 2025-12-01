@@ -171804,6 +171804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1004250321}
   - component: {fileID: 1004250322}
+  - component: {fileID: 1004250323}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -171839,6 +171840,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalPoints: {fileID: 1803806444}
   totalX2: {fileID: 96183635}
+--- !u!114 &1004250323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004250320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d971dc04a1b9fa4b9b3c6f4d9571084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifierMaterials:
+  - {fileID: 2100000, guid: fcf6c1ee56ce1df4a9b45a0e99662280, type: 2}
+  - {fileID: 2100000, guid: feb99f722753a1745abd74bbd5397184, type: 2}
+  - {fileID: 2100000, guid: 7c089349c5579f845a305fcb90f329de, type: 2}
 --- !u!1 &1005285905
 GameObject:
   m_ObjectHideFlags: 0

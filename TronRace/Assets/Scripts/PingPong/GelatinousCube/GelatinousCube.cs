@@ -10,10 +10,6 @@ namespace Entrance
     public class GelatinousCube : MonoBehaviour, IInteractible
     {
         #region UNITY METHODS
-        private void Awake()
-        {
-            scoreManager = FindObjectOfType<ScoreManager>();
-        }
 
         private void Start()
         {
@@ -24,20 +20,11 @@ namespace Entrance
                 ChangeJelloOpacity();
             };
             block = new MaterialPropertyBlock();
-            life.OnDie = () => { 
-                pool.Recycle();
-
-                if (drop.isTimes2) { 
-                    scoreManager.ApplyTimes2();
-                }else 
-                {
-                    scoreManager.AddPoints(drop.selectedModifier);
-                }
-
-                if (position != null) { 
-                    position.free = true;
-                }
+            life.OnDie = () =>
+            {
+                StartCoroutine(DieRoutine());
             };
+
             interactionTime.Restart();
         }
 
@@ -54,7 +41,6 @@ namespace Entrance
         [SerializeField] private Renderer rend;
 
         [SerializeField] private GelatinousCubeDrop drop;
-        [SerializeField] private ScoreManager scoreManager;
 
         [SerializeField, Range(0, 100)] private int damagePerInteraction=20;
         public Action<Interaction.Touch> OnInteract { get; set; }
@@ -87,6 +73,30 @@ namespace Entrance
             block.SetColor("_Color", color);
             rend.SetPropertyBlock(block);
         }
+
+        private IEnumerator DieRoutine()
+        {
+            yield return StartCoroutine(drop.ShowModifier());
+
+            switch (drop.modifier.type)
+            {
+                case ModifierType.PlusOne:
+                    ScoreManager.Instance.AddPoints(1);
+                    break;
+                case ModifierType.PlusThree:
+                    ScoreManager.Instance.AddPoints(3);
+                    break;
+                case ModifierType.TimesTwo:
+                    ScoreManager.Instance.ApplyTimes2();
+                    break;
+            }
+
+            pool.Recycle();
+
+            if (position != null)
+                position.free = true;
+        }
+
         #endregion
     }
 }

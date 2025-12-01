@@ -1,48 +1,55 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    private int currentPoints;
-    [SerializeField] private TextMeshProUGUI totalPoints;
-    [SerializeField] private TextMeshProUGUI totalX2;
-
-    [SerializeField] public static int Times2Count = 0;
-    int Times2Used = 0;
-    public static int MaxTimes2Allowed = 5;
+    #region UNITY METHODS
+    private void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     private void Start()
     {
         currentPoints = 0;
-        Times2Count = 0;
+        times2Used = 0;
+        UpdateUI();
     }
+    #endregion
 
+    #region VARIABLES
+    public static ScoreManager Instance { get; private set; }
+
+    private int currentPoints;
+    private int times2Used;
+
+    [SerializeField] private TextMeshProUGUI totalPoints;
+    [SerializeField] private TextMeshProUGUI totalX2;
+    #endregion
+
+    #region PUBLIC METHODS
     public void AddPoints(int points)
     {
         currentPoints += points;
-        Debug.Log("Puntos por gelatina destruida: " + points);
-        UpdateUI();
-    }
-
-    public void AddPointsByRacket(int points)
-    {
-        currentPoints += points;
-        //Debug.Log("Puntos por raqueta: " + points);
+        //Debug.Log("Puntos por gelatina destruida: " + points);
         UpdateUI();
     }
 
     public void ApplyTimes2()
     {
         currentPoints *= 2;
-        Times2Used++;
-        Debug.Log("Puntos doblados! Multiplicadores x2 usados: " + Times2Used);
+        times2Used++;
+        //Debug.Log("Puntos doblados! Multiplicadores x2 usados: " + times2Used);
         UpdateUI();
     }
+    #endregion
 
+    #region PRIVATE METHODS
     private void UpdateUI()
     {
         totalPoints.text = currentPoints.ToString();
-        totalX2.text = Times2Used.ToString();
+        totalX2.text = times2Used.ToString();
     }
+    #endregion
 }

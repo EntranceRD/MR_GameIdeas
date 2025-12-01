@@ -13,7 +13,7 @@ namespace Entrance
             if(ball!=null){
                 ball.ChangeMovingDirection();
                 ball.BounceRandom(angleGenerator);
-                scoreManager.AddPointsByRacket(pointHit);
+                scoreManager.AddPoints(pointHit);
             }
         }
         private void Start()

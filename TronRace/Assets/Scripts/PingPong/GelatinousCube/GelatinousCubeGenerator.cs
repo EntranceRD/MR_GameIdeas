@@ -49,6 +49,9 @@ namespace Entrance
                     var cube = instantiator.Instantiate(position.transform);
                     cube.GetComponentInChildren<GelatinousCube>().SetGelatinousPosition(position);
                     position.free = false;
+
+                    var drop = cube.GetComponentInChildren<GelatinousCubeDrop>();
+                    OnGelatinousCubeSpawn(drop);
                 }
             }
         }
@@ -61,6 +64,11 @@ namespace Entrance
             }
             return null;
         }
+        private void OnGelatinousCubeSpawn(GelatinousCubeDrop drop)
+        {
+            drop.Initialize(ScoreModifier.Instance.GetNewModifier());
+        }
+
         #endregion
     }
 }

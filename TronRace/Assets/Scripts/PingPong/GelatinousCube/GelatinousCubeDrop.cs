@@ -1,43 +1,50 @@
+using DG.Tweening;
 using Entrance;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class GelatinousCubeDrop : MonoBehaviour
 {
-    [SerializeField] private List<int> modifiers = new List<int>();
-    public int selectedModifier;
-    public bool isTimes2;
-
-    void Start()
+    #region UNITY_METHODS
+    public void Initialize(ModifierClass newModifier)
     {
-        //DecideModifier();
+        modifier = newModifier;
+        modifierText.text = modifier.display;
+        GetComponent<Renderer>().material = modifier.material;
+        modifierText.transform.localScale = Vector3.one;
+        modifierText.color = new Color(1f, 1f, 1f, 0.5f);
+        //modifierText.gameObject.SetActive(false);
     }
+    #endregion
 
-    private void OnEnable()
+    #region VARIABLES
+    public ModifierClass modifier;
+    [SerializeField] private TextMeshPro modifierText;
+    #endregion
+
+    #region PUBLIC_METHODS
+    public IEnumerator ShowModifier()
     {
-        isTimes2 = false;
-        selectedModifier = 0;
+        //modifierText.gameObject.SetActive(true);
 
-        DecideModifier();
+        // Reset
+        modifierText.transform.localScale = Vector3.one;
+        modifierText.color = new Color(1f, 1f, 1f, 1f);
+
+        // 1) Escalamos a 1.2 en 0.2 segundos
+        yield return modifierText.transform
+            .DOScale(1.2f, 0.2f)
+            .SetEase(Ease.OutBack)
+            .WaitForCompletion();
+
+        // 2) Escalamos a 0 en 0.3 segundos
+        yield return modifierText.transform
+            .DOScale(0f, 0.3f)
+            .SetEase(Ease.InBack)
+            .WaitForCompletion();
+
+        //modifierText.gameObject.SetActive(false);
     }
-
-    private void DecideModifier()
-    {
-        if (ScoreManager.Times2Count < ScoreManager.MaxTimes2Allowed)
-        {
-            float chance = Random.Range(0f, 1f);
-            if (chance <= 0.5f)
-            {
-                isTimes2 = true;
-                ScoreManager.Times2Count++;
-                Debug.LogWarning("Aparecio un x2");
-                return;
-            }
-        }
-
-        selectedModifier = modifiers[Random.Range(0, modifiers.Count)];
-    }
+    #endregion
 }
