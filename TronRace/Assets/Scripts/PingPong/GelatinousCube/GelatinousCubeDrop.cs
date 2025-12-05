@@ -28,17 +28,14 @@ public class GelatinousCubeDrop : MonoBehaviour
     {
         //modifierText.gameObject.SetActive(true);
 
-        // Reset
         modifierText.transform.localScale = Vector3.one;
         modifierText.color = new Color(1f, 1f, 1f, 1f);
 
-        // 1) Escalamos a 1.2 en 0.2 segundos
         yield return modifierText.transform
             .DOScale(1.2f, 0.2f)
             .SetEase(Ease.OutBack)
             .WaitForCompletion();
 
-        // 2) Escalamos a 0 en 0.3 segundos
         yield return modifierText.transform
             .DOScale(0f, 0.3f)
             .SetEase(Ease.InBack)

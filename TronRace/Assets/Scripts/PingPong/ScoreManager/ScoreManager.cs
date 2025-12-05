@@ -9,7 +9,6 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
-
     private void Start()
     {
         currentPoints = 0;
