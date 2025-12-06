@@ -1,3 +1,4 @@
+using Entrance;
 using TMPro;
 using UnityEngine;
 
@@ -31,7 +32,6 @@ public class ScoreManager : MonoBehaviour
     public void AddPoints(int points)
     {
         currentPoints += points;
-        //Debug.Log("Puntos por gelatina destruida: " + points);
         UpdateUI();
     }
 
@@ -39,16 +39,31 @@ public class ScoreManager : MonoBehaviour
     {
         currentPoints *= 2;
         times2Used++;
-        //Debug.Log("Puntos doblados! Multiplicadores x2 usados: " + times2Used);
         UpdateUI();
     }
+
+    public void ShowCoinScore()
+    {
+        CollectCoins();
+        UpdateUI();
+    }
+
+    public void CollectCoins()
+    {
+        Balloon[] ballons = FindObjectsOfType<Balloon>();
+        foreach (Balloon coin in ballons)
+        {
+            currentPoints += coin.value;
+        }
+    }
+
     #endregion
 
     #region PRIVATE METHODS
     private void UpdateUI()
     {
         totalPoints.text = currentPoints.ToString();
-        totalX2.text = times2Used.ToString();
+        //totalX2.text = times2Used.ToString();
     }
     #endregion
 }

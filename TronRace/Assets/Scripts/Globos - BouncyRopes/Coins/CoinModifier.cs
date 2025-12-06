@@ -1,68 +1,28 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CoinModifier : MonoBehaviour
 {
-    public static CoinModifier Instance { get; private set; }
-    //[Range(1, 20)] public int coinValue;
-    //[Range(1, 100)] public int totalCoinsPerGame;
-    public List<ModifierClass> coinModifiers = new List<ModifierClass>();
-    public List<Material> modifierMaterials = new List<Material>();
-    public const int maxCoinValue = 50;
-    public const float maxCoinSize = 5.0f;
+    public ModifierClass modifier;
+    [SerializeField] private TextMeshPro modifierText;
 
-    private void Awake()
+    public void Initialize(ModifierClass newModifier)
     {
-        Instance = this;
-
-        coinModifiers.Add(new ModifierClass(ModifierType.TimesTwo, "x2", modifierMaterials[0]));
+        modifier = newModifier;
+        modifierText.text = modifier.display;
+        GetComponent<Renderer>().material = modifier.material;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        modifier = CoinModifierClass.Instance.GetNewModifier();
+        Initialize(modifier);
     }
 
-    // Update is called once per frame
     void Update()
     {
         
-    }
-
-    private int ChangeCoinValue(int coinValue, ModifierClass modifier)
-    {
-        int newValue = coinValue;
-        switch (modifier.type)
-        {
-            case ModifierType.TimesTwo:
-                newValue = coinValue * 2;
-                break;
-            default:
-                break;
-        }
-
-        if (newValue > maxCoinValue)
-        {
-            newValue = maxCoinValue;
-        }
-
-        return newValue;
-    }
-
-    private void ChangeCoinSize(Transform coinTransform, ModifierClass modifier)
-    {
-        switch (modifier.type)
-        {
-            case ModifierType.TimesTwo:
-                coinTransform.localScale = Vector3.one * 1.5f;
-                break;
-            default:
-                break;
-        }
-
-        if (coinTransform.localScale.x > maxCoinSize)
-        {
-            coinTransform.localScale = Vector3.one * maxCoinSize;
-        }
     }
 }

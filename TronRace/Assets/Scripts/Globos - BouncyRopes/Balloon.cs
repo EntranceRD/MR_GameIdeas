@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace Entrance
         #region VARIABLES
         public Action OnDie { get; set; }
         public int Health { get; protected set; }
+        public int value = 1;
         [SerializeField] private int MaxHealth = 1;
         [SerializeField] private PoolableObject poolable;
         [SerializeField] private Rigidbody rb;
@@ -76,6 +78,7 @@ namespace Entrance
         #region PRIVATE METHODS
         private void RecycleBalloon()
         {
+            value = 1;
             poolable.Recycle();    
         }
         private void KillPhysichs() {
@@ -84,6 +87,16 @@ namespace Entrance
         }
         private void CallExplosion() {
             BalloonExplosionInstantiator.Instance.CreateExplosion(transform, col);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Modifier"))
+            {
+                ModifierClass modifier = other.GetComponent<CoinModifier>().modifier;
+                value = CoinModifierClass.Instance.ChangeCoinValue(value, modifier);
+                CoinModifierClass.Instance.ChangeCoinSize(transform, modifier);
+            }
         }
         #endregion
     }
