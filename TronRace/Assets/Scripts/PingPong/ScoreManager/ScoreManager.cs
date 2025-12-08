@@ -1,4 +1,5 @@
 using Entrance;
+using Entrance.Unity;
 using TMPro;
 using UnityEngine;
 
@@ -21,9 +22,14 @@ public class ScoreManager : MonoBehaviour
     #region VARIABLES
     public static ScoreManager Instance { get; private set; }
 
+    public GameDifficulty[] difficultiesPerPlayers;
+
+    private GameDifficulty currentDifficulty;
+    private Timer spawnCoinTimer;
     private int currentPoints;
     private int times2Used;
 
+    [Header("UI References")]
     [SerializeField] private TextMeshProUGUI totalPoints;
     [SerializeField] private TextMeshProUGUI totalX2;
     #endregion
@@ -47,14 +53,19 @@ public class ScoreManager : MonoBehaviour
         CollectCoins();
         UpdateUI();
     }
-
-    public void CollectCoins()
+    public void SetPlayers(int totalPlayers)
     {
-        Balloon[] ballons = FindObjectsOfType<Balloon>();
-        foreach (Balloon coin in ballons)
+        //difficultyIndex = GetDifficultyAccordingToPlayersTotal(totalPlayers);
+        //currentDifficulty = difficultiesPerPlayers[difficultyIndex];
+    }
+
+    public void PrepareGame()
+    {
+        spawnCoinTimer.OnFinish = () =>
         {
-            currentPoints += coin.value;
-        }
+            //int newCoinValue = GetNewCoinValue();
+            //SpawnNewCoinWithValue(newCoinValue);
+        };
     }
 
     #endregion
@@ -65,5 +76,26 @@ public class ScoreManager : MonoBehaviour
         totalPoints.text = currentPoints.ToString();
         //totalX2.text = times2Used.ToString();
     }
+    private void CollectCoins()
+    {
+        Balloon[] ballons = FindObjectsOfType<Balloon>();
+        foreach (Balloon coin in ballons)
+        {
+            currentPoints += coin.value;
+        }
+    }
+
+    /*private int GetNewCoinValue()
+    {
+        for (int i = 0; i < currentDifficulty.settingsPerGamePlayers.Length; i++)
+        {
+            var coinSetting = currentDifficulty.settingsPerGamePlayers[i];
+            if (coinSetting.totalCoins > 0)
+            {
+                currentDifficulty.settingsPerGamePlayers[i].totalCoins--;
+                return coinSetting.coinValue;
+            }
+        }
+    }*/
     #endregion
 }

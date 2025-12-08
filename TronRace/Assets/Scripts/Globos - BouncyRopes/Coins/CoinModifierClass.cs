@@ -60,8 +60,6 @@ public class CoinModifierClass : MonoBehaviour
         {
             coinTransform.localScale = Vector3.one * maxCoinSize;
         }
-
-        Debug.Log("New coin size: " + coinTransform.localScale);
     }
 
     public ModifierClass GetNewModifier()

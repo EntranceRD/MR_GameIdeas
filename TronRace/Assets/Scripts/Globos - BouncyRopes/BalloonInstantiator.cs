@@ -52,7 +52,7 @@ namespace Entrance
         #region PRIVATE METHODS
         private void InstantiateBalloon()
         {
-            var rand = Random.Range(0, instancePoints.objects.Count); ;
+            var rand = Random.Range(0, instancePoints.objects.Count);
             var randCol = Random.Range(0, colors.Length); ;
             var randSize = Random.Range(0.8f, 1.6f);
             var randDrag = Random.Range(0.2f, 0.6f);
