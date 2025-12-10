@@ -1,22 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
 public class GameScoreSettings
 {
-    public int coinValue = 0;
-    public int totalCoins = 0;
+    [Range(1,20)]public int coinValue;
+    [Range(5,60) ]public int totalCoins;
 }
 
-public class GameDifficulty
+public class GameDifficulty : MonoBehaviour
 {
-    public GameScoreSettings[] settingsPerGamePlayers;
+    [SerializeField] // Permite editar desde el inspector
+    public GameScoreSettings[] settingsPerGamePlayers02 = new GameScoreSettings[5];
+    public GameScoreSettings[] settingsPerGamePlayers03 = new GameScoreSettings[5];
+    public GameScoreSettings[] settingsPerGamePlayers04 = new GameScoreSettings[5];
+    public GameScoreSettings[] settingsPerGamePlayers05 = new GameScoreSettings[5];
 
-    public GameDifficulty()
-    {
-        settingsPerGamePlayers = new GameScoreSettings[5]
-        {
-            new GameScoreSettings() { coinValue = 1, totalCoins = 20 },
-            new GameScoreSettings() { coinValue = 2, totalCoins = 15 },
-            new GameScoreSettings() { coinValue = 5, totalCoins = 10 }, 
-            new GameScoreSettings() { coinValue = 10, totalCoins = 5 },
-            new GameScoreSettings() { coinValue = 20, totalCoins = 1 }  
-        };
-    }
 }

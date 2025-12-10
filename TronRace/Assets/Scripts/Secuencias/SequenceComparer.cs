@@ -38,6 +38,8 @@ namespace Entrance
 
                 colorToCompare++;
                 if (colorToCompare >= sequence.Count) {
+                    ScoreManager.Instance.AddPoints(sequence.Count);
+                    ScoreManager.Instance.UpdateSequences(1);
                     colorToCompare = 0;
                     ClearSequence();
                     sequenceGenerator.Restart();

@@ -6,12 +6,7 @@ using UnityEngine;
 
 public class CoinModifier : MonoBehaviour
 {
-    public ModifierClass modifier;
-    [SerializeField] private TextMeshPro modifierText;
-    [SerializeField] private Vector3 targetPosition;
-    public int previousColumn;
-    public int nextColumn = 1;       
-
+    #region UNITY METHODS
     public void Initialize(ModifierClass newModifier)
     {
         modifier = newModifier;
@@ -23,37 +18,52 @@ public class CoinModifier : MonoBehaviour
     {
         modifier = CoinModifierClass.Instance.GetNewModifier();
         Initialize(modifier);
-
-        targetPosition = CoinModifiersMap.instance.GetNewPoint(nextColumn).position;
+        SelectNextColumn();
     }
-
 
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * 2f);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * modifierVelocity);
 
         float dist = Vector3.Distance(transform.position, targetPosition);
         if (dist < 0.2f)
         {
-            SelectNexPoint();
+            SelectNextColumn();
         }
     }
+    #endregion
 
-    private void SelectNexPoint()
+    #region VARIABLES
+    public ModifierClass modifier;
+    [SerializeField] private TextMeshPro modifierText;
+    [SerializeField, Range(0, 3)] private float modifierVelocity;
+    [SerializeField] private PoolableObject poolable;
+    [SerializeField] private Vector3 targetPosition;
+    public int previousColumn;
+    private int totalColumns = 3;
+    public int nextColumn;
+    #endregion
+
+    #region PUBLIC METHODS
+    #endregion
+
+    #region PRIVATE METHODS
+    private void SelectNextColumn()
     {
-        if (nextColumn == 1)
-        {
-            if (previousColumn == 2)
-                nextColumn = 0;
-            else if (previousColumn == 0)
-                nextColumn = 2;
-        }
-        else
-        {
-            previousColumn = nextColumn;
-            nextColumn = 1;
-        }
-
+        nextColumn = (previousColumn + 1) % totalColumns;
+        previousColumn = nextColumn;
         targetPosition = CoinModifiersMap.instance.GetNewPoint(nextColumn).position;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Balloon"))
+        {
+            Balloon coin = other.GetComponent<Balloon>();
+            coin.value = CoinModifierClass.Instance.ChangeCoinValue(coin.value, modifier);
+            CoinModifierClass.Instance.ChangeCoinSize(coin.transform, modifier);
+            poolable.Recycle();
+        }
+    }
+    #endregion
 }

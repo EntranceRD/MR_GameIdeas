@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 7537295095152548867}
   - component: {fileID: 7537295095152548922}
   m_Layer: 0
-  m_Name: Bouncy Ball - Balloon
-  m_TagString: Untagged
+  m_Name: Bouncy Ball - Balloon 1
+  m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759ab351936db874cb5ecdff6f7d42d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 1
   MaxHealth: 1
   poolable: {fileID: 7537295095152548922}
   rb: {fileID: 7537295095152548867}

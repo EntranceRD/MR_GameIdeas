@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 8057607178422582361}
   m_Layer: 0
   m_Name: Coin Modifier
-  m_TagString: Modifier
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +342,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modifierText: {fileID: 2370903777757051784}
-  targetPosition: {x: 0, y: 0, z: 0}
+  modifierVelocity: 3
   poolable: {fileID: 7537295095152548922}
+  targetPosition: {x: 0, y: 0, z: 0}
   previousColumn: 0
+  totalColumns: 3
   nextColumn: 0

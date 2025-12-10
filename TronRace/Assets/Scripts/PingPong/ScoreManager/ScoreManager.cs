@@ -27,11 +27,13 @@ public class ScoreManager : MonoBehaviour
     private GameDifficulty currentDifficulty;
     private Timer spawnCoinTimer;
     private int currentPoints;
+    private int currentSequences;
     private int times2Used;
 
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI totalPoints;
-    [SerializeField] private TextMeshProUGUI totalX2;
+    [SerializeField] private TextMeshProUGUI totalSequences;
+    //[SerializeField] private TextMeshProUGUI totalX2;
     #endregion
 
     #region PUBLIC METHODS
@@ -68,12 +70,19 @@ public class ScoreManager : MonoBehaviour
         };
     }
 
+    public void UpdateSequences(int amount)
+    {
+        currentSequences += amount;
+        UpdateUI();
+    }
+
     #endregion
 
     #region PRIVATE METHODS
     private void UpdateUI()
     {
-        totalPoints.text = currentPoints.ToString();
+        totalPoints.text = "Puntos: " + currentPoints.ToString();
+        totalSequences.text = "Secuencias: " + currentSequences.ToString();
         //totalX2.text = times2Used.ToString();
     }
     private void CollectCoins()

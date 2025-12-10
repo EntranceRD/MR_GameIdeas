@@ -3,12 +3,7 @@ using UnityEngine;
 
 public class CoinModifierClass : MonoBehaviour
 {
-    public static CoinModifierClass Instance { get; private set; }
-    public List<ModifierClass> coinModifiers = new List<ModifierClass>();
-    public List<Material> modifierMaterials = new List<Material>();
-    public const int maxCoinValue = 50;
-    public const float maxCoinSize = 5.0f;
-
+    #region UNITY METHODS
     private void Awake()
     {
         Instance = this;
@@ -25,7 +20,17 @@ public class CoinModifierClass : MonoBehaviour
     {
         
     }
+    #endregion
 
+    #region VARIABLES 
+    public static CoinModifierClass Instance;
+    public List<ModifierClass> coinModifiers = new List<ModifierClass>();
+    public List<Material> modifierMaterials = new List<Material>();
+    public const int maxCoinValue = 50;
+    public const float maxCoinSize = .8f;
+    #endregion
+
+    #region PUBLIC METHODS
     public int ChangeCoinValue(int coinValue, ModifierClass modifier)
     {
         int newValue = coinValue;
@@ -66,4 +71,8 @@ public class CoinModifierClass : MonoBehaviour
     {
         return coinModifiers[0];
     }
+    #endregion
+
+    #region PRIVATE METHODS
+    #endregion
 }

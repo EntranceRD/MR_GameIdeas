@@ -6,6 +6,7 @@ using Entrance;
 
 public class ModifierInstantiator : MonoBehaviour
 {
+    #region UNITY METHODS
     private void Awake()
     {
         instanceTimer.OnFinish = () =>
@@ -21,11 +22,18 @@ public class ModifierInstantiator : MonoBehaviour
     {
         instanceTimer.Tick(Time.deltaTime);
     }
+    #endregion
 
+    #region VARIABLES
     [SerializeField] private Timer instanceTimer;
     [SerializeField] private ObjectInstantiator modifierInstantiator;
     [SerializeField] private ObjectGroup<Transform> instancePoints;
+    #endregion
 
+    #region PUBLIC METHODS
+    #endregion
+
+    #region PRIVATE METHODS
     private void InstantiateModifier()
     {
         int rand = Random.Range(0, instancePoints.objects.Count);
@@ -38,5 +46,5 @@ public class ModifierInstantiator : MonoBehaviour
         else
             coinModifier.previousColumn = 2;
     }
-
+    #endregion
 }

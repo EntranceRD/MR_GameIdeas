@@ -88,16 +88,6 @@ namespace Entrance
         private void CallExplosion() {
             BalloonExplosionInstantiator.Instance.CreateExplosion(transform, col);
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Modifier"))
-            {
-                ModifierClass modifier = other.GetComponent<CoinModifier>().modifier;
-                value = CoinModifierClass.Instance.ChangeCoinValue(value, modifier);
-                CoinModifierClass.Instance.ChangeCoinSize(transform, modifier);
-            }
-        }
         #endregion
     }
 }
