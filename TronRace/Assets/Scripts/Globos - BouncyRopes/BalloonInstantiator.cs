@@ -20,7 +20,7 @@ namespace Entrance
             instanceTimer.Restart();
         }
 
-        private void Update()
+        private void Update() 
         {
             instanceTimer.Tick(Time.deltaTime);
         }
@@ -50,7 +50,7 @@ namespace Entrance
         #endregion
 
         #region PRIVATE METHODS
-        private void InstantiateBalloon()
+        public void InstantiateBalloon()
         {
             var rand = Random.Range(0, instancePoints.objects.Count);
             var randCol = Random.Range(0, colors.Length); ;
@@ -79,6 +79,8 @@ namespace Entrance
             _balloon.SetColor(colors[randCol]);
             _balloon.SetDrag(randDrag);
             _balloon.Heal(10);
+            _balloon.value = GameDifficulty.Instance.NewCoinValue();
+            _balloon.UpdateValueTxt();
 
             Vector3 scale = Vector3.one * .3f * randSize;
             balloon.transform.localScale = scale;

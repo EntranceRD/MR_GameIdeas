@@ -1,6 +1,8 @@
+using DG.Tweening;
 using Entrance;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -62,6 +64,7 @@ public class CoinModifier : MonoBehaviour
             Balloon coin = other.GetComponent<Balloon>();
             coin.value = CoinModifierClass.Instance.ChangeCoinValue(coin.value, modifier);
             CoinModifierClass.Instance.ChangeCoinSize(coin.transform, modifier);
+            coin.UpdateValueTxt();
             poolable.Recycle();
         }
     }

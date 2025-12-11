@@ -65238,7 +65238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalPoints: {fileID: 861529167}
-  totalX2: {fileID: 0}
 --- !u!114 &1005747847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65262,12 +65261,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005747844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d84c0391a6bce428a3f39820db5caf, type: 3}
+  m_Script: {fileID: 11500000, guid: ca4d4cf5cafdeee4e854386d0e9e800a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlayers: 2
-  totalCoinsPerGame: 0
-  possibleCoinValues: 
+  settingsPerGamePlayers02:
+  - coinValue: 1
+    totalCoins: 20
+  - coinValue: 2
+    totalCoins: 15
+  - coinValue: 5
+    totalCoins: 10
+  - coinValue: 10
+    totalCoins: 5
+  settingsPerGamePlayers03:
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  settingsPerGamePlayers04:
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  settingsPerGamePlayers05:
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  - coinValue: 0
+    totalCoins: 0
+  totalPlayers: 2
+  coinPrefab: {fileID: 7537295095152548866, guid: 074387496aa12034d9a0b1b3c2f80148, type: 3}
 --- !u!1 &1007616631
 GameObject:
   m_ObjectHideFlags: 0

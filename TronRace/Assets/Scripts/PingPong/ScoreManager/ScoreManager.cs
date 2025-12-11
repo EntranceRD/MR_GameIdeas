@@ -22,8 +22,6 @@ public class ScoreManager : MonoBehaviour
     #region VARIABLES
     public static ScoreManager Instance { get; private set; }
 
-    public GameDifficulty[] difficultiesPerPlayers;
-
     private GameDifficulty currentDifficulty;
     private Timer spawnCoinTimer;
     private int currentPoints;
@@ -32,7 +30,7 @@ public class ScoreManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] private TextMeshProUGUI totalPoints;
-    [SerializeField] private TextMeshProUGUI totalSequences;
+    //[SerializeField] private TextMeshProUGUI totalSequences;
     //[SerializeField] private TextMeshProUGUI totalX2;
     #endregion
 
@@ -82,7 +80,7 @@ public class ScoreManager : MonoBehaviour
     private void UpdateUI()
     {
         totalPoints.text = "Puntos: " + currentPoints.ToString();
-        totalSequences.text = "Secuencias: " + currentSequences.ToString();
+        //totalSequences.text = "Secuencias: " + currentSequences.ToString();
         //totalX2.text = times2Used.ToString();
     }
     private void CollectCoins()

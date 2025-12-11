@@ -1,7 +1,9 @@
+using DG.Tweening;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Entrance 
@@ -28,12 +30,14 @@ namespace Entrance
         #region VARIABLES
         public Action OnDie { get; set; }
         public int Health { get; protected set; }
-        public int value = 1;
+        public int value;
+        public TextMeshPro valueText;
         [SerializeField] private int MaxHealth = 1;
         [SerializeField] private PoolableObject poolable;
         [SerializeField] private Rigidbody rb;
         [SerializeField] private ColorChanger material;
         private Color col;
+
         #endregion
 
         #region PUBLIC METHODS
@@ -73,12 +77,18 @@ namespace Entrance
         {
             return Health > 0;
         }
+
+        public void UpdateValueTxt()
+        {
+            valueText.text = value.ToString();
+            StartCoroutine(ModifierAnimation());
+        }
         #endregion
 
         #region PRIVATE METHODS
         private void RecycleBalloon()
         {
-            value = 1;
+            //value = 1;
             poolable.Recycle();    
         }
         private void KillPhysichs() {
@@ -87,6 +97,22 @@ namespace Entrance
         }
         private void CallExplosion() {
             BalloonExplosionInstantiator.Instance.CreateExplosion(transform, col);
+        }
+
+        private IEnumerator ModifierAnimation()
+        {
+            valueText.transform.localScale = Vector3.one;
+            valueText.color = new Color(1f, 1f, 1f, 1f);
+
+            yield return valueText.transform
+                .DOScale(1.5f, 0.15f)
+                .SetEase(Ease.OutBack)
+                .WaitForCompletion();
+
+            yield return valueText.transform
+                .DOScale(1f, 0.15f)
+                .SetEase(Ease.InBack)
+                .WaitForCompletion();
         }
         #endregion
     }
