@@ -52,21 +52,22 @@ public class CoinModifier : MonoBehaviour
     #region PRIVATE METHODS
     private void SelectNextColumn()
     {
-        nextColumn = (previousColumn + 1) % totalColumns;
         previousColumn = nextColumn;
+        nextColumn = (previousColumn + 1) % totalColumns;
         targetPosition = CoinModifiersMap.instance.GetNewPoint(nextColumn).position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Balloon"))
-        {
-            Balloon coin = other.GetComponent<Balloon>();
-            coin.value = CoinModifierClass.Instance.ChangeCoinValue(coin.value, modifier);
-            CoinModifierClass.Instance.ChangeCoinSize(coin.transform, modifier);
-            coin.UpdateValueTxt();
-            poolable.Recycle();
-        }
+        var balloon = other.GetComponent<Balloon>();
+        if (balloon == null) return;
+
+        balloon.value = CoinModifierClass.Instance.ChangeCoinValue(balloon.value, modifier);
+        CoinModifierClass.Instance.ChangeCoinSize(balloon.transform,balloon.value, modifier);
+        balloon.UpdateValueTxt();
+
+        poolable.Recycle();
     }
+
     #endregion
 }

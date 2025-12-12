@@ -1,6 +1,7 @@
 using Entrance;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class GameDifficulty : MonoBehaviour
@@ -14,7 +15,7 @@ public class GameDifficulty : MonoBehaviour
     
     GameScoreSettings[] currentCoinSettings;
 
-    public int totalPlayers;
+    [Range(2,5)]public int totalPlayers;
     public GameObject coinPrefab;
 
     private void Awake()
@@ -22,14 +23,12 @@ public class GameDifficulty : MonoBehaviour
         Instance = this;
     }
 
-    public int NewCoinValue()
+    private void Start()
     {
-        //var coin = Instantiate(coinPrefab).GetComponent<Balloon>();
-        //coin.value = GetRandomCoinValueForPlayers(totalPlayers);
-        return GetRandomCoinValueForPlayers(totalPlayers);
+        InitializeSettingsForTotalPLayers(totalPlayers);
     }
 
-    public int GetRandomCoinValueForPlayers(int totalPlayers)
+    private void InitializeSettingsForTotalPLayers(int totalPlayers)
     {
         switch (totalPlayers)
         {
@@ -49,7 +48,58 @@ public class GameDifficulty : MonoBehaviour
                 currentCoinSettings = settingsPerGamePlayers02;
                 break;
         }
-        var random = Random.Range(0, currentCoinSettings.Length);
-        return currentCoinSettings[random].coinValue;
     }
+
+    public int NewCoinValue()
+    {
+        //var coin = Instantiate(coinPrefab).GetComponent<Balloon>();
+        //coin.value = GetRandomCoinValueForPlayers(totalPlayers);
+        //return GetRandomCoinValueForPlayers(totalPlayers);
+
+        for(int i = 0; i < 10; i++)
+        {
+            var rand = Random.Range(0, currentCoinSettings.Length);
+            var coinSetting = currentCoinSettings[rand];
+            if(coinSetting.totalCoins > 0)
+            {
+                coinSetting.totalCoins--;
+                return coinSetting.coinValue;
+            }
+        }
+
+        for (int i = 0; i < currentCoinSettings.Length; i++)
+        {
+            var coinSetting = currentCoinSettings[i];
+            if(coinSetting.totalCoins > 0)
+            {
+                coinSetting.totalCoins--;
+                return coinSetting.coinValue;
+            }
+        }
+
+        return -1;
+    }
+
+    /*public int GetRandomCoinValueForPlayers(int totalPlayers)
+    {
+
+        //var random = Random.Range(0, currentCoinSettings.Length);
+        List<int> available = new List<int>();
+
+        for (int i = 0; i < currentCoinSettings.Length; i++)
+        {
+            if (currentCoinSettings[i].totalCoins > 0)
+                available.Add(i);
+        }
+
+        if (available.Count == 0)
+        {
+            Debug.LogWarning("No quedan monedas disponibles");
+            return 0;
+        }
+
+        int randomIndex = available[Random.Range(0, available.Count)];
+        currentCoinSettings[randomIndex].totalCoins--;
+        return currentCoinSettings[randomIndex].coinValue;
+    }*/
 }

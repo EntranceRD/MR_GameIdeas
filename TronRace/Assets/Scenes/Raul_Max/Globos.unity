@@ -58145,7 +58145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer:
-    Target: 10
+    Target: 300
   OnFinish:
     event:
       m_PersistentCalls:
@@ -65274,38 +65274,32 @@ MonoBehaviour:
   - coinValue: 10
     totalCoins: 5
   settingsPerGamePlayers03:
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
+  - coinValue: 1
+    totalCoins: 30
+  - coinValue: 2
+    totalCoins: 20
+  - coinValue: 5
+    totalCoins: 15
+  - coinValue: 10
+    totalCoins: 10
   settingsPerGamePlayers04:
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
+  - coinValue: 1
+    totalCoins: 50
+  - coinValue: 2
+    totalCoins: 30
+  - coinValue: 5
+    totalCoins: 15
+  - coinValue: 10
+    totalCoins: 10
   settingsPerGamePlayers05:
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
-  - coinValue: 0
-    totalCoins: 0
+  - coinValue: 1
+    totalCoins: 60
+  - coinValue: 2
+    totalCoins: 30
+  - coinValue: 5
+    totalCoins: 20
+  - coinValue: 10
+    totalCoins: 15
   totalPlayers: 2
   coinPrefab: {fileID: 7537295095152548866, guid: 074387496aa12034d9a0b1b3c2f80148, type: 3}
 --- !u!1 &1007616631

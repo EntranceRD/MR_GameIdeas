@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 7537295095152548868}
   - component: {fileID: 7537295095152548871}
   - component: {fileID: 7537295095152548869}
-  - component: {fileID: 7537295095152548923}
+  - component: {fileID: 996656004666217915}
   - component: {fileID: 7537295095152548870}
   - component: {fileID: 7537295095152548865}
   - component: {fileID: 7537295095152548864}
@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   physics: {fileID: 7537295095152548867}
   SpeedLimit: 12
---- !u!114 &7537295095152548923
+--- !u!114 &996656004666217915
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,10 +247,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7537295095152548866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 759ab351936db874cb5ecdff6f7d42d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 310b465047ae8584bbb3efd05fbdb33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 1
+  value: 0
   valueText: {fileID: 4802750344959740875}
   MaxHealth: 1
   poolable: {fileID: 7537295095152548922}

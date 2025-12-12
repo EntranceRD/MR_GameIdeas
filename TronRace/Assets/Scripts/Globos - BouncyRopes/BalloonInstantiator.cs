@@ -1,6 +1,7 @@
 using Entrance.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Entrance 
@@ -50,13 +51,18 @@ namespace Entrance
         #endregion
 
         #region PRIVATE METHODS
-        public void InstantiateBalloon()
+        private void InstantiateBalloon()
         {
             var rand = Random.Range(0, instancePoints.objects.Count);
             var randCol = Random.Range(0, colors.Length); ;
-            var randSize = Random.Range(0.8f, 1.6f);
+            //var randSize = Random.Range(0.8f, 1.6f);
             var randDrag = Random.Range(0.2f, 0.6f);
-            if (replaying) {
+            var point = instancePoints.GetObject(rand);
+            var balloon = ballonInstantiator.Instantiate(point);
+
+            InitializeCoin(balloon, randCol, randDrag);
+
+            /*if (replaying) {
                 rand = instanceIndex[replayIndex];
                 randCol = colorsIndex[replayIndex];
                 replayIndex = (replayIndex + 1) % instanceIndex.Count;
@@ -69,21 +75,36 @@ namespace Entrance
                 colorsIndex.Add(randCol);
                 intantiatedSizes.Add(randSize);
                 intantiatedDrag.Add(randDrag);
+            }*/
+        }
+
+        private void InitializeCoin(Transform balloonObj, int colorIndex, float drag)
+        {
+            var balloon = balloonObj.GetComponent<Balloon>();
+
+            balloon.SetMovementConstraints(lockX, lockY, lockZ);
+            balloon.SetColor(colors[colorIndex]);
+            balloon.SetDrag(drag);
+            balloon.Heal(10);
+
+            balloon.value = GameDifficulty.Instance.NewCoinValue();
+            balloon.UpdateValueTxt();
+
+            var size = GetSizeAccordingCoinValue(balloon.value);
+            balloonObj.localScale = Vector3.one * 0.3f * size;
+        }
+
+
+        private float GetSizeAccordingCoinValue(int coinValue)
+        {
+            switch (coinValue)
+            {
+                case 1: return 0.5f;
+                case 2: return .7f;
+                case 5: return 1f;
+                case 10: return 1.3f;
+                default: return 1f;
             }
-
-            var point = instancePoints.GetObject(rand);
-            var balloon = ballonInstantiator.Instantiate(point);
-
-            var _balloon = balloon.GetComponent<Balloon>();
-            _balloon.SetMovementConstraints(lockX, lockY, lockZ);
-            _balloon.SetColor(colors[randCol]);
-            _balloon.SetDrag(randDrag);
-            _balloon.Heal(10);
-            _balloon.value = GameDifficulty.Instance.NewCoinValue();
-            _balloon.UpdateValueTxt();
-
-            Vector3 scale = Vector3.one * .3f * randSize;
-            balloon.transform.localScale = scale;
         }
         #endregion
     }
