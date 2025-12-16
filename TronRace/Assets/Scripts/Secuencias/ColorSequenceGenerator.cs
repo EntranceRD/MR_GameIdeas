@@ -40,6 +40,7 @@ namespace Entrance
             currentSequence = CreateNewSequence(SequenceSize);
             DisplaySequence(currentSequence);
         }
+
         public List<int> GetCurrentSequence()
         {
             return currentSequence;
