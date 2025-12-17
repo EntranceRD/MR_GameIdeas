@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public ColorSequenceManager sequenceManager;
 
+    #region VARIABLES
+    public ColorSequenceManager sequenceManager;
+    #endregion
+
+    #region PUBLIC METHODS
     void Start()
     {
-        sequenceManager.StartGame();
+        StartCoroutine(sequenceManager.StartGame());
     }
+    #endregion
 }

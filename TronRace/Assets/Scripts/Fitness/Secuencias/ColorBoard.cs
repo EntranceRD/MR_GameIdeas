@@ -1,3 +1,4 @@
+using Entrance;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,74 +6,127 @@ using UnityEngine.UI;
 
 public class ColorBoard : MonoBehaviour
 {
-    public Image[] userColors;
-    public Collider[] buttonsInteractions;
-    public List<Image> userSelectedColors;
+    #region VARIABLES
+    public List<Image> userDisplayColors;
+    public List<Image> userImageButtons;
+    public List<Collider> buttonsInteractions;
+    
+    public List<int> currentSequence;
+
+    private int[] sequenceColorsValues;
     private List<int> userSequence = new List<int>();
-    public Image displayImagePrefab;
-    public Transform displayParent; 
 
     public delegate ColorSequenceComparisonResult DelegateSample(List<int> colors);
     public DelegateSample OnNewSequenceCompare;
-    public void Restart() { userSequence.Clear(); }
-    public void InitializeColor(Color[] colors)
+    #endregion
+
+    #region UNITY METHODS
+    private void Awake()
     {
-        for (int i = 0; i < userColors.Length; ++i)
-        {
-            userColors[i].color = colors[i];
-        }
+        DiseabledBoard();
+    }
+    #endregion
+
+    #region PUBLIC METHODS
+    public void Restart() 
+    { 
+        userSequence.Clear(); 
     }
 
-    public void AddColorToSequence(int index)
+    public void InitializeBoard(Color[] currentSequenceColors)
     {
-        userSequence.Add(index);
-        Debug.Log("User added color index: " + index);
+        InitializeButtonsImage();
+        EneabledUserButtons();
+        InitializeDisplays();
+        InitializeColors(currentSequenceColors);
+    }
+    public void AddColorToSequence(int buttonIndex)
+    {
+        int currentColorValue = sequenceColorsValues[buttonIndex];
+        userSequence.Add(currentColorValue);
         var result = OnNewSequenceCompare?.Invoke(userSequence);
         switch (result)
         {
             case ColorSequenceComparisonResult.Correct:
-                userSelectedColors[userSequence.Count - 1].color = userColors[index].color;
-                ScoreManager.Instance.AddPoints(index + 1);
+
+                userDisplayColors[userSequence.Count - 1].color = userImageButtons[buttonIndex].color;
+                ScoreManager.Instance.AddPoints(buttonIndex + 1);
                 CleanColorDisplay();
-                userSequence.Clear();
-                Image newSlot = Instantiate(displayImagePrefab, displayParent);
-                userSelectedColors.Add(newSlot);
+                DiseabledBoard();
+                Restart();
                 ColorSequenceManager.Instance.NewSequence();
-                
                 break;
+
             case ColorSequenceComparisonResult.Incorrect:
-                //marcar errores en la secuencia
-                //Hacer un singleton o static variables y method
-                // var resultsFromSequence = GetColorsCorrectFromComparison(userSequence);
+
                 StartCoroutine(IncorrectSequence());
                 break;
+
             case ColorSequenceComparisonResult.Incomplete:
-                userSelectedColors[userSequence.Count - 1].color = userColors[index].color;
-                ScoreManager.Instance.AddPoints(index + 1);
+
+                userDisplayColors[userSequence.Count - 1].color = userImageButtons[buttonIndex].color;
+                ScoreManager.Instance.AddPoints(buttonIndex + 1);
                 break;
+        }
+    }
+    #endregion
+
+    #region PRIVATE METHODS
+
+    private void InitializeButtonsImage()
+    {
+        for (int i = 0; i < currentSequence.Count; ++i)
+        {
+            userImageButtons[i].enabled = true;
+        }
+    }
+
+    private void InitializeDisplays()
+    {
+        for (int i = 0; i < currentSequence.Count; ++i)
+        {
+            userDisplayColors[i].enabled = true;
+        }
+    }
+
+    private void InitializeColors(Color[] colors)
+    {
+        sequenceColorsValues = new int[userImageButtons.Count];
+        List<Color> shuffledColors = new List<Color>(colors);
+        List<int> shuffledValue = new List<int>(currentSequence);
+
+        for (int i = 0; i < shuffledColors.Count; i++)
+        {
+            int randomIndex = Random.Range(i, shuffledColors.Count);
+
+            (shuffledColors[i], shuffledColors[randomIndex]) = (shuffledColors[randomIndex], shuffledColors[i]);
+            (shuffledValue[i], shuffledValue[randomIndex]) = (shuffledValue[randomIndex], shuffledValue[i]);
+        }
+
+        for (int i = 0; i < currentSequence.Count; ++i)
+        {
+            userImageButtons[i].color = shuffledColors[i];
+            sequenceColorsValues[i] = shuffledValue[i];
         }
     }
 
     private void CleanColorDisplay()
     {
         Color fadedWhite = new Color(1f, 1f, 1f, 76f / 255f);
-        for (int i = 0; i < userSelectedColors.Count; ++i)
+        for (int i = 0; i < userDisplayColors.Count; ++i)
         {
-            userSelectedColors[i].color = fadedWhite;
+            userDisplayColors[i].color = fadedWhite;
         }
     }
 
     private IEnumerator IncorrectSequence()
     {
         
-        foreach (var button in buttonsInteractions)
-        {
-            button.enabled = false;
-        }
-        
+        DiseabledUserButtons();
+
         for (int i = 0; i < 2; ++i)
         {
-            foreach (var img in userSelectedColors)
+            foreach (var img in userDisplayColors)
             {
                 img.color = Color.red;
             }
@@ -81,11 +135,43 @@ public class ColorBoard : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         
-        userSequence.Clear();
-  
+        Restart();
+
+        EneabledUserButtons();
+    }
+
+    private void DiseabledBoard()
+    {
         foreach (var button in buttonsInteractions)
         {
-            button.enabled = true;
+            button.enabled = false;
+        }
+        foreach (var image in userImageButtons)
+        {
+            image.enabled = false;
+        }
+        foreach (var display in userDisplayColors)
+        {
+            display.enabled = false;
+        }
+
+    }
+
+    private void EneabledUserButtons()
+    {
+        for (int i = 0; i < currentSequence.Count; ++i)
+        {
+            buttonsInteractions[i].enabled = true;
         }
     }
+
+    private void DiseabledUserButtons()
+    {
+        for (int i = 0; i < currentSequence.Count; ++i)
+        {
+            buttonsInteractions[i].enabled = false;
+        }
+    }
+
+#endregion
 }
