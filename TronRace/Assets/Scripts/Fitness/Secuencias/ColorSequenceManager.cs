@@ -22,9 +22,10 @@ public class ColorSequenceManager : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
-    public IEnumerator StartGame()
+    public IEnumerator StartGame(int players)
     {
-        colorSequence.Restart();
+        //colorSequence.Restart(players);
+        colorSequence.PrepareNewSequence(players);
         yield return colorSequence.DisplaySequence();
         Color[] displayColors = colorSequence.GetDisplayColors();
 
@@ -43,7 +44,7 @@ public class ColorSequenceManager : MonoBehaviour
     }
     #endregion
 
-    #region PRIVATE METHODS
+    #region PRIVATE METHODS                   
 
     #endregion
 }

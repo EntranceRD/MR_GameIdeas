@@ -18,8 +18,8 @@ public class ColorSequence : MonoBehaviour
     public List<int> currentSequence { get; private set; }
     private bool displayingSequence = false;
 
-    [SerializeField, Range(4,10)] private int sequenceSizeRange = 4;
-    private int currentSequenceSize = 4;
+    [SerializeField, Range(2,10)] private int sequenceSizeRange;
+    private int currentSequenceSize;
     [SerializeField] private Image[] sequenceDisplay;
 
     private float initialWaitTime = 1.0f;
@@ -35,8 +35,9 @@ public class ColorSequence : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
-    public void Restart()
+    public void Restart(int players)
     {
+        currentSequenceSize = players;
         PrepareNewSequence(currentSequenceSize);
         Debug.Log("New Sequence: " + string.Join(",", currentSequence));
     }
@@ -115,7 +116,7 @@ public class ColorSequence : MonoBehaviour
         displayingSequence = false;
     }
 
-    private void PrepareNewSequence(int size)
+    public void PrepareNewSequence(int size)
     {
         List<int>availableColorsIndedexes = new List<int>();
         for (int i = 0; i < colors.Length; ++i)

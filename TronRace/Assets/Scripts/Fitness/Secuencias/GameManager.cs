@@ -4,13 +4,14 @@ public class GameManager : MonoBehaviour
 {
 
     #region VARIABLES
-    public ColorSequenceManager sequenceManager;
+    public ColorSequenceManager colorSequenceManager;
+    [SerializeField, Range(2,10)] private int amountOfPLayers;
     #endregion
 
     #region PUBLIC METHODS
     void Start()
     {
-        StartCoroutine(sequenceManager.StartGame());
+        StartCoroutine(colorSequenceManager.StartGame(amountOfPLayers));
     }
     #endregion
 }
