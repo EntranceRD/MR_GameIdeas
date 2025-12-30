@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum ColorSequenceComparisonResult
 {
@@ -9,22 +7,17 @@ public enum ColorSequenceComparisonResult
     Incorrect,
     Correct
 }
+
 public class ColorSequence : MonoBehaviour
 {
     #region VARIABLES
-    private SequenceGenerator generator;
     public ColorData[] colors;
+    public List<int> newColorSequence { get; private set; }
 
-    public List<int> currentSequence { get; private set; }
-    private bool displayingSequence = false;
-
-    [SerializeField, Range(2,10)] private int sequenceSizeRange;
+    //[SerializeField, Range(2,10)] private int sequenceSizeRange;
     private int currentSequenceSize;
-    [SerializeField] private Image[] sequenceDisplay;
+    private SequenceGenerator generator;
 
-    private float initialWaitTime = 1.0f;
-    private float colorDisplayTime = 1.0f;
-    private float awaitBetweenColors = 0.5f;
     #endregion
 
     #region UNITY METHODS
@@ -35,90 +28,25 @@ public class ColorSequence : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
-    public void Restart(int players)
+
+    public void Restart()
+    {
+        for (int i = 0; i < colors.Length; i++)
+        {
+            colors[i].used = false;
+        }
+    }
+
+    public void CreateNewColorSequence(int players)
     {
         currentSequenceSize = players;
         PrepareNewSequence(currentSequenceSize);
-        Debug.Log("New Sequence: " + string.Join(",", currentSequence));
-    }
-
-    public void NextSequence()
-    {
-        sequenceSizeRange++;
-        currentSequenceSize = sequenceSizeRange;
-        PrepareNewSequence(currentSequenceSize);
-    }
-
-    public ColorSequenceComparisonResult CompareSequence(List<int> otherSequence)
-    {
-        for (int i = 0; i < otherSequence.Count; i++)
-        {
-            if (otherSequence[i] != currentSequence[i])
-                return ColorSequenceComparisonResult.Incorrect;
-        }
-
-        if (otherSequence.Count < currentSequence.Count)
-            return ColorSequenceComparisonResult.Incomplete;
-
-        return ColorSequenceComparisonResult.Correct;
-    }
-
-
-    /*public bool[] GetColorsCorrectFromComparison(int[] otherSequence)
-    {
-        List<bool> results = new List<bool>();
-        for (int i = 0; i < otherSequence.Length; ++i)
-        {
-            results.Add(currentSequence[i] != otherSequence[i]);
-        }
-        return results.ToArray();
-    }*/
-
-    public Coroutine DisplaySequence()
-    {
-        if (displayingSequence) return null;
-        displayingSequence = true;
-        return StartCoroutine(DisplayCurrentSequence());
-    }
-
-    public Color[] GetDisplayColors()
-    {
-        Color[] result = new Color[currentSequenceSize];
-
-        for (int i = 0; i < currentSequenceSize; i++)
-        {
-            int colorIndex = currentSequence[i];
-            result[i] = colors[colorIndex].color;
-        }
-
-        return result;
-    }
-
-    #endregion
-
-    #region PRIVATE METHODS
-
-    private IEnumerator DisplayCurrentSequence()
-    {
-        yield return new WaitForSeconds(initialWaitTime);
-        Color[] displayColors = GetDisplayColors();
-
-        for (int i = 0; i < currentSequence.Count; ++i)
-        {
-            int wallIndex = i % sequenceDisplay.Length;
-            sequenceDisplay[wallIndex].color = displayColors[i];
-            yield return new WaitForSeconds(colorDisplayTime);
-
-            sequenceDisplay[wallIndex].color = Color.black;
-            yield return new WaitForSeconds(awaitBetweenColors);
-        }
-
-        displayingSequence = false;
+        Debug.Log("New Sequence: " + string.Join(",", newColorSequence));
     }
 
     public void PrepareNewSequence(int size)
     {
-        List<int>availableColorsIndedexes = new List<int>();
+        List<int> availableColorsIndedexes = new List<int>();
         for (int i = 0; i < colors.Length; ++i)
         {
             if (!colors[i].used)
@@ -131,13 +59,49 @@ public class ColorSequence : MonoBehaviour
             }
         }
 
-        currentSequence = generator.CreateSequence(4, availableColorsIndedexes.Count, size);
+        availableColorsIndedexes.Shuffle();
 
-        for (int i = 0; i < currentSequence.Count; ++i)
+        if (newColorSequence == null) { newColorSequence = new List<int>(); }
+        newColorSequence.Clear();
+        for (int i = 0; i < size; i++)
         {
-            var colorIndex = currentSequence[i];
-            colors[colorIndex].used = true;
+            var colorIndex = availableColorsIndedexes[i];
+
+            newColorSequence.Add(colorIndex);
+            colors[colorIndex].used= true;
         }
     }
+
+    public ColorSequenceComparisonResult CompareSequence(List<int> otherSequence)
+    {
+        for (int i = 0; i < otherSequence.Count; i++)
+        {
+            if (otherSequence[i] != newColorSequence[i])
+                return ColorSequenceComparisonResult.Incorrect;
+        }
+
+        if (otherSequence.Count < newColorSequence.Count)
+            return ColorSequenceComparisonResult.Incomplete;
+
+        return ColorSequenceComparisonResult.Correct;
+    }
+
+    public Color[] GetDisplayColors()
+    {
+        Color[] result = new Color[currentSequenceSize];
+
+        for (int i = 0; i < currentSequenceSize; i++)
+        {
+            int colorIndex = newColorSequence[i];
+            result[i] = colors[colorIndex].color;
+        }
+
+        return result;
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+    
     #endregion
 }

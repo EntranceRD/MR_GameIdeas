@@ -6,6 +6,7 @@ using UnityEngine;
 public class ColorData
 {
     public Color color;
+    [HideInInspector]
     public bool used;
 }
 

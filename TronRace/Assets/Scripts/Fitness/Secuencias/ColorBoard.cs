@@ -10,8 +10,7 @@ public class ColorBoard : MonoBehaviour
     public List<Image> userDisplayColors;
     public List<Image> userImageButtons;
     public List<Collider> buttonsInteractions;
-    
-    public List<int> currentSequence;
+    public List<int> boardCurrentSequence;
 
     private int[] sequenceColorsValues;
     private List<int> userSequence = new List<int>();
@@ -28,9 +27,17 @@ public class ColorBoard : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
-    public void Restart() 
+
+    public void Restart()
+    {
+        RestartUserSequence();
+        CleanColorDisplay();
+        DiseabledBoard();
+    }
+
+    public void RestartUserSequence() 
     { 
-        userSequence.Clear(); 
+        userSequence.Clear();
     }
 
     public void InitializeBoard(Color[] currentSequenceColors)
@@ -53,8 +60,8 @@ public class ColorBoard : MonoBehaviour
                 ScoreManager.Instance.AddPoints(buttonIndex + 1);
                 CleanColorDisplay();
                 DiseabledBoard();
-                Restart();
-                ColorSequenceManager.Instance.NewSequence();
+                RestartUserSequence();
+                ColorSequenceManager.Instance.NewColorSequence();
                 break;
 
             case ColorSequenceComparisonResult.Incorrect:
@@ -75,7 +82,7 @@ public class ColorBoard : MonoBehaviour
 
     private void InitializeButtonsImage()
     {
-        for (int i = 0; i < currentSequence.Count; ++i)
+        for (int i = 0; i < boardCurrentSequence.Count; ++i)
         {
             userImageButtons[i].enabled = true;
         }
@@ -83,7 +90,7 @@ public class ColorBoard : MonoBehaviour
 
     private void InitializeDisplays()
     {
-        for (int i = 0; i < currentSequence.Count; ++i)
+        for (int i = 0; i < boardCurrentSequence.Count; ++i)
         {
             userDisplayColors[i].enabled = true;
         }
@@ -93,7 +100,7 @@ public class ColorBoard : MonoBehaviour
     {
         sequenceColorsValues = new int[userImageButtons.Count];
         List<Color> shuffledColors = new List<Color>(colors);
-        List<int> shuffledValue = new List<int>(currentSequence);
+        List<int> shuffledValue = new List<int>(boardCurrentSequence);
 
         for (int i = 0; i < shuffledColors.Count; i++)
         {
@@ -103,7 +110,7 @@ public class ColorBoard : MonoBehaviour
             (shuffledValue[i], shuffledValue[randomIndex]) = (shuffledValue[randomIndex], shuffledValue[i]);
         }
 
-        for (int i = 0; i < currentSequence.Count; ++i)
+        for (int i = 0; i < boardCurrentSequence.Count; ++i)
         {
             userImageButtons[i].color = shuffledColors[i];
             sequenceColorsValues[i] = shuffledValue[i];
@@ -135,8 +142,7 @@ public class ColorBoard : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         
-        Restart();
-
+        RestartUserSequence();
         EneabledUserButtons();
     }
 
@@ -159,7 +165,7 @@ public class ColorBoard : MonoBehaviour
 
     private void EneabledUserButtons()
     {
-        for (int i = 0; i < currentSequence.Count; ++i)
+        for (int i = 0; i < boardCurrentSequence.Count; ++i)
         {
             buttonsInteractions[i].enabled = true;
         }
@@ -167,7 +173,7 @@ public class ColorBoard : MonoBehaviour
 
     private void DiseabledUserButtons()
     {
-        for (int i = 0; i < currentSequence.Count; ++i)
+        for (int i = 0; i < boardCurrentSequence.Count; ++i)
         {
             buttonsInteractions[i].enabled = false;
         }
