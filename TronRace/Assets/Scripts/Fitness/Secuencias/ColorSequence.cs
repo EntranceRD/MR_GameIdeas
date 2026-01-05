@@ -13,9 +13,7 @@ public class ColorSequence : MonoBehaviour
     #region VARIABLES
     public ColorData[] colors;
     public List<int> newColorSequence { get; private set; }
-
-    //[SerializeField, Range(2,10)] private int sequenceSizeRange;
-    private int currentSequenceSize;
+    private int sequenceSize;
     private SequenceGenerator generator;
 
     #endregion
@@ -37,14 +35,45 @@ public class ColorSequence : MonoBehaviour
         }
     }
 
-    public void CreateNewColorSequence(int players)
+    public List<int> CreateNewColorSequence(int players)
     {
-        currentSequenceSize = players;
-        PrepareNewSequence(currentSequenceSize);
+        sequenceSize = players;
+        PrepareNewSequence(sequenceSize);
         Debug.Log("New Sequence: " + string.Join(",", newColorSequence));
+        return newColorSequence;
     }
 
-    public void PrepareNewSequence(int size)
+    /*public ColorSequenceComparisonResult CompareSequence(List<int> otherSequence)
+    {
+        for (int i = 0; i < otherSequence.Count; i++)
+        {
+            if (otherSequence[i] != newColorSequence[i])
+                return ColorSequenceComparisonResult.Incorrect;
+        }
+
+        if (otherSequence.Count < newColorSequence.Count)
+            return ColorSequenceComparisonResult.Incomplete;
+
+        return ColorSequenceComparisonResult.Correct;
+    }*/
+
+    public Color[] GetDisplayColors()
+    {
+        Color[] result = new Color[sequenceSize];
+
+        for (int i = 0; i < sequenceSize; i++)
+        {
+            int colorIndex = newColorSequence[i];
+            result[i] = colors[colorIndex].color;
+        }
+
+        return result;
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+    private void PrepareNewSequence(int size)
     {
         List<int> availableColorsIndedexes = new List<int>();
         for (int i = 0; i < colors.Length; ++i)
@@ -58,7 +87,6 @@ public class ColorSequence : MonoBehaviour
                 colors[i].used = false;
             }
         }
-
         availableColorsIndedexes.Shuffle();
 
         if (newColorSequence == null) { newColorSequence = new List<int>(); }
@@ -68,40 +96,8 @@ public class ColorSequence : MonoBehaviour
             var colorIndex = availableColorsIndedexes[i];
 
             newColorSequence.Add(colorIndex);
-            colors[colorIndex].used= true;
+            colors[colorIndex].used = true;
         }
     }
-
-    public ColorSequenceComparisonResult CompareSequence(List<int> otherSequence)
-    {
-        for (int i = 0; i < otherSequence.Count; i++)
-        {
-            if (otherSequence[i] != newColorSequence[i])
-                return ColorSequenceComparisonResult.Incorrect;
-        }
-
-        if (otherSequence.Count < newColorSequence.Count)
-            return ColorSequenceComparisonResult.Incomplete;
-
-        return ColorSequenceComparisonResult.Correct;
-    }
-
-    public Color[] GetDisplayColors()
-    {
-        Color[] result = new Color[currentSequenceSize];
-
-        for (int i = 0; i < currentSequenceSize; i++)
-        {
-            int colorIndex = newColorSequence[i];
-            result[i] = colors[colorIndex].color;
-        }
-
-        return result;
-    }
-
-    #endregion
-
-    #region PRIVATE METHODS
-    
     #endregion
 }

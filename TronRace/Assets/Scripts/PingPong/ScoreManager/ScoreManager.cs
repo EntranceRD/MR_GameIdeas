@@ -35,6 +35,13 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
+
+    public void Restart()
+    {
+        currentPoints = 0;
+        UpdateUI();
+    }
+
     public void AddPoints(int points)
     {
         currentPoints += points;

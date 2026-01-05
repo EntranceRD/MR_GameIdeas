@@ -40,12 +40,13 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        colorSequence.Restart();
-        colorSequenceManager.Restart();
+        ScoreManager.Instance.Restart();
         for (int i = 0; i < colorBoards.Length; i++)
         {
             colorBoards[i].Restart();
         }
+        colorSequence.Restart();
+        colorSequenceManager.Restart(amountOfPLayers);
     }
     #endregion
 }

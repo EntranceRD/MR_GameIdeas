@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,30 +29,39 @@ public class ColorSequenceManager : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
-    public void Restart()
+    public void Restart(int players)
     {
+        StopAllCoroutines();
+        displayingSequence = false;
+        sequenceSize = players;
+        for (int i = 0; i < sequenceDisplay.Length; i++)
+        {
+            sequenceDisplay[i].color = Color.black;
+        }
         StartCoroutine(StartColorSequence(sequenceSize));
     }
 
     public IEnumerator StartColorSequence(int players)
     {
         sequenceSize = players;
-        colorSequence.CreateNewColorSequence(sequenceSize);
-        yield return DisplaySequence();
+        var newSequence = colorSequence.CreateNewColorSequence(sequenceSize);
         Color[] displayColors = colorSequence.GetDisplayColors();
+
+        yield return DisplaySequence();
 
         for (int i = 0; i < boards.Length; ++i)
         {
-            boards[i].boardCurrentSequence = colorSequence.newColorSequence;
-            boards[i].OnNewSequenceCompare = colorSequence.CompareSequence;
+            if (boards[i].finishCurrentSequence == false) continue;
+
+            boards[i].boardCurrentSequence = new List<int>(newSequence);
             boards[i].InitializeBoard(displayColors);
         }
     }
 
-    public void NewColorSequence()
+    public void NewColorSequence(int boardSequenceSize)
     {
-        sequenceSize++;
-        StartCoroutine(StartColorSequence(sequenceSize));
+        boardSequenceSize++;
+        StartCoroutine(StartColorSequence(boardSequenceSize));
     }
 
     public Coroutine DisplaySequence()
@@ -63,7 +73,7 @@ public class ColorSequenceManager : MonoBehaviour
 
     #endregion
 
-    #region PRIVATE METHODS                   
+    #region PRIVATE METHODS   
 
     private IEnumerator DisplayCurrentSequence()
     {

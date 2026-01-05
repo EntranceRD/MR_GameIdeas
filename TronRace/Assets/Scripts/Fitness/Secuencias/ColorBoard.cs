@@ -1,4 +1,3 @@
-using Entrance;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +11,11 @@ public class ColorBoard : MonoBehaviour
     public List<Collider> buttonsInteractions;
     public List<int> boardCurrentSequence;
 
-    private int[] sequenceColorsValues;
+    public bool finishCurrentSequence = true;
+
+    [SerializeField] private int[] sequenceColorsValues;
     private List<int> userSequence = new List<int>();
+    private Color fadedWhite = new Color(1f, 1f, 1f, 76f / 255f);
 
     public delegate ColorSequenceComparisonResult DelegateSample(List<int> colors);
     public DelegateSample OnNewSequenceCompare;
@@ -30,6 +32,8 @@ public class ColorBoard : MonoBehaviour
 
     public void Restart()
     {
+        StopAllCoroutines();
+        finishCurrentSequence = true;
         RestartUserSequence();
         CleanColorDisplay();
         DiseabledBoard();
@@ -38,15 +42,17 @@ public class ColorBoard : MonoBehaviour
     public void RestartUserSequence() 
     { 
         userSequence.Clear();
+        boardCurrentSequence.Clear();
     }
 
     public void InitializeBoard(Color[] currentSequenceColors)
     {
-        InitializeButtonsImage();
-        EneabledUserButtons();
-        InitializeDisplays();
+        finishCurrentSequence = false;
+        EneableBoard();
         InitializeColors(currentSequenceColors);
+        OnNewSequenceCompare = CompareWithBoardSequence;
     }
+
     public void AddColorToSequence(int buttonIndex)
     {
         int currentColorValue = sequenceColorsValues[buttonIndex];
@@ -58,10 +64,8 @@ public class ColorBoard : MonoBehaviour
 
                 userDisplayColors[userSequence.Count - 1].color = userImageButtons[buttonIndex].color;
                 ScoreManager.Instance.AddPoints(buttonIndex + 1);
-                CleanColorDisplay();
-                DiseabledBoard();
-                RestartUserSequence();
-                ColorSequenceManager.Instance.NewColorSequence();
+                ColorSequenceManager.Instance.NewColorSequence(boardCurrentSequence.Count);
+                Restart();
                 break;
 
             case ColorSequenceComparisonResult.Incorrect:
@@ -79,22 +83,6 @@ public class ColorBoard : MonoBehaviour
     #endregion
 
     #region PRIVATE METHODS
-
-    private void InitializeButtonsImage()
-    {
-        for (int i = 0; i < boardCurrentSequence.Count; ++i)
-        {
-            userImageButtons[i].enabled = true;
-        }
-    }
-
-    private void InitializeDisplays()
-    {
-        for (int i = 0; i < boardCurrentSequence.Count; ++i)
-        {
-            userDisplayColors[i].enabled = true;
-        }
-    }
 
     private void InitializeColors(Color[] colors)
     {
@@ -119,7 +107,6 @@ public class ColorBoard : MonoBehaviour
 
     private void CleanColorDisplay()
     {
-        Color fadedWhite = new Color(1f, 1f, 1f, 76f / 255f);
         for (int i = 0; i < userDisplayColors.Count; ++i)
         {
             userDisplayColors[i].color = fadedWhite;
@@ -141,8 +128,8 @@ public class ColorBoard : MonoBehaviour
             CleanColorDisplay();
             yield return new WaitForSeconds(0.5f);
         }
-        
-        RestartUserSequence();
+
+        userSequence.Clear();
         EneabledUserButtons();
     }
 
@@ -154,13 +141,13 @@ public class ColorBoard : MonoBehaviour
         }
         foreach (var image in userImageButtons)
         {
+            image.color = fadedWhite;
             image.enabled = false;
         }
         foreach (var display in userDisplayColors)
         {
             display.enabled = false;
         }
-
     }
 
     private void EneabledUserButtons()
@@ -171,6 +158,16 @@ public class ColorBoard : MonoBehaviour
         }
     }
 
+    private void EneableBoard()
+    {
+        for (int i = 0; i < boardCurrentSequence.Count; ++i)
+        {
+            userImageButtons[i].enabled = true;
+            userDisplayColors[i].enabled = true;
+        }
+        EneabledUserButtons();
+    }
+
     private void DiseabledUserButtons()
     {
         for (int i = 0; i < boardCurrentSequence.Count; ++i)
@@ -179,5 +176,18 @@ public class ColorBoard : MonoBehaviour
         }
     }
 
-#endregion
+    private ColorSequenceComparisonResult CompareWithBoardSequence(List<int> otherSequence)
+    {
+        for (int i = 0; i < otherSequence.Count; i++)
+        {
+            if (otherSequence[i] != boardCurrentSequence[i])
+                return ColorSequenceComparisonResult.Incorrect;
+        }
+
+        if (otherSequence.Count < boardCurrentSequence.Count)
+            return ColorSequenceComparisonResult.Incomplete;
+
+        return ColorSequenceComparisonResult.Correct;
+    }
+    #endregion
 }
