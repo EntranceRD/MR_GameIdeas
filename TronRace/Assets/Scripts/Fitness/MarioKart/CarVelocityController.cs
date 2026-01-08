@@ -1,24 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class CarVelocityController : MonoBehaviour
 {
-    public float currentVelocity = 5f;
-    public ClickCounterByFrame clickCounter;
+    #region UNITY METHODS
+
+    private void Awake()
+    {
+        startPosition = transform.position;
+    }
 
     void Start()
     {
+        velocity = baseVelocity;
         clickCounter.OnCountedFrame += (int clicks) =>
         {
-            currentVelocity *= clicks;
+            velocity = baseVelocity + (clickMultiplier * clicks);
         };
     }
 
-    
-    void Update()
+    private void FixedUpdate()
     {
-        
+        Vector3 pos = transform.position;
+        pos.z += velocity * Time.deltaTime;
+        transform.position = pos;
     }
+
+    #endregion
+
+    #region VARIABLES
+
+    public int driverID = 0;
+    public float baseVelocity = .1f;
+    public float velocity;
+    public bool finished = false;
+    public Vector3 startPosition;
+    public float clickMultiplier = .2f;
+    public ClickCounterByFrame clickCounter;
+
+    #endregion
+
+    #region PUBLIC METHODS
+    public void RestartCar()
+    {
+        velocity = baseVelocity;
+        transform.position = startPosition;
+        finished = false;
+    }
+
+    public void StopCar()
+    {
+        baseVelocity = 0f;
+        clickMultiplier = 0f;
+        finished = true;
+    }
+
+    #endregion
+
+    #region PRIVATE METHODS
+
+    #endregion
 }

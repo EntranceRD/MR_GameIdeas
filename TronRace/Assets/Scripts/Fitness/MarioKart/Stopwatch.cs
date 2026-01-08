@@ -1,29 +1,34 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Diagnostics;
 
-public class Stopwatch : MonoBehaviour
+[Serializable]
+public class Stopwatch
 {
-    private float time = 0f;
-    private bool active;
-
-    public void Start()
-    {
-        
-    }
-
-    public void Stop()
-    {
-
-    }
-
-    public void Tick()
-    {
-
-    }
+    public Action OnFinish;
+    public float Target = 1f;
+    private float initialTime = 0f;
+    public float currentTime { get; protected set; } = 0f;
 
     public void Restart()
     {
+        currentTime = Math.Abs(initialTime);
+    }
 
+    public void Tick(float time)
+    {
+        if(!(currentTime >= Target))
+        {
+            currentTime = Math.Min(currentTime + time, Target);
+            if (currentTime >= Target)
+            {
+                OnFinish?.Invoke();
+            }
+        }
+    }
+
+    public float SetFlag()
+    {
+        return currentTime;
     }
 }
