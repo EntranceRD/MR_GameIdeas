@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,11 @@ namespace Entrance
             background.image.sprite = bkg;
         }
         public bool CompareText(string text) { return label.text == text; }
+
+        internal void Initialize(object value, string v)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

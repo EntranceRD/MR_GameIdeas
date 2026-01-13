@@ -9,14 +9,18 @@ namespace Entrance.Games.Mathematics
         MEDIUM,
         HARD
     }
-    
+
     public class Operation : MonoBehaviour
     {
         #region VARIABLES
         public TMPro.TMP_Text operationText;
-        public TMPro.TMP_Text[] possibleResults;
+        //public TMPro.TMP_Text[] possibleResults;
+        [SerializeField]private OptionButton[] possibleResults;
+        public  List<OptionButton> possibleResultsBtns;
         private MathOperation operationController;
+        private int pointsPerCorrectAnswer = 10;
         [SerializeField] private DifficultyLevels difficulty;
+        private int correctReultIndex = -1;
         #endregion
 
         #region PUBLIC METHODS
@@ -43,7 +47,14 @@ namespace Entrance.Games.Mathematics
             {
                 possibleResults[i].text = results[i].ToString();
             }
+
+            var resultsA = CalculatePossibleResults(operationController.Result, possibleResultsBtns.Count - 1);
+            for (int i = 0; i < possibleResultsBtns.Count; i++)
+            {
+                possibleResultsBtns[i].Initialize([i],results[i].ToString());
+            }
         }
+
         #endregion
 
         #region PRIVATE METHODS
@@ -61,13 +72,15 @@ namespace Entrance.Games.Mathematics
             results.Shuffle();
             return results;
         }
-        private int GetTotalOperationsForDifficulty() {
+
+        private int GetTotalOperationsForDifficulty()
+        {
             switch (difficulty)
             {
                 case DifficultyLevels.EASY: return 1;
                 case DifficultyLevels.MEDIUM: return 2;
                 case DifficultyLevels.HARD: return 3;
-                default:return 1;
+                default: return 1;
             }
         }
         #endregion

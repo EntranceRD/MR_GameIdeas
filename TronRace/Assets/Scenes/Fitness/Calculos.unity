@@ -52710,6 +52710,7 @@ MonoBehaviour:
   - {fileID: 1020677451}
   - {fileID: 1465598967}
   - {fileID: 1050536965}
+  posibleResultsBtns: []
   difficulty: 0
 --- !u!114 &284720345
 MonoBehaviour:
@@ -85894,7 +85895,19 @@ MonoBehaviour:
   OnClick:
     event:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnRelease:
     event:
       m_PersistentCalls:
@@ -93553,7 +93566,31 @@ MonoBehaviour:
   OnClick:
     event:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: 
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnRelease:
     event:
       m_PersistentCalls:
@@ -96805,7 +96842,19 @@ MonoBehaviour:
   OnClick:
     event:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnRelease:
     event:
       m_PersistentCalls:
@@ -116851,7 +116900,19 @@ MonoBehaviour:
   OnClick:
     event:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnRelease:
     event:
       m_PersistentCalls:
@@ -212333,7 +212394,19 @@ MonoBehaviour:
   OnClick:
     event:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnRelease:
     event:
       m_PersistentCalls:
@@ -219656,6 +219729,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1241216726}
   - component: {fileID: 1241216725}
+  - component: {fileID: 1241216727}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -219705,6 +219779,19 @@ Transform:
   m_Father: {fileID: 1141253922}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1241216727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241216724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58d1ba6c027a9714a93c17e35142add8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalPoints: {fileID: 0}
 --- !u!1 &1241311609
 GameObject:
   m_ObjectHideFlags: 0
@@ -277198,7 +277285,19 @@ MonoBehaviour:
   OnClick:
     event:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 284720342}
+          m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   OnRelease:
     event:
       m_PersistentCalls:
@@ -279204,6 +279303,7 @@ MonoBehaviour:
   - {fileID: 1885136802}
   - {fileID: 1663378690}
   - {fileID: 1296841330}
+  posibleResultsBtns: []
   difficulty: 0
 --- !u!1 &1555821598
 GameObject:
