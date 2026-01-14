@@ -35,7 +35,8 @@ namespace Entrance.Games.Mathematics
                 testImage.color = Color.red;
                 return;
             }
-                testImage.color = Color.green;
+            testImage.color = Color.green;
+            gameManager.UnlockOptionButtons();
             btn1.SetActive(false);
             btn2.SetActive(true);
         }

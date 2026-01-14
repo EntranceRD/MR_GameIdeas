@@ -1,14 +1,53 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Entrance.Unity;
 
-public class OptionButton : MonoBehaviour
+namespace Entrance.Games.Mathematics
 {
-    public TMPro.TMP_Text buttonText;
-    public int contextIndex;
+    [RequireComponent(typeof (ClickableElement))]
 
-    public void Initialize<T>(int index, T textValue)
+    public class OptionButton : MonoBehaviour
     {
-        
+        private void Awake()
+        {
+            rend = GetComponent<Renderer>();
+            var originalColor = rend.material.color;
+            myButton = GetComponent<ClickableElement>();
+            myButton.OnClick.AddAction(() =>
+            {
+                OnClick?.Invoke();
+            });
+            changeColorTimer.OnFinish += () =>
+            {
+                ChangeColor(originalColor);
+            };
+        }
+
+        private void FixedUpdate()
+        {
+            changeColorTimer.Tick(Time.fixedDeltaTime);
+        }
+
+        public TMP_Text buttonText;
+        public GameManager_MathBoard gameManagerBoard;
+        public int contextIndex;
+        public Action OnClick;
+        public Renderer rend;
+        private ClickableElement myButton;
+        public Timer changeColorTimer;
+
+        public void Initialize<T>(int index, T textValue)
+        {
+            contextIndex = index;
+            buttonText.text = textValue.ToString();
+        }
+
+        public void ChangeColor(Color newColor)
+        {
+            rend.material.color = newColor;
+            changeColorTimer.Restart();
+        }
     }
 }

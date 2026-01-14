@@ -10,7 +10,8 @@ namespace Entrance.Games.Mathematics
         public Operation operation;
         public VerifyButton verifyButton;
         public MiddleButton middleButton;
-        [SerializeField] private List<SimpleButton> buttons = new List<SimpleButton>();
+        public Collider optionsButtonsCoverage;
+        [SerializeField] private List<SimpleButton> playerPositionButtons = new List<SimpleButton>();
         private int currentPlayer = 0;
 
         public void Restart()
@@ -19,16 +20,17 @@ namespace Entrance.Games.Mathematics
             operation.CreateNewOperation();
             verifyButton.Restart();
             middleButton.Restart();
+            LockOptionButtons();
         }
 
         public void MoveActivePlayerByValue(int offset)
         {
-            currentPlayer = (currentPlayer + offset) % buttons.Count;
+            currentPlayer = (currentPlayer + offset) % playerPositionButtons.Count;
         }
 
         public void SetActivePlayer(int index)
         {
-            index = Mathf.Clamp(index, 0, buttons.Count);
+            index = Mathf.Clamp(index, 0, playerPositionButtons.Count);
             currentPlayer = index;
         }
 
@@ -39,15 +41,15 @@ namespace Entrance.Games.Mathematics
                 return false;
             }
 
-            if (buttons[currentPlayer].clicked) //Jugador en turno no salio de la base
+            if (playerPositionButtons[currentPlayer].clicked) //Jugador en turno no salio de la base
             {
                 return false;
             }
 
-            for (int i = 0; i < buttons.Count; i++)
+            for (int i = 0; i < playerPositionButtons.Count; i++)
             {
 
-                if (i != currentPlayer && !buttons[i].clicked) //El jugador {i} abandono su posicion
+                if (i != currentPlayer && !playerPositionButtons[i].clicked) //El jugador {i} abandono su posicion
                 {
                     return false;
                 }
@@ -64,14 +66,25 @@ namespace Entrance.Games.Mathematics
 
         public bool CheckAllPlayersInButtons()
         {
-            for (int i = 0; i < buttons.Count; i++)
+            for (int i = 0; i < playerPositionButtons.Count; i++)
             {
-                if (!buttons[i].clicked)
+                if (!playerPositionButtons[i].clicked)
                 {
                     return false;
                 }
             }
             return true;
+        }
+
+        public void LockOptionButtons()
+        {
+            optionsButtonsCoverage.enabled = true;
+        }
+
+        public void UnlockOptionButtons()
+        {
+            optionsButtonsCoverage.enabled = false;
+            //optionsButtonsCoverage.SetActive(false);
         }
     }
 }

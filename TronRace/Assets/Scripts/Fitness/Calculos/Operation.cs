@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Reflection;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Entrance.Games.Mathematics
@@ -12,19 +14,28 @@ namespace Entrance.Games.Mathematics
 
     public class Operation : MonoBehaviour
     {
+        private void Awake()
+        {
+            for (int i = 0; i < possibleResultsBtns.Length; i++)
+            {
+                int idx = i;
+                possibleResultsBtns[i].OnClick += ()=>{
+                    VerifyAnswer(possibleResultsBtns[idx]);
+                };
+            }
+        }
         #region VARIABLES
         public TMPro.TMP_Text operationText;
-        //public TMPro.TMP_Text[] possibleResults;
-        [SerializeField]private OptionButton[] possibleResults;
-        public  List<OptionButton> possibleResultsBtns;
-        private MathOperation operationController;
-        private int pointsPerCorrectAnswer = 10;
+        public GameManager_MathBoard gameManager;
+        public int correctResultIndex = -1;
         [SerializeField] private DifficultyLevels difficulty;
-        private int correctReultIndex = -1;
+        [SerializeField] private OptionButton[] possibleResultsBtns;
+        private MathOperation operationController;
         #endregion
 
         #region PUBLIC METHODS
         //public void SetDifficulty(DifficultyLevels level) { difficulty = level; }
+        
         public void CreateNewOperation()
         {
             if (operationController == null)
@@ -33,28 +44,11 @@ namespace Entrance.Games.Mathematics
             }
             var totalOperations = GetTotalOperationsForDifficulty();
             operationController.PrepareNewOperation(totalOperations);
+            var results = CalculatePossibleResults(operationController.Result, possibleResultsBtns.Length - 1);
 
-            //display operation
-            operationText.text = $"{operationController.Operands[0]}";
-            for (int i = 0; i < operationController.Operators.Count; i++)
-            {
-                operationText.text += $" {MathOperation.operatorsSymbols[operationController.Operators[i]]} {operationController.Operands[i + 1]}";
-            }
-
-            //display possible results
-            var results = CalculatePossibleResults(operationController.Result, possibleResults.Length - 1);
-            for (int i = 0; i < possibleResults.Length; i++)
-            {
-                possibleResults[i].text = results[i].ToString();
-            }
-
-            var resultsA = CalculatePossibleResults(operationController.Result, possibleResultsBtns.Count - 1);
-            for (int i = 0; i < possibleResultsBtns.Count; i++)
-            {
-                possibleResultsBtns[i].Initialize([i],results[i].ToString());
-            }
+            DisplayOperation();
+            DisplayPossibleResults(results);
         }
-
         #endregion
 
         #region PRIVATE METHODS
@@ -70,7 +64,28 @@ namespace Entrance.Games.Mathematics
                 results.Add(correctResult + difference);
             }
             results.Shuffle();
+
+            for (int i = 0; i < results.Count; i++)
+            {
+                if (results[i] == correctResult)
+                {
+                    correctResultIndex = i;
+                    break;
+                }
+            }
             return results;
+        }
+
+        private void VerifyAnswer(OptionButton btn)
+        {
+            if (correctResultIndex != btn.contextIndex)
+            {
+                btn.ChangeColor(Color.red);
+                return;
+            }
+            ScoreManager.Instance.AddPoints(1);
+            btn.ChangeColor(Color.green);
+            gameManager.LockOptionButtons();
         }
 
         private int GetTotalOperationsForDifficulty()
@@ -81,6 +96,23 @@ namespace Entrance.Games.Mathematics
                 case DifficultyLevels.MEDIUM: return 2;
                 case DifficultyLevels.HARD: return 3;
                 default: return 1;
+            }
+        }
+
+        private void DisplayPossibleResults(List<int> results)
+        {
+            for (int i = 0; i < possibleResultsBtns.Length; i++)
+            {
+                possibleResultsBtns[i].Initialize(i, results[i].ToString());
+            }
+        }
+
+        private void DisplayOperation()
+        {
+            operationText.text = $"{operationController.Operands[0]}";
+            for (int i = 0; i < operationController.Operators.Count; i++)
+            {
+                operationText.text += $" {MathOperation.operatorsSymbols[operationController.Operators[i]]} {operationController.Operands[i + 1]}";
             }
         }
         #endregion
