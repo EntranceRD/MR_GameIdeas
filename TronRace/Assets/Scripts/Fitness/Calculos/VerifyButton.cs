@@ -7,7 +7,7 @@ namespace Entrance.Games.Mathematics
 {
     public class VerifyButton : MonoBehaviour
     {
-        public GameManager_MathBoard gameManager;
+        public GameManager_MathBoard gameManagerBoard;
         [SerializeField] private Image testImage;
         [SerializeField]private GameObject btn1, btn2;
 
@@ -30,13 +30,13 @@ namespace Entrance.Games.Mathematics
 
         public void VerifyCorrectPlayer()
         {
-            if (!gameManager.CheckCorrectPlayersPosition())
+            if (!gameManagerBoard.CheckCorrectPlayersPosition())
             {
                 testImage.color = Color.red;
                 return;
             }
             testImage.color = Color.green;
-            gameManager.UnlockOptionButtons();
+            gameManagerBoard.UnlockOptionButtons();
             btn1.SetActive(false);
             btn2.SetActive(true);
         }

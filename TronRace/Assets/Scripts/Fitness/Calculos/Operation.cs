@@ -26,7 +26,8 @@ namespace Entrance.Games.Mathematics
         }
         #region VARIABLES
         public TMPro.TMP_Text operationText;
-        public GameManager_MathBoard gameManager;
+        public GameManager_MathBoard gameManagerBoard;
+        public ScoreManager scoreManager;
         public int correctResultIndex = -1;
         [SerializeField] private DifficultyLevels difficulty;
         [SerializeField] private OptionButton[] possibleResultsBtns;
@@ -83,9 +84,12 @@ namespace Entrance.Games.Mathematics
                 btn.ChangeColor(Color.red);
                 return;
             }
-            ScoreManager.Instance.AddPoints(1);
+
+            var pointsForSolvedOperation = operationController.Operators.Count;
+            scoreManager.AddPoints(pointsForSolvedOperation);
             btn.ChangeColor(Color.green);
-            gameManager.LockOptionButtons();
+            gameManagerBoard.middleButton.gameObject.SetActive(true);
+            gameManagerBoard.LockOptionButtons();
         }
 
         private int GetTotalOperationsForDifficulty()

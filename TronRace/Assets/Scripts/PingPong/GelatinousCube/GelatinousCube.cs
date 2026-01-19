@@ -39,7 +39,7 @@ namespace Entrance
         [SerializeField] private PoolableObject pool;
         [SerializeField] private Timer interactionTime;
         [SerializeField] private Renderer rend;
-
+        public ScoreManager scoreManager;
         [SerializeField] private GelatinousCubeDrop drop;
 
         [SerializeField, Range(0, 100)] private int damagePerInteraction=20;
@@ -81,13 +81,13 @@ namespace Entrance
             switch (drop.modifier.type)
             {
                 case ModifierType.PlusOne:
-                    ScoreManager.Instance.AddPoints(1);
+                    scoreManager.AddPoints(1);
                     break;
                 case ModifierType.PlusThree:
-                    ScoreManager.Instance.AddPoints(3);
+                    scoreManager.AddPoints(3);
                     break;
                 case ModifierType.TimesTwo:
-                    ScoreManager.Instance.ApplyTimes2();
+                    //ScoreManager.Instance.ApplyTimes2();
                     break;
             }
 

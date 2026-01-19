@@ -30,6 +30,7 @@ namespace Entrance.Games.Mathematics
             changeColorTimer.Tick(Time.fixedDeltaTime);
         }
 
+        public MaterialController colorController;
         public TMP_Text buttonText;
         public GameManager_MathBoard gameManagerBoard;
         public int contextIndex;
@@ -46,7 +47,7 @@ namespace Entrance.Games.Mathematics
 
         public void ChangeColor(Color newColor)
         {
-            rend.material.color = newColor;
+            colorController.ChangeColor(newColor);
             changeColorTimer.Restart();
         }
     }

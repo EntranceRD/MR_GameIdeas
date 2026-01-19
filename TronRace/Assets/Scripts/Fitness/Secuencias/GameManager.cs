@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public ColorSequenceManager colorSequenceManager;
     public ColorSequence colorSequence;
+    public ScoreManager scoreManager;
     [SerializeField, Range(2,10)] private int amountOfPLayers;
     [SerializeField] private ColorBoard[] colorBoards;
     #endregion
@@ -40,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        ScoreManager.Instance.Restart();
+        scoreManager.Restart();
         for (int i = 0; i < colorBoards.Length; i++)
         {
             colorBoards[i].Restart();

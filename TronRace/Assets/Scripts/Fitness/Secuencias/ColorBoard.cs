@@ -10,7 +10,7 @@ public class ColorBoard : MonoBehaviour
     public List<Image> userImageButtons;
     public List<Collider> buttonsInteractions;
     public List<int> boardCurrentSequence;
-
+    public ScoreManager scoreManager;
     public bool finishCurrentSequence = true;
 
     [SerializeField] private int[] sequenceColorsValues;
@@ -63,7 +63,7 @@ public class ColorBoard : MonoBehaviour
             case ColorSequenceComparisonResult.Correct:
 
                 userDisplayColors[userSequence.Count - 1].color = userImageButtons[buttonIndex].color;
-                ScoreManager.Instance.AddPoints(buttonIndex + 1);
+                scoreManager.AddPoints(buttonIndex + 1);
                 ColorSequenceManager.Instance.NewColorSequence(boardCurrentSequence.Count);
                 Restart();
                 break;
@@ -76,7 +76,7 @@ public class ColorBoard : MonoBehaviour
             case ColorSequenceComparisonResult.Incomplete:
 
                 userDisplayColors[userSequence.Count - 1].color = userImageButtons[buttonIndex].color;
-                ScoreManager.Instance.AddPoints(buttonIndex + 1);
+                scoreManager.AddPoints(buttonIndex + 1);
                 break;
         }
     }

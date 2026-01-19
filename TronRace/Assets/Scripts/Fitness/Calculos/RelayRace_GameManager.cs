@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using Entrance.Unity;
 
-namespace CalculosGameManager
+namespace Entrance.Games.Teams
 {
-    public class GameManager : MonoBehaviour
+    public class RelayRace_GameManager : MonoBehaviour
     {
         #region UNITY METHODS
         private void Start()
         {
             Restart();
-            gameTime.Restart();
-            gameTime.OnFinish += FinishGame;
         }
 
         private void Update()
         {
-            
+
         }
         #endregion
 
         #region VARIABLES
         public List<GameManager_MathBoard> gameManager_MathBoard;
         public List<Player> players;
-        public Timer gameTime;
+        [Range(1, 5)] public int playersPerTeam = 2;
         #endregion
 
         #region PUBLIC METHODS
@@ -38,14 +36,21 @@ namespace CalculosGameManager
             {
                 players[i].Restart();
             }
+
+            InitializeLanesDependingOnPlayers(playersPerTeam);
+        }
+
+        public void InitializeLanesDependingOnPlayers(int amountOfPLayers)
+        {
+            for (int i = 0; i < gameManager_MathBoard.Count; i++)
+            {
+                gameManager_MathBoard[i].InitializePlayers(amountOfPLayers);
+            }
         }
         #endregion
 
         #region PRIVATE METHODS
-        private void FinishGame()
-        {
-            
-        }
+
         #endregion
     }
 }

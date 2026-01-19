@@ -1,16 +1,24 @@
+using Entrance;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ClickableElement))]
 public class PlayerButton : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Action OnClick;
+    private ClickableElement myButton;
+
     void Start()
     {
-        
+        myButton = GetComponent<ClickableElement>();
+        myButton.OnClick.AddAction(() =>
+        {
+            OnClick?.Invoke();
+        });
     }
 
-    // Update is called once per frame
     void Update()
     {
         

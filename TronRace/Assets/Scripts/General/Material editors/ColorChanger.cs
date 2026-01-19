@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Entrance 
+namespace Entrance
 {
     [Serializable]
     public class ColorChanger
@@ -25,6 +25,17 @@ namespace Entrance
         #endregion
 
         #region PUBLIC METHODS
+        public void SetRendererState(bool state)
+        {
+            if (image != null)
+            {
+                image.enabled = state;
+            }
+            if (renderer != null)
+            {
+                renderer.enabled = state;
+            }
+        }
         public void SetColors(Color[] colors)
         {
             this.colors = colors;
@@ -33,19 +44,22 @@ namespace Entrance
         {
             if (image != null)
                 image.color = col;
-            if (renderer != null) {
+            if (renderer != null)
+            {
                 PrepareMaterial();
                 renderer.GetPropertyBlock(material);
-                material.SetColor("_Color",col);
+                material.SetColor("_Color", col);
                 renderer.SetPropertyBlock(material);
             }
         }
-        public void ChangeColor(int index) {
+        public void ChangeColor(int index)
+        {
             if (colors == null || colors.Length == 0) return;
             index = Mathf.Clamp(index, 0, colors.Length);
             ChangeColor(colors[index]);
         }
-        public void SetSprite(Sprite sprite) {
+        public void SetSprite(Sprite sprite)
+        {
             if (image == null) return;
             image.sprite = sprite;
         }

@@ -22,6 +22,7 @@ namespace Entrance
         #endregion
 
         #region VARIABLES
+        public ScoreManager scoreManager;
         [SerializeField] private ColorSequenceGenerator sequenceGenerator;
         [SerializeField] private ColorButtonsController buttonsController;
         [SerializeField] private ObjectGroup<UnityEngine.UI.Image> sequenceDisplay;
@@ -38,8 +39,8 @@ namespace Entrance
 
                 colorToCompare++;
                 if (colorToCompare >= sequence.Count) {
-                    ScoreManager.Instance.AddPoints(sequence.Count);
-                    ScoreManager.Instance.UpdateSequences(1);
+                    scoreManager.AddPoints(sequence.Count);
+                    //ScoreManager.Instance.UpdateSequences(1);
                     colorToCompare = 0;
                     ClearSequence();
                     sequenceGenerator.Restart();
