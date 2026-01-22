@@ -10,11 +10,11 @@ namespace MarioKartGameManager
         private void Awake()
         {
             InitializeTime();
+            Restart();
         }
 
         private void Start()
         {
-            lanesHolder.InitializeLanes(players);
             gameTime.OnFinish += EndRace;
             gameTime.Restart();
         }
@@ -43,13 +43,11 @@ namespace MarioKartGameManager
         public void Restart()
         {
             InitializeTime();
+            lanesHolder.Restart();
             gameTime.Restart();
             stopwatch.Restart();
-
-            lanesHolder.Restart();
-            lanesHolder.InitializeLanes(players);
-
             ranking.ClearRanking();
+            lanesHolder.InitializeLanes(players);
         }
 
         public void AddCarToRanking(CarVelocityController car)

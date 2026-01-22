@@ -11,12 +11,18 @@ public class Ranking : MonoBehaviour
     #region VARIABLES
 
     [SerializeField] private List<(int driverID, float time)> rankingScores = new List<(int, float)>();
-    public TextMeshProUGUI rankingTxt;
+    public List<TextMeshProUGUI> rankingTxt = new List<TextMeshProUGUI>();
 
 
     #endregion
 
     #region PUBLIC METHODS
+
+    public void Restart()
+    {
+        ClearRanking();
+    }
+
     public void AddPlayer(int driverID, float time)
     {
         rankingScores.Add((driverID, time));

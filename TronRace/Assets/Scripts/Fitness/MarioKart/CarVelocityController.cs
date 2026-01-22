@@ -20,6 +20,8 @@ public class CarVelocityController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(finished) return;
+
         Vector3 pos = transform.position;
         pos.z += velocity * Time.deltaTime;
         transform.position = pos;
@@ -42,6 +44,7 @@ public class CarVelocityController : MonoBehaviour
     #region PUBLIC METHODS
     public void RestartCar()
     {
+        clickMultiplier = .2f;
         velocity = baseVelocity;
         transform.position = startPosition;
         finished = false;
@@ -49,8 +52,6 @@ public class CarVelocityController : MonoBehaviour
 
     public void StopCar()
     {
-        baseVelocity = 0f;
-        clickMultiplier = 0f;
         finished = true;
     }
 

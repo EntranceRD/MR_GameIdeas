@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LanesHolder : MonoBehaviour
 {
@@ -9,25 +10,15 @@ public class LanesHolder : MonoBehaviour
     #endregion
 
     #region VARIABLES
-
+    [SerializeField] private List<ClickCounterByFrame> laneList = new List<ClickCounterByFrame>();
     public List<CarVelocityController> cars = new List<CarVelocityController>();
-    [SerializeField] private List<GameObject> laneList = new List<GameObject>();
-    [SerializeField] private Vector3 basePos;
-    [SerializeField] private Vector3 laneOffset = new Vector3(0f, 0f, 0f);
-    public GameObject lanePrefab;
-
-    #endregion
-
-    #region PUBLIC METHODS
-
+    [SerializeField] private List<ClickCounterByFrame> lanesActive = new List<ClickCounterByFrame>();
+    
     public void Restart()
     {
-        foreach (GameObject lane in laneList)
+        for (int i = 0; i < laneList.Count; i++)
         {
-            if (lane != null)
-            {
-                Destroy(lane);
-            }
+            laneList[i].gameObject.SetActive(false);
         }
 
         foreach (var car in cars)
@@ -37,21 +28,17 @@ public class LanesHolder : MonoBehaviour
                 car.RestartCar();
             }
         }
-
-        laneList.Clear();
         cars.Clear();
+        lanesActive.Clear();
     }
 
     public void InitializeLanes(int amountOfPlayers)
     {
-        basePos = transform.position;
         for (int i = 0; i < amountOfPlayers; i++)
         {
-            Vector3 position = basePos + laneOffset * i;
-            GameObject lane = Instantiate(lanePrefab, position, Quaternion.identity, transform);
-            laneList.Add(lane);
-            lane.name = "Lane " + (i + 1);
-            CarVelocityController carController = lane.GetComponentInChildren<CarVelocityController>();
+            laneList[i].gameObject.SetActive(true);
+            lanesActive.Add(laneList[i]);
+            CarVelocityController carController = lanesActive[i].GetComponentInChildren<CarVelocityController>();
             carController.driverID = i + 1;
             cars.Add(carController);
         }
