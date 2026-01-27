@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Entrance 
 {
-    public class GelatinousCubeGenerator : MonoBehaviour
+    public class ModsGenerator : MonoBehaviour
     {
         #region UNITY METHODS
         private void Start()

@@ -69,7 +69,7 @@ namespace Entrance.Games.Demos
             SetVelocity(vel);
 
         }
-        private void Impulse(float speed) {
+        public void Impulse(float speed) {
             rb.velocity = Vector3.zero;
             rb.angularVelocity= Vector3.zero;
             SetVelocity(transform.right * speed);

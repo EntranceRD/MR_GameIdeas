@@ -11,7 +11,6 @@ public class TeleportCollider : MonoBehaviour
 
     public void Teleport(Transform spawnPoint, Transform newWall, BounceBall ball)
     {
-
         ball.SetOrientation(newWall);
         ball.RecalculateDirection();
         ball.transform.position = new Vector3(spawnPoint.position.x, ball.transform.position.y, spawnPoint.position.z);
@@ -23,7 +22,6 @@ public class TeleportCollider : MonoBehaviour
         var ball = other.gameObject.GetComponent<BounceBall>();
         if(ball == null ) return;
 
-        Teleport(spawnPoint, newWall, ball);
-        
+        Teleport(spawnPoint, newWall, ball);  
     }
 }
