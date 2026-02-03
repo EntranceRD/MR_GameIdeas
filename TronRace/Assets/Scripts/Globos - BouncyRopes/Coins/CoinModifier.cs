@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Entrance;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using TMPro;

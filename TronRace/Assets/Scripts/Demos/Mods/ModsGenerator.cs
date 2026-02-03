@@ -24,7 +24,8 @@ namespace Entrance.Games.Demos
         #endregion
 
         #region VARIABLES
-        [SerializeField] private List<SpawnPoint> instancePoints = new List<SpawnPoint>();
+        [SerializeField] private List<Transform> defaultTargetPoints = new List<Transform>();
+        [SerializeField] private List<SpawnPosition> instancePoints = new List<SpawnPosition>();
         [SerializeField] private List<GameObject> availableMods = new List<GameObject>();
         [SerializeField] private ObjectInstantiator instantiator;
         [SerializeField] private Timer instanceTime;
@@ -49,7 +50,12 @@ namespace Entrance.Games.Demos
                 var mod = GetRandomMod();
                 if (position && mod != null) {
                     instantiator.ObjectPrefab = mod;
-                    instantiator.Instantiate(position);
+                    var newMod = instantiator.Instantiate(position);
+                    var movible = newMod.GetComponent<MovibleElement>();
+                    if(movible != null )
+                    {
+                        movible.targets = defaultTargetPoints;
+                    }
                 }
             }
         }

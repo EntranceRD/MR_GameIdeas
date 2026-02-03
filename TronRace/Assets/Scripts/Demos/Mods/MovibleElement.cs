@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Entrance.Games.Demos
@@ -7,19 +8,19 @@ namespace Entrance.Games.Demos
     {
         public float velocity;
         public Vector3 targetPos;
+        public List<Transform> targets = new List<Transform>();
         public Action OnTargetReached;
-        public Switch switchManager;
 
         private void Start()
         {
-            OnTargetReached += () =>
+            if (targets != null && targets.Count > 1) 
             {
-                SetNewPosition(switchManager.GetRandomPoint());
-            };
-            SetNewPosition(switchManager.GetRandomPoint());
+            SetNewTarget();
+            }
+            OnTargetReached += SetNewTarget;
         }
 
-        private void Update()
+        void Update()
         {
             if (targetPos == null) { return; }
 
@@ -28,12 +29,18 @@ namespace Entrance.Games.Demos
             {
                 OnTargetReached?.Invoke();
             }
-
         }
 
-        public void SetNewPosition(Vector3 newPos)
+        public void ManualStart(List<Transform> points)
         {
-            targetPos = newPos;
+            targets = points;
+            SetNewTarget();
+        }
+
+        private void SetNewTarget()
+        {
+            var randIndex= UnityEngine.Random.Range(0, targets.Count);
+            targetPos = targets[randIndex].position;
         }
     }
 }

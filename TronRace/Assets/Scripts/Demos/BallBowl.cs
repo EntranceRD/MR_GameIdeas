@@ -1,15 +1,27 @@
-using Entrance.Games.Demos;
 using UnityEngine;
-
-public class BallBowl : MovibleElement
+public class BallBowl : MonoBehaviour
 {
-    public ScoreManager scoreManager;
 
-    private void OnTriggerEnter(Collider other)
+    public float speedRotationZ;
+    public Vector3 initialPos;
+    public Vector3 initialRotation;
+
+    private void Awake()
     {
-        var ball = other.gameObject.GetComponent<BounceBall>();
-        if (ball == null) return;
+        initialPos = transform.position;
+        initialRotation = transform.eulerAngles;
+    }
 
-        scoreManager.AddPoints(1);
+    public void Restart()
+    {
+        transform.position = initialPos;
+        transform.eulerAngles = initialRotation;
+    }
+
+    private void Update()
+    {
+        var rotation = transform.eulerAngles;
+        rotation.z += speedRotationZ * Time.deltaTime;
+        transform.eulerAngles = rotation;
     }
 }

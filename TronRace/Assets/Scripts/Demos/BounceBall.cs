@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Entrance.Games.Demos
@@ -10,71 +9,94 @@ namespace Entrance.Games.Demos
         public float angle = 1f;
         public Rigidbody rb;
         public Transform orientationReference;
+        private Vector3 startPos;
+        public Action OnTouch, OnBasket;
+        public Color explosionColor;
+
+        private void Awake()
+        {
+            rb = transform.GetComponent<Rigidbody>();
+        }
 
         private void Start()
         {
-            rb=transform.GetComponent<Rigidbody>();
-            Physics.gravity= new Vector3   (0,-.3f,0);
-            //SetVelocity(orientationReference.right *.5f);
-            //angle= Random.Range(-30,-150);
-            //RecalculateMovement();
+            Physics.gravity = new Vector3(0, -.3f, 0);
+            startPos = transform.position;
 
+            OnTouch += Interaction;
+            OnBasket += () =>
+            {
+                Restart();
+            };
         }
+
         private void Update()
         {
-            //if (Input.GetKey(KeyCode.UpArrow)) { 
-            //     angle += 60*Time.deltaTime;
-            //    RecalculateDirection();
-            //}
-            //if (Input.GetKey(KeyCode.DownArrow))
-            //{
-            //    angle -= 60 * Time.deltaTime;
-            //    RecalculateDirection();
-            //}
+
             ///REBOTE
-            if (Input.GetKeyDown(KeyCode.LeftArrow)) { 
-                angle = 180 -angle;
-                RecalculateDirection();
-                RecalculateVelocity(false);
-            }
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                angle = 180 - angle;
-                RecalculateDirection();
-                RecalculateVelocity(false);
-            }
+            //if (Input.GetKeyDown(KeyCode.LeftArrow))
+            //{
+            //    angle = 180 - angle;
+            //    RecalculateDirection();
+            //    RecalculateVelocity(false);
+            //}
+            //if (Input.GetKeyDown(KeyCode.RightArrow))
+            //{
+            //    angle = 180 - angle;
+            //    RecalculateDirection();
+            //    RecalculateVelocity(false);
+            //}
             ///CLICK / IMPULSO
-            if (Input.GetKeyDown(KeyCode.W)) {
-                angle = Random.Range(30, 150);
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                angle = UnityEngine.Random.Range(30, 150);
                 RecalculateDirection();
                 Impulse(1);
             }
-
         }
-        public void SetOrientation(Transform reference) { 
+
+        public void Interaction()
+        {
+            angle = UnityEngine.Random.Range(30, 150);
+            RecalculateDirection();
+            Impulse(1);
+        }
+
+        public void Restart()
+        {
+            transform.position = startPos;
+            angle = UnityEngine.Random.Range(0, 360);
+            RecalculateDirection();
+            SetVelocity(Vector3.zero);
+            Impulse(0);
+        }
+
+        public void SetOrientation(Transform reference)
+        {
             orientationReference = reference;
             transform.parent = orientationReference;
         }
-        public void RecalculateDirection() {
-            //var speed=rb.velocity.magnitude;
-            //rb.velocity = Vector3.zero;
+        public void RecalculateDirection()
+        {
             transform.localRotation = Quaternion.Euler(0, 0, angle);
-            //SetVelocity(transform.right * speed);
         }
-        public void RecalculateVelocity(bool invertY) {
+        public void RecalculateVelocity(bool invertY)
+        {
             var speed = rb.velocity.magnitude;
             var y = rb.velocity.y;
             var vel = transform.right * speed;
-            vel.y = invertY ? -y:y ;
+            vel.y = invertY ? -y : y;
             SetVelocity(vel);
 
         }
-        public void Impulse(float speed) {
+        public void Impulse(float speed)
+        {
             rb.velocity = Vector3.zero;
-            rb.angularVelocity= Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
             SetVelocity(transform.right * speed);
         }
-        private void SetVelocity(Vector3 velocity) {
+        private void SetVelocity(Vector3 velocity)
+        {
             rb.velocity = velocity;
         }
     }

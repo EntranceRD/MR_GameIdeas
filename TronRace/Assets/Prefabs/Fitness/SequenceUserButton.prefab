@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1866928746853103610}
   - component: {fileID: 1866928746853103606}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: SequenceUserButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

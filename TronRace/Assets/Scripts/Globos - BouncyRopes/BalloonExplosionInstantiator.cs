@@ -33,6 +33,11 @@ namespace Entrance
             particles.Play();
             StartCoroutine(RecycleExplosion(explosion));
         }
+
+        public void GetExplosion(Transform position)
+        {
+            CreateExplosion(position,Color.yellow);
+        }
         #endregion
 
         #region PRIVATE METHODS
