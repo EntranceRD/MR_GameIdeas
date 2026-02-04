@@ -97603,8 +97603,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &516040029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100418,8 +100418,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &530301684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114322,8 +114322,8 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 0.6, y: 3}
-  m_Spacing: {x: 0.05, y: 0.4}
+  m_CellSize: {x: 0.7, y: 3}
+  m_Spacing: {x: 0.02, y: 0.4}
   m_Constraint: 1
   m_ConstraintCount: 12
 --- !u!1 &606486907
@@ -119323,8 +119323,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &628873386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148648,6 +148648,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781931189}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &782136706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782136708}
+  - component: {fileID: 782136707}
+  m_Layer: 0
+  m_Name: Timer To start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &782136707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782136706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 954d7f3ec52463a44b2c5e3ddee0cfb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer:
+    Target: 3
+  OnFinish:
+    event:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1178820465}
+          m_TargetAssemblyTypeName: Entrance.Games.Sequence.GameManager, Assembly-CSharp
+          m_MethodName: StartGame
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  resumeOnRestart: 1
+--- !u!4 &782136708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782136706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &782375529
 GameObject:
   m_ObjectHideFlags: 0
@@ -176465,8 +176528,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &918305192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236975,8 +237038,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &1224998110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240550,7 +240613,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 8, y: 2}
+  m_SizeDelta: {x: 8.94, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1245691267
 MonoBehaviour:
@@ -271184,8 +271247,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &1404394178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287658,8 +287721,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &1492095467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301479,8 +301542,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &1557286029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371512,8 +371575,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &1917856300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379480,8 +379543,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &1962340261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388078,8 +388141,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &2003956211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394110,8 +394173,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 0.8, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 2, z: 0.1}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &2037980912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415072,3 +415135,4 @@ SceneRoots:
   - {fileID: 985221434}
   - {fileID: 1065780290}
   - {fileID: 1212525457}
+  - {fileID: 782136708}
