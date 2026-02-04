@@ -7,14 +7,16 @@ public class ColorSequenceManager : MonoBehaviour
 {
     #region VARIABLES
     public static ColorSequenceManager Instance { get; private set; }
-    public ColorSequence colorSequence; 
+    public ColorSequence colorSequence;
     public ColorBoard[] boards;
+    private int initialSequenceSize;
     private int sequenceSize;
-    private float initialWaitTime = 1.0f;
-    private float colorDisplayTime = 1.0f;
-    private float awaitBetweenColors = 0.5f;
+    [SerializeField] private float initialWaitTime = 1.0f;
+    [SerializeField] private float colorDisplayTime = 1.0f;
+    [SerializeField] private float awaitBetweenColors = 0.5f;
+    [SerializeField] private SequenceButton[] sequenceButtons;
     private bool displayingSequence = false;
-    [SerializeField] private Image[] sequenceDisplay;
+
     #endregion
 
     #region UNITY METHODS
@@ -34,63 +36,72 @@ public class ColorSequenceManager : MonoBehaviour
         StopAllCoroutines();
         displayingSequence = false;
         sequenceSize = players;
-        for (int i = 0; i < sequenceDisplay.Length; i++)
+        initialSequenceSize = players;
+        for (int i = 0; i < sequenceButtons.Length; i++)
         {
-            sequenceDisplay[i].color = Color.black;
+            sequenceButtons[i].InitializeColor(colorSequence.colors[i].color);
         }
-        StartCoroutine(StartColorSequence(sequenceSize));
+        //StartCoroutine(StartColorSequence(sequenceSize));
     }
 
     public IEnumerator StartColorSequence(int players)
     {
         sequenceSize = players;
         var newSequence = colorSequence.CreateNewColorSequence(sequenceSize);
-        Color[] displayColors = colorSequence.GetDisplayColors();
 
-        yield return DisplaySequence();
+        yield return DisplaySequence(newSequence);
 
         for (int i = 0; i < boards.Length; ++i)
         {
             if (boards[i].finishCurrentSequence == false) continue;
 
             boards[i].boardCurrentSequence = new List<int>(newSequence);
-            boards[i].InitializeBoard(displayColors);
+            boards[i].InitializeBoard();
         }
     }
 
     public void NewColorSequence(int boardSequenceSize)
     {
-        boardSequenceSize++;
+        boardSequenceSize = Mathf.Min(boardSequenceSize + 1, 6);
+        //if (boardSequenceSize > (colorSequence.colors.lenght / 2)) {
+        //    colorSequence.colors.restarts();
+        //}
+        //boardSequenceSize = Mathf.Min(boardSequenceSize + 1, initialSequenceSize * 3);
         StartCoroutine(StartColorSequence(boardSequenceSize));
     }
 
-    public Coroutine DisplaySequence()
+    public Coroutine DisplaySequence(List<int>sequence)
     {
         if (displayingSequence) return null;
         displayingSequence = true;
-        return StartCoroutine(DisplayCurrentSequence());
+        return StartCoroutine(DisplayCurrentSequence(sequence));
     }
 
     #endregion
 
     #region PRIVATE METHODS   
 
-    private IEnumerator DisplayCurrentSequence()
+    private IEnumerator DisplayCurrentSequence(List<int> sequence)
     {
+        SetButtonsInteraction(false);
         yield return new WaitForSeconds(initialWaitTime);
-        Color[] displayColors = colorSequence.GetDisplayColors();
 
-        for (int i = 0; i < colorSequence.newColorSequence.Count; ++i)
+        for (int i = 0; i < sequence.Count; ++i)
         {
-            int wallIndex = i % sequenceDisplay.Length;
-            sequenceDisplay[wallIndex].color = displayColors[i];
-            yield return new WaitForSeconds(colorDisplayTime);
-
-            sequenceDisplay[wallIndex].color = Color.black;
-            yield return new WaitForSeconds(awaitBetweenColors);
+            sequenceButtons[sequence[i]].HighLight(colorDisplayTime);
+            yield return new WaitForSeconds(colorDisplayTime + awaitBetweenColors);
         }
 
         displayingSequence = false;
+        SetButtonsInteraction(true);
+    }
+
+    private void SetButtonsInteraction(bool state)
+    {
+        for (int i = 0; i < sequenceButtons.Length; i++)
+        {
+            sequenceButtons[i].SetInteraction(state);
+        }
     }
     #endregion
 }

@@ -30,7 +30,7 @@ namespace Entrance.Games.Sequence
         public ColorSequenceManager colorSequenceManager;
         public ColorSequence colorSequence;
         public ScoreManager scoreManager;
-        [SerializeField, Range(2, 10)] private int amountOfPLayers;
+        [SerializeField, Range(2, 5)] private int amountOfPLayers;
         [SerializeField] private ColorBoard[] colorBoards;
         #endregion
 
@@ -42,6 +42,7 @@ namespace Entrance.Games.Sequence
 
         public void StartGame(int amountOfPLayers)
         {
+            Restart();
             StartCoroutine(colorSequenceManager.StartColorSequence(amountOfPLayers));
         }
 
