@@ -16,6 +16,7 @@ public class ColorSequenceManager : MonoBehaviour
     [SerializeField] private float awaitBetweenColors = 0.5f;
     [SerializeField] private SequenceButton[] sequenceButtons;
     private bool displayingSequence = false;
+    private List<int> currentSequence = new List<int>();
 
     #endregion
 
@@ -31,6 +32,7 @@ public class ColorSequenceManager : MonoBehaviour
     #endregion
 
     #region PUBLIC METHODS
+    public void ReDisplaySequence() { StartCoroutine(displaySequence()); }
     public void Restart(int players)
     {
         StopAllCoroutines();
@@ -47,15 +49,29 @@ public class ColorSequenceManager : MonoBehaviour
     public IEnumerator StartColorSequence(int players)
     {
         sequenceSize = players;
-        var newSequence = colorSequence.CreateNewColorSequence(sequenceSize);
+        //var newSequence = colorSequence.CreateNewColorSequence(sequenceSize);
+        currentSequence = colorSequence.CreateNewColorSequence(sequenceSize);
 
-        yield return DisplaySequence(newSequence);
+        yield return new WaitForSeconds(2f);
+        yield return DisplaySequence(currentSequence);
 
         for (int i = 0; i < boards.Length; ++i)
         {
             if (boards[i].finishCurrentSequence == false) continue;
 
-            boards[i].boardCurrentSequence = new List<int>(newSequence);
+            boards[i].boardCurrentSequence = new List<int>(currentSequence);
+            boards[i].InitializeBoard();
+        }
+    }
+    private IEnumerator displaySequence() {
+        yield return new WaitForSeconds(3f);
+        yield return DisplaySequence(currentSequence);
+
+        for (int i = 0; i < boards.Length; ++i)
+        {
+            if (boards[i].finishCurrentSequence == false) continue;
+
+            boards[i].boardCurrentSequence = new List<int>(currentSequence);
             boards[i].InitializeBoard();
         }
     }

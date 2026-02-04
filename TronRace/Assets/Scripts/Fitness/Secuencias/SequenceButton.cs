@@ -20,7 +20,7 @@ public class SequenceButton : MonoBehaviour
 
     public void InitializeColor(Color color)
     {
-        var fadedColor = color * .7f;
+        var fadedColor = color * .45f;
         materialController.SetColors(new Color[] { color, fadedColor, Color.red, Color.black });
         materialController.ChangeColor(1);
     }

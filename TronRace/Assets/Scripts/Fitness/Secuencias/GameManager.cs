@@ -37,7 +37,7 @@ namespace Entrance.Games.Sequence
         #region PUBLIC METHODS
         void Start()
         {
-            StartGame(amountOfPLayers);
+            //StartGame(amountOfPLayers);
         }
 
         public void StartGame(int amountOfPLayers)

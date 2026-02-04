@@ -106,8 +106,8 @@ namespace Entrance.Network
                 try
                 {
                     #region send request
-                    //var request = new HokuyoRequest(surfaces);
-                    var request = new HokuyoRequest(new SurfaceIDs[] { SurfaceIDs.Hokuyo_Sensor }) { AdditionalInfo = hokuyoIPrequests[sensorRequestIndex] };
+                    var request = new HokuyoRequest(surfaces);
+                    //var request = new HokuyoRequest(new SurfaceIDs[] { SurfaceIDs.Hokuyo_Sensor }) { AdditionalInfo = hokuyoIPrequests[sensorRequestIndex] };
                     if (!RenderRays) {
                         request.surfaces = surfaces;
                         request.AdditionalInfo = string.Empty;

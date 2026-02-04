@@ -136,6 +136,7 @@ public class ColorBoard : MonoBehaviour
         }
         userSequence.Clear();
         SetButtonsInteraction(true);
+        ColorSequenceManager.Instance.ReDisplaySequence();
     }
 
     private void DiseabledBoard()
