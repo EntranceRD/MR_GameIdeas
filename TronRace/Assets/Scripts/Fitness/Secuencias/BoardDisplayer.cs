@@ -2,93 +2,121 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoardDisplayer : MonoBehaviour
+namespace Entrance.Games.Sequence
 {
-    #region VARIABLES
-
-    [SerializeField] private SequenceDisplayer displayer;
-    [SerializeField] private float initialWaitTime = 1.0f;
-    [SerializeField] private SequenceButton[] sequenceButtons;
-    public List<GameObject> panels = new List<GameObject>();
-
-    #endregion
-
-    #region UNITY METHODS
-    private void Awake()
+    public class BoardDisplayer : MonoBehaviour
     {
-
-    }
-    #endregion
-
-    #region PUBLIC METHODS
-    public void ReDisplaySequence(List<int> sequence) 
-    {
-        StartSequence(sequence);
-    }
-
-    public void Restart()
-    {
-        InitializeButtonsColors();  
-        StopAllCoroutines();
-        displayer.Initialize();
-        displayer.OnDisplayElement -= DisplaySequenceIndex;
-        displayer.OnDisplayElement += DisplaySequenceIndex;
-
-        displayer.OnFinishDisplaying -= EnableAllButtons;
-        displayer.OnFinishDisplaying += EnableAllButtons;
-    }
-
-    public void StartSequence(List<int> sequence)
-    {
-        StartCoroutine(DisplaySequence(sequence));
-    }
-
-    private void InitializeButtonsColors()
-    {
-        for (int i = 0; i < sequenceButtons.Length; i++)
+        public void Awake()
         {
-            sequenceButtons[i].InitializeColor(ColorSequence.Instance.colors[i].color);
+            SetGameOverPanel(false);
         }
-    }
 
-    #endregion
-
-    #region PRIVATE METHODS   
-    private IEnumerator DisplaySequence(List<int> sequence)
-    {
-        ActiveWaitPanel(true);
-        yield return new WaitForSeconds(3f);
-        yield return displayCurrentSequence(sequence);
-        ActiveWaitPanel(false);
-    }
-
-    private IEnumerator displayCurrentSequence(List<int> sequence)
-    {
-        SetButtonsInteraction(false);
-        yield return new WaitForSeconds(initialWaitTime);
-
-        displayer.DisplaySequence(sequence);
-    }
-
-    private void DisableAllButtons() { SetButtonsInteraction(false); }
-    private void EnableAllButtons() { SetButtonsInteraction(true); }
-    private void SetButtonsInteraction(bool state)
-    {
-        for (int i = 0; i < sequenceButtons.Length; i++)
+        private void Start()
         {
-            sequenceButtons[i].SetInteraction(state);
+            GameManager.Instance.OnGameStop -= GameOver;
+            GameManager.Instance.OnGameStop += GameOver;
         }
-    }
-    private void ActiveWaitPanel(bool state)
-    {
-        for (int i = 0; i < panels.Count; ++i)
+
+        #region VARIABLES
+        [Header("References")]
+        [SerializeField] private SequenceDisplayer displayer;
+        [SerializeField] private SequenceButton[] sequenceButtons;
+
+        [Header("Covers")]
+        [SerializeField] private List<GameObject> coverPanels = new List<GameObject>();
+        [SerializeField] private List<GameObject> gameOver = new List<GameObject>();
+
+        [Header("Settings")]
+        [SerializeField] private float initialWaitTime = 3f;
+        #endregion
+
+        #region PUBLIC METHODS
+        public void ReDisplaySequence(List<int> sequence)
         {
-            panels[i].SetActive(state);
+            StartSequence(sequence);
         }
+
+        public void Restart()
+        {
+            InitializeButtonsColors();
+            StopAllCoroutines();
+            SetGameOverPanel(false);
+            displayer.Restart();
+            displayer.OnDisplayElement -= DisplaySequenceIndex;
+            displayer.OnDisplayElement += DisplaySequenceIndex;
+
+            displayer.OnFinishDisplaying -= EnableAllButtons;
+            displayer.OnFinishDisplaying += EnableAllButtons;
+        }
+
+        public void StartSequence(List<int> sequence)
+        {
+            StartCoroutine(DisplayGameInstructions(sequence));
+        }
+
+        private void InitializeButtonsColors()
+        {
+            for (int i = 0; i < sequenceButtons.Length; i++)
+            {
+                sequenceButtons[i].InitializeColor(ColorSequence.Instance.colors[i].color);
+            }
+        }
+
+        #endregion
+
+        #region PRIVATE METHODS   
+        private IEnumerator DisplayGameInstructions(List<int> sequence)
+        {
+            ActiveWaitPanel(true);
+            yield return new WaitForSeconds(initialWaitTime);
+            DisplaySequence(sequence);
+            ActiveWaitPanel(false);
+        }
+
+        private void DisplaySequence(List<int> sequence)
+        {
+            SetButtonsInteraction(false);
+            //yield return new WaitForSeconds(initialWaitTime);
+            displayer.DisplaySequence(sequence);
+        }
+
+        private void ActiveWaitPanel(bool state)
+        {
+            for (int i = 0; i < coverPanels.Count; ++i)
+            {
+                coverPanels[i].SetActive(state);
+            }
+        }
+
+        private void DisplaySequenceIndex(int buttonIndex, int index)
+        {
+            sequenceButtons[buttonIndex].InitializeIndex(index);
+        }
+
+        private void SetButtonsInteraction(bool state)
+        {
+            for (int i = 0; i < sequenceButtons.Length; i++)
+            {
+                sequenceButtons[i].SetInteraction(state);
+            }
+        }
+        private void EnableAllButtons() { SetButtonsInteraction(true); }
+
+        private void DisableAllButtons() { SetButtonsInteraction(false); }
+
+        private void GameOver()
+        {
+            ActiveWaitPanel(false);
+            SetGameOverPanel(true);
+        }
+
+        private void SetGameOverPanel(bool state)
+        {
+            for (int i = 0; i < gameOver.Count; ++i)
+            {
+                gameOver[i].SetActive(state);
+            }
+        }
+        #endregion
     }
-    private void DisplaySequenceIndex(int buttonIndex, int index)
-    {
-        sequenceButtons[buttonIndex].InitializeIndex(index);
-    }
-    #endregion
 }

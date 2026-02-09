@@ -1,16 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SoundManager : MonoBehaviour
+namespace Entrance.Games
 {
-    public AudioSource audioSource;
-    public List<AudioClip> audioClips;      
-
-    public void PlaySound(int index)
+    public class SoundManager : MonoBehaviour
     {
-        if (index >= 0 && index < audioClips.Count)
+        public AudioSource audioSource;
+        public List<AudioClip> audioClips;
+
+        public void PlaySound(int index)
         {
-            audioSource.PlayOneShot(audioClips[index]);
+            if (index >= 0 && index < audioClips.Count)
+            {
+                audioSource.PlayOneShot(audioClips[index]);
+            }
         }
     }
 }

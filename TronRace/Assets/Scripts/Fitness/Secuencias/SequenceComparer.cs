@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Entrance.Games.Sequence 
 {
@@ -10,6 +8,7 @@ namespace Entrance.Games.Sequence
         Incorrect,
         Correct
     }
+
     public class SequenceComparer
     {
 

@@ -1,6 +1,7 @@
 using Entrance.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Entrance 
@@ -11,7 +12,9 @@ namespace Entrance
         private void Awake()
         {
             if (timer == null) timer = new Timer();
-            timer.OnFinish = () => { OnFinish.Call(); };
+            timer.OnFinish = () => { 
+                OnFinish.Call();
+            };
         }
         private void OnEnable()
         {
@@ -21,7 +24,9 @@ namespace Entrance
         private void Update()
         {
             if (!active) return;
+
             timer.Tick(Time.deltaTime);
+            timerText.text = $"{timer.Remaining:F2} s";
         }
         #endregion
 
@@ -31,6 +36,7 @@ namespace Entrance
         public ButtonEvent OnFinish;
         private bool active = false;
         public bool resumeOnRestart = false;
+        [SerializeField] private TextMeshProUGUI timerText;
         #endregion
 
         #region PUBLIC METHODS

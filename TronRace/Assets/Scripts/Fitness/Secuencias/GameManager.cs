@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Entrance.Games.Sequence
 {
     public class GameManager : MonoBehaviour
     {
-
-        #region
+        #region UNITY METHODS
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -25,37 +25,42 @@ namespace Entrance.Games.Sequence
         #endregion
 
         #region VARIABLES
+        [Header("References")]
         public static GameManager Instance;
         public ColorSequence colorSequence;
-        public ScoreManager scoreManager;
+        public GenericTimerComponent gameTime;
+        //public ScoreManager scoreManager;
+
+        [Header("Settings")]
         [SerializeField, Range(2, 5)] private int amountOfPLayers;
         [SerializeField] private ColorBoard[] colorBoards;
+
+        public System.Action OnGameStop;
+        public List<int> scoreBoard = new List<int>();
         #endregion
 
         #region PUBLIC METHODS
-        void Start()
+        public int SetPlayers(int players)
         {
-
+            return amountOfPLayers = players;
         }
 
         public void StartGame(int amountOfPLayers)
         {
             Restart();
             var sequence = colorSequence.CreateNewColorSequence(amountOfPLayers);
-            for (int i = 0; i < colorBoards.Length; i++)
-            {
-                colorBoards[i].InitializeBoard(sequence);
-                colorBoards[i].boardDisplayer.StartSequence(sequence);
-            }
+            InitializeBoards(sequence);
         }
 
-        public void Restart()
+        public void StopGame()
         {
-            colorSequence.Restart();      
+            OnGameStop?.Invoke();
             for (int i = 0; i < colorBoards.Length; i++)
             {
-                colorBoards[i].Restart();
+                scoreBoard.Add(colorBoards[i].finalPoints);
             }
+            scoreBoard.Sort((a, b) => b.CompareTo(a)); ;
+            Debug.Log(string.Join(", ", scoreBoard));
         }
 
         public void BoardGuessRightSequence(ColorBoard board)
@@ -65,6 +70,24 @@ namespace Entrance.Games.Sequence
                 colorBoards[i].CleanBoard();
             }
             var sequence = colorSequence.GrowSequenceBy(1);
+            InitializeBoards(sequence);
+        }
+        #endregion
+
+        #region PRIVATE METHODS
+        private void Restart()
+        {
+            gameTime.Restart();
+            scoreBoard.Clear();
+            colorSequence.Restart();
+            for (int i = 0; i < colorBoards.Length; i++)
+            {
+                colorBoards[i].Restart();
+            }
+        }
+
+        private void InitializeBoards(List<int> sequence)
+        {
             for (int i = 0; i < colorBoards.Length; i++)
             {
                 colorBoards[i].InitializeBoard(sequence);
