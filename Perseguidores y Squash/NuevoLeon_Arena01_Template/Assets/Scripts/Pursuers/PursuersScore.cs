@@ -35,7 +35,6 @@ namespace EntranceGames.Pursuers
                 scoreRateTimer.Restart();
                 ModifyScore(scoreRate);
             };
-            scoreRateTimer.Restart();
         }
         public void Restart() {
             Resume();

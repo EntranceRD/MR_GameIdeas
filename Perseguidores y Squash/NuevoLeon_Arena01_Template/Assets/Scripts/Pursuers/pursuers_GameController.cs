@@ -44,6 +44,7 @@ namespace EntranceGames.Pursuers
             pursuersController.Initialize();
             difficultyController.Initialize();
             scoreController.Initialize();
+            scoreController.Pause();
         }
         #endregion
     }

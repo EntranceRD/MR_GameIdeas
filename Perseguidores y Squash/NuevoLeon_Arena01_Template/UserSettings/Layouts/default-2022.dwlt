@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 89
+  controlID: 138
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -95,8 +95,8 @@ MonoBehaviour:
     y: 0
     width: 444
     height: 559
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -295,8 +295,8 @@ MonoBehaviour:
     y: 0
     width: 902
     height: 559
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -322,16 +322,16 @@ MonoBehaviour:
     y: 0
     width: 1010
     height: 388
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
   - {fileID: 22}
   - {fileID: 17}
   - {fileID: 16}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -351,8 +351,8 @@ MonoBehaviour:
     y: 0
     width: 574
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -635,9 +635,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: daa0ebff
-      m_LastClickedID: -1335078
-      m_ExpandedIDs: ce91ebffec91ebff0a92ebff2892ebffd498ebff0099ebff9899ebff6e2ef2ffa4faffff2cfbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 72e8feffa6e9feff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1197,11 +1197,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.33458963, y: -0.03391481, z: 0.0120513765, w: 0.94168085}
     speed: 2
-    m_Value: {x: 0.33458823, y: -0.033914667, z: 0.012051326, w: 0.9416769}
+    m_Value: {x: -0.33458963, y: 0.03391481, z: -0.012051377, w: -0.94168085}
   m_Size:
     m_Target: 7.105441
     speed: 2
-    m_Value: 6.799465
+    m_Value: 7.105441
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1261,7 +1261,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_SearchFilter:
-    m_NameFilter: 
+    m_NameFilter: squas
     m_ClassNames: []
     m_AssetLabels: []
     m_AssetBundleNames: []
@@ -1273,7 +1273,7 @@ MonoBehaviour:
     m_Folders:
     - Assets
     m_Globs: []
-    m_OriginalText: 
+    m_OriginalText: squas
     m_ImportLogFlags: 0
     m_FilterByTypeIntersection: 0
   m_ViewMode: 1
@@ -1281,14 +1281,15 @@ MonoBehaviour:
   m_LastFolders:
   - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Coding\Entrance\2026\NuevoLeon-Arena01-Template\NuevoLeon_Arena01_Template
+  m_LastProjectPath: C:\Users\Usuario\Documents\GitHub\2026\EntranceGames\MR_GameIdeas\Perseguidores
+    y Squash\NuevoLeon_Arena01_Template
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 89}
-    m_SelectedIDs: ba650000
-    m_LastClickedID: 26042
-    m_ExpandedIDs: 000000009a6300009e630000a0630000a2630000ea650000f6de0000fede000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 0c060000
+    m_LastClickedID: 1548
+    m_ExpandedIDs: 000000000c06000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1316,7 +1317,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000096630000986300009a6300009c6300009e630000a0630000a2630000
+    m_ExpandedIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1341,8 +1342,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: b425ebff1226ebffca2aebff
-    m_LastClickedInstanceID: -1366604
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000c0ad00000000000096b10000
     m_RenameOverlay:
