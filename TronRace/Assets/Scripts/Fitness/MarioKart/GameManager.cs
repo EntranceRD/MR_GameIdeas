@@ -1,83 +1,84 @@
 using Entrance.Unity;
 using UnityEngine;
 
-namespace MarioKartGameManager
-{
+namespace Entrance.Games.MarioKart
+{ 
     public class GameManager : MonoBehaviour
     {
         #region UNITY METHODS
-
         private void Awake()
         {
-            InitializeTime();
-            Restart();
-        }
-
-        private void Start()
-        {
-            gameTime.OnFinish += EndRace;
-            gameTime.Restart();
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject); return;
+            }
+            Instance = this;
         }
 
         private void Update()
         {
-            gameTime.Tick(Time.deltaTime);
-            stopwatch.Tick(Time.deltaTime);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartGame(amountOfPlayers);
+            }
         }
-
         #endregion
 
         #region VARIABLES
+        public static GameManager Instance;
+        public System.Action OnGameStop;
 
-        [SerializeField, Range(2, 10)] private int players;
-        public float gameDuration = 30f;
-        public Ranking ranking;
-        public Timer gameTime;
-        public Stopwatch stopwatch;
-        public LanesHolder lanesHolder;
+        [Header("References")]
+        [SerializeField] private Ranking ranking;
+        [SerializeField] private GenericTimerComponent gameTime;
+        [SerializeField] private LanesHolder lanesHolder;
 
+        [Header("Settings")]
+        [SerializeField, Range(2, 10)] private int amountOfPlayers;
         #endregion
 
         #region PUBLIC METHODS
-
-        public void Restart()
+        public void StartGame(int players)
         {
-            InitializeTime();
-            lanesHolder.Restart();
-            gameTime.Restart();
-            stopwatch.Restart();
-            ranking.ClearRanking();
+            Restart();
             lanesHolder.InitializeLanes(players);
         }
 
-        public void AddCarToRanking(CarVelocityController car)
+        public void StopGame()
         {
-            ranking.AddPlayer(car.driverID, stopwatch.SetFlag());
+            OnGameStop?.Invoke();
+            EndRace();
         }
-
-        public void EndRace()
+        public int SetPlayers(int players)
         {
-            foreach (var car in lanesHolder.cars)
-            {
-                if (car != null & !car.finished)
-                {
-                    ranking.AddPlayer(car.driverID, gameTime.Target);
-                }
-            }
-            ranking.SortByTime();
-            ranking.DisplayRanking();
+            return amountOfPlayers = players;
         }
-
         #endregion
 
         #region PRIVATE METHODS
-
-        private void InitializeTime()
+        private void Restart()
         {
-            gameTime.Target = gameDuration;
-            stopwatch.Target = gameDuration;
+            lanesHolder.Restart();
+            ranking.Restart();
+            RestartTimers();
         }
 
+        private void RestartTimers()
+        {
+            gameTime.Restart();
+            gameTime.Resume();
+        }
+        private void EndRace()
+        {
+            foreach (var car in lanesHolder.cars)
+            {
+                if (car != null & !car.canMove)
+                {
+                    ranking.AddPlayer(car.driverID);
+                }
+            }
+            ranking.DisplayRanking();
+        }
         #endregion
     }
 }

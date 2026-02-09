@@ -15,5 +15,10 @@ namespace Entrance.Games
                 audioSource.PlayOneShot(audioClips[index]);
             }
         }
+
+        public void StopSounds()
+        {
+            audioSource.Stop();
+        }
     }
 }

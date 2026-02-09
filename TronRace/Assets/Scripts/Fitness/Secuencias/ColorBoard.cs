@@ -24,6 +24,7 @@ namespace Entrance.Games.Sequence
         public BoardDisplayer boardDisplayer;
         [SerializeField] private SoundManager soundManager;
         [SerializeField] private ScoreManager scoreManager;
+        [SerializeField] private ColorSequence sequenceGenerator;
         public SequenceComparer sequenceComparer { get; private set; }
 
         [Header("Settings")]
@@ -42,16 +43,19 @@ namespace Entrance.Games.Sequence
             boardDisplayer.Restart();
             RestartSequenceButtons();
             RestartUserSequence();
+            sequenceGenerator.Restart();
         }
 
-        public void InitializeBoard(List<int> sequence)
+        public void InitializeBoard(int players)
+        //public void InitializeBoard(List<int> sequence)
         {
             SetButtonsInteraction(true);
-            correctSequence = sequence;
+            correctSequence = sequenceGenerator.CreateNewColorSequence(players);
             if (sequenceComparer == null)
                 sequenceComparer = new SequenceComparer();
             sequenceComparer.OnSequenceCompareResult -= OnSequenceComparasionResult;
             sequenceComparer.OnSequenceCompareResult += OnSequenceComparasionResult;
+            boardDisplayer.InitializeButtonsColors(sequenceGenerator.colors);
         }
         public void AddIndexToSequence(int buttonIndex)
         {
@@ -69,6 +73,9 @@ namespace Entrance.Games.Sequence
         {
             SetButtonsInteraction(false);
             finalPoints = scoreManager.currentPoints;
+        }
+        public void DisplaySequence() {
+            boardDisplayer.StartSequence(correctSequence);
         }
         #endregion
 
@@ -100,11 +107,13 @@ namespace Entrance.Games.Sequence
             {
                 case SequenceComparisonResult.Correct:
 
-                    var lastButtonIndex = correctSequence.Count - 1;
-                    CorrectButtonActions(correctSequence[lastButtonIndex]);
+                    var lastButtonIndex = correctSequence.Count -1;
+                    CorrectButtonActions(lastButtonIndex);
                     CorrectSequence();
                     CleanBoard();
-                    GameManager.Instance.BoardGuessRightSequence(this);
+
+                    correctSequence = sequenceGenerator.GrowSequenceBy(1);
+                    DisplaySequence();
                     break;
 
                 case SequenceComparisonResult.Incorrect:
@@ -114,7 +123,8 @@ namespace Entrance.Games.Sequence
 
                 case SequenceComparisonResult.Incomplete:
 
-                    var buttonIndex = correctSequence[userSequence.Count - 1];
+                    var buttonIndex = userSequence.Count -1;
+                    //var buttonIndex = correctSequence[userSequence.Count - 1];
                     CorrectButtonActions(buttonIndex);
                     userButtons[buttonIndex].PlaySound();
                     break;
@@ -145,8 +155,11 @@ namespace Entrance.Games.Sequence
 
         private void CorrectButtonActions(int buttonIndex)
         {
-            scoreManager.AddPoints(buttonIndex + 1);
-            userButtons[buttonIndex].Highlight(1f);
+            scoreManager.AddPoints(correctSequence.Count);
+            //scoreManager.AddPoints(buttonIndex + 1);
+            var seqValue = correctSequence[buttonIndex];
+            userButtons[seqValue].Highlight(1f);
+            //userButtons[buttonIndex].Highlight(1f);
         }
         #endregion
     }

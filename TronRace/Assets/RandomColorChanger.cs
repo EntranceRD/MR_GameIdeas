@@ -8,7 +8,11 @@ public class RandomColorChanger : MonoBehaviour
     public MaterialController materialController;
     [SerializeField] private float colorChangeSpeed = 5f;
     private float colorHUE = 0f;
-
+    [SerializeField, Range(0, 100)] private float offset = 0f;
+    private void OnEnable()
+    {
+        colorHUE = offset*360;
+    }
     private void Update()
     {
         colorHUE = (colorHUE+(colorChangeSpeed * Time.deltaTime));

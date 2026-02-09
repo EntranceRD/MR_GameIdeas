@@ -1,71 +1,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorSequence : MonoBehaviour
+namespace Entrance.Games.Sequence
 {
-    #region UNITY METHODS
-    void Awake()
+    public class ColorSequence : MonoBehaviour
     {
-        if (Instance != null && Instance != this)
+        #region UNITY METHODS
+        void Awake()
         {
-            Destroy(gameObject); return;
+            generator = new SequenceGenerator(AddNewNumberToSequenceCondition);
         }
-        Instance = this;
-        generator = new SequenceGenerator(AddNewNumberToSequenceCondition);
-    }
-    #endregion
+        #endregion
 
-    #region VARIABLES
-    public static ColorSequence Instance;
-    public ColorData[] colors;
-    private int sequenceSize;
-    private SequenceGenerator generator;
-    #endregion
+        #region VARIABLES
+        public ColorData[] colors;
+        //public bool singleSequence = true;
+        private int sequenceSize;
+        private SequenceGenerator generator;
+        #endregion
 
-    #region PUBLIC METHODS
-    public void Restart()
-    {
-        for (int i = 0; i < colors.Length; i++)
+        #region PUBLIC METHODS
+        public void Restart()
         {
-            colors[i].used = false;
+            for (int i = 0; i < colors.Length; i++)
+            {
+                colors[i].used = false;
+            }
+            generator.ClearSequence();
         }
-        generator.ClearSequence();
-    }
 
-    public List<int> CreateNewColorSequence(int players)
-    {
-        sequenceSize = players;
-        generator.CreateSequence(0,10, players);
-        Debug.Log("New Sequence: " + string.Join(",", generator.mySequence));
-        return generator.mySequence;
-    }
-
-    public List<int> GrowSequenceBy(int amount)
-    {
-        sequenceSize = generator.mySequence.Count + amount;
-        generator.CreateSequence(0,10, sequenceSize);
-        Debug.Log("Grow Sequence: " + string.Join(",", generator.mySequence));
-        return generator.mySequence;
-    }
-
-    public Color[] GetDisplayColors()
-    {
-        Color[] result = new Color[sequenceSize];
-
-        for (int i = 0; i < sequenceSize; i++)
+        public List<int> CreateNewColorSequence(int players)
         {
-            int colorIndex = generator.mySequence[i];
-            result[i] = colors[colorIndex].color;
+            sequenceSize = players;
+            generator.CreateSequence(0, 10, players);
+            Debug.Log("New Sequence: " + string.Join(",", generator.mySequence));
+            return generator.mySequence;
         }
-        return result;
-    }
-    #endregion
 
-    #region PRIVATE METHODS
+        public List<int> GrowSequenceBy(int amount)
+        {
+            sequenceSize = generator.mySequence.Count + amount;
+            generator.CreateSequence(0, 10, sequenceSize);
+            Debug.Log("Grow Sequence: " + string.Join(",", generator.mySequence));
+            return generator.mySequence;
+        }
 
-    private bool AddNewNumberToSequenceCondition(int newNumber)
-    {
-        return !generator.mySequence.Contains(newNumber);
+        public Color[] GetDisplayColors()
+        {
+            Color[] result = new Color[sequenceSize];
+
+            for (int i = 0; i < sequenceSize; i++)
+            {
+                int colorIndex = generator.mySequence[i];
+                result[i] = colors[colorIndex].color;
+            }
+            return result;
+        }
+        #endregion
+
+        #region PRIVATE METHODS
+        private bool AddNewNumberToSequenceCondition(int newNumber)
+        {
+            return !generator.mySequence.Contains(newNumber);
+        }
+        #endregion
     }
-    #endregion
 }

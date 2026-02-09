@@ -19,7 +19,7 @@ namespace Entrance.Games.Sequence
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                StartGame(amountOfPLayers);
+                StartGame(amountOfPlayers);
             }
         }
         #endregion
@@ -27,12 +27,12 @@ namespace Entrance.Games.Sequence
         #region VARIABLES
         [Header("References")]
         public static GameManager Instance;
-        public ColorSequence colorSequence;
+        //public ColorSequence colorSequence;
         public GenericTimerComponent gameTime;
         //public ScoreManager scoreManager;
 
         [Header("Settings")]
-        [SerializeField, Range(2, 5)] private int amountOfPLayers;
+        [SerializeField, Range(2, 5)] private int amountOfPlayers;
         [SerializeField] private ColorBoard[] colorBoards;
 
         public System.Action OnGameStop;
@@ -42,14 +42,13 @@ namespace Entrance.Games.Sequence
         #region PUBLIC METHODS
         public int SetPlayers(int players)
         {
-            return amountOfPLayers = players;
+            return amountOfPlayers = players;
         }
 
         public void StartGame(int amountOfPLayers)
         {
             Restart();
-            var sequence = colorSequence.CreateNewColorSequence(amountOfPLayers);
-            InitializeBoards(sequence);
+            InitializeBoards(amountOfPLayers);
         }
 
         public void StopGame()
@@ -63,35 +62,35 @@ namespace Entrance.Games.Sequence
             Debug.Log(string.Join(", ", scoreBoard));
         }
 
-        public void BoardGuessRightSequence(ColorBoard board)
-        {
-            for (int i = 0; i < colorBoards.Length; i++)
-            {
-                colorBoards[i].CleanBoard();
-            }
-            var sequence = colorSequence.GrowSequenceBy(1);
-            InitializeBoards(sequence);
-        }
+        //public void BoardGuessRightSequence(ColorBoard board)
+        //{
+        //    for (int i = 0; i < colorBoards.Length; i++)
+        //    {
+        //        colorBoards[i].CleanBoard();
+        //    }
+        //    var sequence = colorSequence.GrowSequenceBy(1);
+        //    InitializeBoards(sequence);
+        //}
         #endregion
 
         #region PRIVATE METHODS
         private void Restart()
         {
             gameTime.Restart();
+            gameTime.Resume();
             scoreBoard.Clear();
-            colorSequence.Restart();
             for (int i = 0; i < colorBoards.Length; i++)
             {
                 colorBoards[i].Restart();
             }
         }
 
-        private void InitializeBoards(List<int> sequence)
+        private void InitializeBoards(int totalPlayers)
         {
             for (int i = 0; i < colorBoards.Length; i++)
             {
-                colorBoards[i].InitializeBoard(sequence);
-                colorBoards[i].boardDisplayer.StartSequence(sequence);
+                colorBoards[i].InitializeBoard(totalPlayers);
+                colorBoards[i].DisplaySequence();
             }
         }
         #endregion

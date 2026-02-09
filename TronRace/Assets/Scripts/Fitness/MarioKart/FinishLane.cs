@@ -1,4 +1,5 @@
 using UnityEngine;
+using Entrance.Games.MarioKart;
 
 public class FinishLane : MonoBehaviour
 {
@@ -8,14 +9,15 @@ public class FinishLane : MonoBehaviour
         var car = other.GetComponent<CarVelocityController>();
         if (car != null)
         {
-            gameManager.AddCarToRanking(car);
-            car.StopCar();
+            ranking.AddPlayer(car.driverID);
+            car.CarMoveState(false);
         }
+        ranking.DisplayRanking();
     }
     #endregion
 
     #region VARIABLES
-    public MarioKartGameManager.GameManager gameManager;
+    public Ranking ranking;
     #endregion
 
     #region PUBLIC METHODS

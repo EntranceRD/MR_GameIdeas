@@ -26,9 +26,4 @@ public class Stopwatch
             }
         }
     }
-
-    public float SetFlag()
-    {
-        return currentTime;
-    }
 }

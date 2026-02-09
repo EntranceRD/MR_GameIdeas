@@ -38,7 +38,7 @@ namespace Entrance.Games.Sequence
 
         public void Restart()
         {
-            InitializeButtonsColors();
+            //InitializeButtonsColors();
             StopAllCoroutines();
             SetGameOverPanel(false);
             displayer.Restart();
@@ -54,11 +54,12 @@ namespace Entrance.Games.Sequence
             StartCoroutine(DisplayGameInstructions(sequence));
         }
 
-        private void InitializeButtonsColors()
+        public void InitializeButtonsColors(ColorData[]colors)
         {
             for (int i = 0; i < sequenceButtons.Length; i++)
             {
-                sequenceButtons[i].InitializeColor(ColorSequence.Instance.colors[i].color);
+                sequenceButtons[i].InitializeColor(colors[i].color);
+                //sequenceButtons[i].InitializeColor(ColorSequence.Instance.colors[i].color);
             }
         }
 

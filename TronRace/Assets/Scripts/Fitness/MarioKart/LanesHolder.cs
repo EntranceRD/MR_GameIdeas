@@ -1,52 +1,51 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class LanesHolder : MonoBehaviour
+namespace Entrance.Games.MarioKart
 {
-    #region UNITY METHODS
-
-    #endregion
-
-    #region VARIABLES
-    [SerializeField] private List<ClickCounterByFrame> laneList = new List<ClickCounterByFrame>();
-    public List<CarVelocityController> cars = new List<CarVelocityController>();
-    [SerializeField] private List<ClickCounterByFrame> lanesActive = new List<ClickCounterByFrame>();
-    
-    public void Restart()
+    public class LanesHolder : MonoBehaviour
     {
-        for (int i = 0; i < laneList.Count; i++)
+        #region VARIABLES
+        [SerializeField] private List<ClickCounterByFrame> laneList = new List<ClickCounterByFrame>();
+        public List<CarVelocityController> cars = new List<CarVelocityController>();
+        [SerializeField] private List<ClickCounterByFrame> lanesActive = new List<ClickCounterByFrame>();
+
+        public void Restart()
         {
-            laneList[i].gameObject.SetActive(false);
+            for (int i = 0; i < laneList.Count; i++)
+            {
+                laneList[i].gameObject.SetActive(false);
+            }
+
+            foreach (var car in cars)
+            {
+                if (car != null)
+                {
+                    car.RestartCar();
+                }
+            }
+            cars.Clear();
+            lanesActive.Clear();
         }
 
-        foreach (var car in cars)
+        public void InitializeLanes(int amountOfPlayers)
         {
-            if (car != null)
+            for (int i = 0; i < amountOfPlayers; i++)
             {
-                car.RestartCar();
+                laneList[i].gameObject.SetActive(true);
+                lanesActive.Add(laneList[i]);
+                CarVelocityController carController = lanesActive[i].GetComponentInChildren<CarVelocityController>();
+                carController.driverID = i + 1;
+                cars.Add(carController);
+            }
+            foreach (var car in cars)
+            {
+                if (car != null)
+                {
+                    car.CarMoveState(true);
+                }
             }
         }
-        cars.Clear();
-        lanesActive.Clear();
+        #endregion
     }
-
-    public void InitializeLanes(int amountOfPlayers)
-    {
-        for (int i = 0; i < amountOfPlayers; i++)
-        {
-            laneList[i].gameObject.SetActive(true);
-            lanesActive.Add(laneList[i]);
-            CarVelocityController carController = lanesActive[i].GetComponentInChildren<CarVelocityController>();
-            carController.driverID = i + 1;
-            cars.Add(carController);
-        }
-    }
-
-    #endregion
-
-    #region PRIVATE METHODS
-
-    #endregion
 }
