@@ -24,7 +24,7 @@ namespace Entrance.Games.MarioKart
             if (!canMove) return;
 
             Vector3 pos = transform.position;
-            pos.z += velocity * Time.deltaTime;
+            pos.x += velocity * Time.deltaTime;
             transform.position = pos;
         }
         #endregion
