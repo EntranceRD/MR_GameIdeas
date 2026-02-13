@@ -15,7 +15,10 @@ namespace Entrance.Games.Teams
 
         private void Update()
         {
-
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                Restart();
+            }
         }
         #endregion
 

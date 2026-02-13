@@ -1,8 +1,8 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using Entrance.Unity;
+using UnityEngine.UI;
 
 namespace Entrance.Games.Mathematics
 {
@@ -12,8 +12,11 @@ namespace Entrance.Games.Mathematics
     {
         private void Awake()
         {
-            rend = GetComponent<Renderer>();
-            var originalColor = rend.material.color;
+            //rend = GetComponent<Renderer>();
+            //var originalColor = rend.material.color;
+            image = GetComponent<Image>();
+            var originalColor = image.color;
+
             myButton = GetComponent<ClickableElement>();
             myButton.OnClick.AddAction(() =>
             {
@@ -35,7 +38,8 @@ namespace Entrance.Games.Mathematics
         public GameManager_MathBoard gameManagerBoard;
         public int contextIndex;
         public Action OnClick;
-        public Renderer rend;
+        //public Renderer rend;
+        public Image image;
         private ClickableElement myButton;
         public Timer changeColorTimer;
 
