@@ -39,15 +39,15 @@ namespace Entrance.Games.MarioKart
         private Vector3 startPosition;
 
         [Header("Settings")]
-        public float baseVelocity = .1f;
-        public float clickMultiplier = .2f;
+        public float baseVelocity = .05f;
+        public float clickMultiplier = .1f;
         public bool canMove = false;
         #endregion
 
         #region PUBLIC METHODS
         public void RestartCar()
         {
-            clickMultiplier = .2f;
+            clickMultiplier = .1f;
             velocity = baseVelocity;
             transform.position = startPosition;
             CarMoveState(false);

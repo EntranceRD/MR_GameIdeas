@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Entrance 
+namespace Entrance.Games.MarioKart 
 {
     public class RankingDisplayer : MonoBehaviour
     {

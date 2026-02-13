@@ -34,7 +34,7 @@ namespace Entrance.Games.MarioKart
         [SerializeField] private LanesHolder lanesHolder;
 
         [Header("Settings")]
-        [SerializeField, Range(2, 10)] private int amountOfPlayers;
+        [SerializeField, Range(2, 7)] private int amountOfPlayers;
         #endregion
 
         #region PUBLIC METHODS
