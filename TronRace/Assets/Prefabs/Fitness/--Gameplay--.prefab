@@ -4354,10 +4354,10 @@ GameObject:
   - component: {fileID: 1166150443125433085}
   - component: {fileID: 3329332149034280874}
   - component: {fileID: 6146847847104372178}
+  - component: {fileID: 3257464394127615241}
   - component: {fileID: 2374244112326653299}
   - component: {fileID: 7444963432470248126}
   - component: {fileID: 5652306196097041241}
-  - component: {fileID: 3257464394127615241}
   m_Layer: 0
   m_Name: FrontBoard
   m_TagString: Untagged
@@ -4536,6 +4536,39 @@ MonoBehaviour:
   gameOver:
   - {fileID: 2029486686203112296}
   initialWaitTime: 3
+--- !u!114 &3257464394127615241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2225888425507077005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52266ca2c9fe1c43b3ae3a85b60524b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - color: {r: 1, g: 0.0039215684, b: 0.0039215684, a: 1}
+    used: 0
+  - color: {r: 1, g: 0.60156864, b: 0.0039215684, a: 1}
+    used: 0
+  - color: {r: 0.8007843, g: 1, b: 0.0039215684, a: 1}
+    used: 0
+  - color: {r: 0.20313719, g: 1, b: 0.0039215684, a: 1}
+    used: 0
+  - color: {r: 0.0039215684, g: 1, b: 0.40235305, a: 1}
+    used: 0
+  - color: {r: 0.0039215684, g: 1, b: 1, a: 1}
+    used: 0
+  - color: {r: 0.0039215684, g: 0.4023528, b: 1, a: 1}
+    used: 0
+  - color: {r: 0.20313707, g: 0.0039215684, b: 1, a: 1}
+    used: 0
+  - color: {r: 0.8007845, g: 0.0039215684, b: 1, a: 1}
+    used: 0
+  - color: {r: 1, g: 0.0039215684, b: 0.601569, a: 1}
+    used: 0
 --- !u!114 &2374244112326653299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4580,39 +4613,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayPoints: {fileID: 1874592858468031111}
---- !u!114 &3257464394127615241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2225888425507077005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52266ca2c9fe1c43b3ae3a85b60524b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colors:
-  - color: {r: 1, g: 0.0039215684, b: 0.0039215684, a: 1}
-    used: 0
-  - color: {r: 1, g: 0.60156864, b: 0.0039215684, a: 1}
-    used: 0
-  - color: {r: 0.8007843, g: 1, b: 0.0039215684, a: 1}
-    used: 0
-  - color: {r: 0.20313719, g: 1, b: 0.0039215684, a: 1}
-    used: 0
-  - color: {r: 0.0039215684, g: 1, b: 0.40235305, a: 1}
-    used: 0
-  - color: {r: 0.0039215684, g: 1, b: 1, a: 1}
-    used: 0
-  - color: {r: 0.0039215684, g: 0.4023528, b: 1, a: 1}
-    used: 0
-  - color: {r: 0.20313707, g: 0.0039215684, b: 1, a: 1}
-    used: 0
-  - color: {r: 0.8007845, g: 0.0039215684, b: 1, a: 1}
-    used: 0
-  - color: {r: 1, g: 0.0039215684, b: 0.601569, a: 1}
-    used: 0
 --- !u!1 &2261851037750060071
 GameObject:
   m_ObjectHideFlags: 0

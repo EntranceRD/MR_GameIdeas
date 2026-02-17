@@ -59932,7 +59932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6745659696329365057, guid: 9ebaa3b9b197bfc43a85161cbf008ad7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8729972728998322933, guid: 9ebaa3b9b197bfc43a85161cbf008ad7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -240586,14 +240586,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4af5e24d0c3a9b74b9e4337520c103e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager_MathBoard:
+  gameZoneManagers:
   - {fileID: 783113206}
-  players:
-  - {fileID: 438124534}
-  - {fileID: 1957761378}
-  - {fileID: 1736728066}
-  - {fileID: 1663370259}
-  - {fileID: 1775246147}
+  fakePlayers: []
+  activeFakePlayers: 1
   playersPerTeam: 4
 --- !u!4 &1241216726
 Transform:
@@ -261489,7 +261485,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.23, y: 0}
+  m_AnchoredPosition: {x: 2.23, y: -0.25}
   m_SizeDelta: {x: 4.47, y: 7.61}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1327876373

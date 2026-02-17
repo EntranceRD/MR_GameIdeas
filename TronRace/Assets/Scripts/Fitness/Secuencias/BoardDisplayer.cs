@@ -13,8 +13,9 @@ namespace Entrance.Games.Sequence
 
         private void Start()
         {
-            GameManager.Instance.OnGameStop -= GameOver;
-            GameManager.Instance.OnGameStop += GameOver;
+            //GameManager.Instance.OnGameStop -= GameOver;
+            //GameManager.Instance.OnGameStop += GameOver;
+            displayer.OnFinishDisplaying =()=> ActiveWaitPanel(false);
         }
 
         #region VARIABLES
@@ -39,6 +40,7 @@ namespace Entrance.Games.Sequence
         public void Restart()
         {
             //InitializeButtonsColors();
+            ActiveWaitPanel(false);
             StopAllCoroutines();
             SetGameOverPanel(false);
             displayer.Restart();
@@ -71,7 +73,7 @@ namespace Entrance.Games.Sequence
             ActiveWaitPanel(true);
             yield return new WaitForSeconds(initialWaitTime);
             DisplaySequence(sequence);
-            ActiveWaitPanel(false);
+            //ActiveWaitPanel(false);
         }
 
         private void DisplaySequence(List<int> sequence)
@@ -105,10 +107,12 @@ namespace Entrance.Games.Sequence
 
         private void DisableAllButtons() { SetButtonsInteraction(false); }
 
-        private void GameOver()
+        public void GameOver()
         {
+            displayer.ForceStop();
             ActiveWaitPanel(false);
             SetGameOverPanel(true);
+            DisableAllButtons();
         }
 
         private void SetGameOverPanel(bool state)

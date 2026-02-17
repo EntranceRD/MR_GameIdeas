@@ -15,7 +15,7 @@ namespace Entrance.Games.Teams
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))
             {
                 Restart();
             }
@@ -23,36 +23,41 @@ namespace Entrance.Games.Teams
         #endregion
 
         #region VARIABLES
-        public List<GameManager_MathBoard> gameManager_MathBoard;
-        public List<Player> players;
+        public GameManager_MathBoard[] gameZoneManagers;
+        public List<Player> fakePlayers;
+        public bool activeFakePlayers;
         [Range(1, 5)] public int playersPerTeam = 2;
         #endregion
 
         #region PUBLIC METHODS
         public void Restart()
         {
-            for (int i = 0; i < gameManager_MathBoard.Count; i++)
+            InitializeGameZones(playersPerTeam);
+            if (activeFakePlayers)
             {
-                gameManager_MathBoard[i].Restart();
-            }
-            for (int i = 0; i < players.Count; i++)
-            {
-                players[i].Restart();
-            }
-
-            InitializeLanesDependingOnPlayers(playersPerTeam);
-        }
-
-        public void InitializeLanesDependingOnPlayers(int amountOfPLayers)
-        {
-            for (int i = 0; i < gameManager_MathBoard.Count; i++)
-            {
-                gameManager_MathBoard[i].InitializePlayers(amountOfPLayers);
+                InitializeFakePlayers();
             }
         }
         #endregion
 
         #region PRIVATE METHODS
+
+        private void InitializeGameZones(int amountOfPLayers)
+        {
+            for (int i = 0; i < gameZoneManagers.Length; i++)
+            {
+                gameZoneManagers[i].Restart();
+                gameZoneManagers[i].InitializePlayers(amountOfPLayers);
+            }
+        }
+
+        private void InitializeFakePlayers()
+        {
+            for (int i = 0; i < fakePlayers.Count; i++)
+            {
+                fakePlayers[i].Restart();
+            }
+        }
 
         #endregion
     }

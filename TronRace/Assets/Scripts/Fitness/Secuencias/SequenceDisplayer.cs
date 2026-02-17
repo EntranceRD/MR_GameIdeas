@@ -12,8 +12,12 @@ namespace Entrance.Games.Sequence
         public System.Action<int, int> OnDisplayElement;
         public bool displayingSequence { get; private set; } = false;
 
-        [SerializeField, Range(0, 5f)] private float displayTime;
-        [SerializeField, Range(0, 5f)] private float timeBetweenDisplay;
+        //[SerializeField, Range(0, 5f)] private float displayTime;
+        //[SerializeField, Range(0, 5f)] private float timeBetweenDisplay;
+        [SerializeField, Range(0, 60f)] private float totalDisplayTime = 5f;
+
+        [SerializeField, Range(0, 1f)] private float highlightPercentageTime = .7f;
+        private float awaithighlightPercentageTime = 0f;
 
         private List<int> mySequence = new List<int>();
         private IEnumerator displaySequenceInstruction;
@@ -67,12 +71,18 @@ namespace Entrance.Games.Sequence
             displayingSequence = true;
             OnStartDisplaying?.Invoke();
 
-            var totalDisplayTime = displayTime + timeBetweenDisplay;
+            awaithighlightPercentageTime = 1f - highlightPercentageTime;
+            var dispTime = (totalDisplayTime/ mySequence.Count) * highlightPercentageTime;
+            var tbd = (totalDisplayTime / mySequence.Count) * awaithighlightPercentageTime;
+
+            //var dispTime = displayTime - (0.025f * mySequence.Count);
+            //var tbd = timeBetweenDisplay - (0.0125f * mySequence.Count);
+            //var totalDisplayTime = dispTime + tbd;
             for (int i = 0; i < mySequence.Count; i++)
             {
                 OnDisplayElement?.Invoke(mySequence[i], i);
-                highlightableObjects[mySequence[i]].Highlight(displayTime);
-                yield return new WaitForSeconds(totalDisplayTime);
+                highlightableObjects[mySequence[i]].Highlight(dispTime);
+                yield return new WaitForSeconds(dispTime+tbd);
             }
             displayingSequence = false;
             OnFinishDisplaying?.Invoke();

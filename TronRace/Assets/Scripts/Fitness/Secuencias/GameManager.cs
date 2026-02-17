@@ -32,8 +32,10 @@ namespace Entrance.Games.Sequence
         //public ScoreManager scoreManager;
 
         [Header("Settings")]
-        [SerializeField, Range(2, 5)] private int amountOfPlayers;
+        [SerializeField, Range(2,50)] private int amountOfPlayers;
         [SerializeField] private ColorBoard[] colorBoards;
+        [SerializeField] private FloorBoard floorBoard;
+        [SerializeField] private Ranking ranking;
 
         public System.Action OnGameStop;
         public List<int> scoreBoard = new List<int>();
@@ -53,13 +55,18 @@ namespace Entrance.Games.Sequence
 
         public void StopGame()
         {
-            OnGameStop?.Invoke();
             for (int i = 0; i < colorBoards.Length; i++)
             {
-                scoreBoard.Add(colorBoards[i].finalPoints);
+                colorBoards[i].GameStop();
             }
-            scoreBoard.Sort((a, b) => b.CompareTo(a)); ;
-            Debug.Log(string.Join(", ", scoreBoard));
+            OnGameStop?.Invoke();
+            //ranking.DisplayRanking();
+            //for (int i = 0; i < colorBoards.Length; i++)
+            //{
+            //    scoreBoard.Add(colorBoards[i].scoreManager.currentPoints);
+            //}
+            //scoreBoard.Sort((a, b) => b.CompareTo(a)); ;
+            //Debug.Log(string.Join(", ", scoreBoard));
         }
 
         //public void BoardGuessRightSequence(ColorBoard board)
@@ -79,10 +86,12 @@ namespace Entrance.Games.Sequence
             gameTime.Restart();
             gameTime.Resume();
             scoreBoard.Clear();
+            ranking.Restart();
             for (int i = 0; i < colorBoards.Length; i++)
             {
                 colorBoards[i].Restart();
             }
+            floorBoard.Restart();
         }
 
         private void InitializeBoards(int totalPlayers)

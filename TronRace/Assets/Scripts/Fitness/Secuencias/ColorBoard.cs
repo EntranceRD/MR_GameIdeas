@@ -1,4 +1,5 @@
 using Entrance.Games.Sequence;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,13 +24,12 @@ namespace Entrance.Games.Sequence
         [Header("References")]
         public BoardDisplayer boardDisplayer;
         [SerializeField] private SoundManager soundManager;
-        [SerializeField] private ScoreManager scoreManager;
+        public ScoreManager scoreManager;
         [SerializeField] private ColorSequence sequenceGenerator;
         public SequenceComparer sequenceComparer { get; private set; }
 
         [Header("Settings")]
         [SerializeField] private SequenceButton[] userButtons;
-        public int finalPoints;
 
         private List<int> userSequence = new List<int>();
         private List<int> correctSequence = new List<int>();
@@ -43,8 +43,17 @@ namespace Entrance.Games.Sequence
             boardDisplayer.Restart();
             RestartSequenceButtons();
             RestartUserSequence();
+            //RestartAnimations();
             sequenceGenerator.Restart();
         }
+
+        //private void RestartAnimations()
+        //{
+        //    for (int i = 0; i < anims.Count; i++)
+        //    {
+        //        anims[i].Restart();
+        //    }
+        //}
 
         public void InitializeBoard(int players)
         //public void InitializeBoard(List<int> sequence)
@@ -72,8 +81,9 @@ namespace Entrance.Games.Sequence
         public void GameStop()
         {
             SetButtonsInteraction(false);
-            finalPoints = scoreManager.currentPoints;
+            boardDisplayer.GameOver();
         }
+
         public void DisplaySequence() {
             boardDisplayer.StartSequence(correctSequence);
         }
@@ -135,7 +145,7 @@ namespace Entrance.Games.Sequence
             soundManager.PlaySound(0);
             for (int i = 0; i < userButtons.Length; i++)
             {
-                userButtons[i].Highlight(1);
+                userButtons[i].Highlight(.5f);
             }
 
         }
