@@ -8,7 +8,7 @@ namespace Entrance.Games.MarioKart
     public class RankingDisplayer : MonoBehaviour
     {
         #region VARIABLES
-        private int varA = 0;
+        [Header("References")]
         public List<TextMeshProUGUI> rankingTxt = new List<TextMeshProUGUI>();
         #endregion
 
@@ -29,7 +29,7 @@ namespace Entrance.Games.MarioKart
                 if (index < rankingTxt.Count)
                 {
                     rankingTxt[index].text =
-                        $"Position {index + 1}: Driver {pair.Key} - Time: {pair.Value:F2} seconds";
+                        $"Jugador {pair.Key} - Tiempo: {pair.Value:F2}";
                 }
                 index++;
             }

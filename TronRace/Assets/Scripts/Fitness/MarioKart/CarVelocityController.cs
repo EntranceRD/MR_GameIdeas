@@ -8,6 +8,7 @@ namespace Entrance.Games.MarioKart
         private void Awake()
         {
             startPosition = transform.position;
+            carColor = GetComponent<Renderer>().material.color;
         }
 
         void Start()
@@ -35,6 +36,7 @@ namespace Entrance.Games.MarioKart
 
         [Header("Car Info")]
         public int driverID = 0;
+        public Color carColor;
         private float velocity;
         private Vector3 startPosition;
 

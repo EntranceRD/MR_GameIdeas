@@ -15,7 +15,9 @@ namespace Entrance.Games.Sequence
         {
             //GameManager.Instance.OnGameStop -= GameOver;
             //GameManager.Instance.OnGameStop += GameOver;
-            displayer.OnFinishDisplaying =()=> ActiveWaitPanel(false);
+            displayer.OnFinishDisplaying = ()=> {
+                ActiveWaitPanel(false);
+            };
         }
 
         #region VARIABLES
@@ -46,7 +48,6 @@ namespace Entrance.Games.Sequence
             displayer.Restart();
             displayer.OnDisplayElement -= DisplaySequenceIndex;
             displayer.OnDisplayElement += DisplaySequenceIndex;
-
             displayer.OnFinishDisplaying -= EnableAllButtons;
             displayer.OnFinishDisplaying += EnableAllButtons;
         }

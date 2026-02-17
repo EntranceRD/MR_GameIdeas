@@ -8,19 +8,11 @@ namespace Entrance.Games.Sequence
     public class RankingDisplayer : MonoBehaviour
     {
         #region UNITY METHODS
-        private void Start()
-        {
-            
-        }
-
-        private void Update()
-        {
-            
-        }
         #endregion
 
         #region VARIABLES
-        public List<TextMeshProUGUI> rankingTxt = new List<TextMeshProUGUI>();
+        [Header("References")]
+        [SerializeField] private List<TextMeshProUGUI> rankingTxt = new List<TextMeshProUGUI>();
         #endregion
 
         #region PUBLIC METHODS
@@ -39,24 +31,11 @@ namespace Entrance.Games.Sequence
                 var pair = orderedPairs[i];
                 rankingTxt[i].text = $"Equipo {pair.Key} - Points: {pair.Value}";
             }
-            //int index = 0;
-            //foreach (var pair in orderedPairs)
-            //{
-            //    if (index < rankingTxt.Count)
-            //    {
-            //        rankingTxt[index].text =
-            //            $"Board {pair.Key+1} - Points: {pair.Value}";
-            //    }
-            //    index++;
-            //}
         }
         #endregion
 
         #region PRIVATE METHODS
-        private void method()
-        {
-            
-        }
+
         #endregion
     }
 }

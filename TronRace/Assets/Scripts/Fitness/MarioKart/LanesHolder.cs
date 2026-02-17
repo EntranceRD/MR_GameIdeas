@@ -6,10 +6,13 @@ namespace Entrance.Games.MarioKart
     public class LanesHolder : MonoBehaviour
     {
         #region VARIABLES
-        [SerializeField] private List<ClickCounterByFrame> laneList = new List<ClickCounterByFrame>();
+        [Header("References")]
         public List<CarVelocityController> cars = new List<CarVelocityController>();
+        [SerializeField] private List<ClickCounterByFrame> laneList = new List<ClickCounterByFrame>();
         [SerializeField] private List<ClickCounterByFrame> lanesActive = new List<ClickCounterByFrame>();
+        #endregion
 
+        #region PUBLIC METHODS
         public void Restart()
         {
             for (int i = 0; i < laneList.Count; i++)
@@ -38,11 +41,23 @@ namespace Entrance.Games.MarioKart
                 carController.driverID = i + 1;
                 cars.Add(carController);
             }
+            AllowCarMovement(false);
+        }
+
+        public void StartRace()
+        {
+            AllowCarMovement(true);
+        }
+        #endregion
+
+        #region PRIVATE METHODS
+        private void AllowCarMovement(bool state)
+        {
             foreach (var car in cars)
             {
                 if (car != null)
                 {
-                    car.CarMoveState(true);
+                    car.CarMoveState(state);
                 }
             }
         }

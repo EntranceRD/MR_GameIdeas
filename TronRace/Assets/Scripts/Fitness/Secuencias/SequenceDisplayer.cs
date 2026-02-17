@@ -7,22 +7,24 @@ namespace Entrance.Games.Sequence
     public class SequenceDisplayer : MonoBehaviour
     {
         #region VARIABLES
+        [Header("References")]
+        [SerializeField] private Transform highlightableContainer;
+
+        [Header("Settings")]
+        [SerializeField, Range(0, 60f)] private float totalDisplayTime = 5f;
+        [SerializeField, Range(0, 1f)] private float highlightPercentageTime = .7f;
+        //[SerializeField, Range(0, 5f)] private float displayTime;
+        //[SerializeField, Range(0, 5f)] private float timeBetweenDisplay;
+
+        public bool displayingSequence { get; private set; } = false;
         public System.Action OnStartDisplaying;
         public System.Action OnFinishDisplaying;
         public System.Action<int, int> OnDisplayElement;
-        public bool displayingSequence { get; private set; } = false;
 
-        //[SerializeField, Range(0, 5f)] private float displayTime;
-        //[SerializeField, Range(0, 5f)] private float timeBetweenDisplay;
-        [SerializeField, Range(0, 60f)] private float totalDisplayTime = 5f;
-
-        [SerializeField, Range(0, 1f)] private float highlightPercentageTime = .7f;
         private float awaithighlightPercentageTime = 0f;
-
         private List<int> mySequence = new List<int>();
         private IEnumerator displaySequenceInstruction;
         private IHighlightableObject[] highlightableObjects;
-        [SerializeField] private Transform highlightableContainer;
         #endregion
 
         #region PUBLIC METHODS
@@ -56,7 +58,6 @@ namespace Entrance.Games.Sequence
         #region PRIVATE METHODS
         private void Initialize()
         {
-
             highlightableObjects = highlightableContainer.GetComponentsInChildren<IHighlightableObject>();
 
             if (displaySequenceInstruction == null)

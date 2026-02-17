@@ -25,20 +25,18 @@ namespace Entrance.Games.Sequence
         #endregion
 
         #region VARIABLES
-        [Header("References")]
         public static GameManager Instance;
-        //public ColorSequence colorSequence;
-        public GenericTimerComponent gameTime;
-        //public ScoreManager scoreManager;
-
-        [Header("Settings")]
-        [SerializeField, Range(2,50)] private int amountOfPlayers;
+        [Header("References")]
+        [SerializeField] private GenericTimerComponent gameTime;
         [SerializeField] private ColorBoard[] colorBoards;
         [SerializeField] private FloorBoard floorBoard;
         [SerializeField] private Ranking ranking;
+        //public ScoreManager scoreManager;
+        //public ColorSequence colorSequence;
 
+        [Header("Settings")]
+        [SerializeField, Range(2,50)] private int amountOfPlayers;
         public System.Action OnGameStop;
-        public List<int> scoreBoard = new List<int>();
         #endregion
 
         #region PUBLIC METHODS
@@ -60,24 +58,7 @@ namespace Entrance.Games.Sequence
                 colorBoards[i].GameStop();
             }
             OnGameStop?.Invoke();
-            //ranking.DisplayRanking();
-            //for (int i = 0; i < colorBoards.Length; i++)
-            //{
-            //    scoreBoard.Add(colorBoards[i].scoreManager.currentPoints);
-            //}
-            //scoreBoard.Sort((a, b) => b.CompareTo(a)); ;
-            //Debug.Log(string.Join(", ", scoreBoard));
         }
-
-        //public void BoardGuessRightSequence(ColorBoard board)
-        //{
-        //    for (int i = 0; i < colorBoards.Length; i++)
-        //    {
-        //        colorBoards[i].CleanBoard();
-        //    }
-        //    var sequence = colorSequence.GrowSequenceBy(1);
-        //    InitializeBoards(sequence);
-        //}
         #endregion
 
         #region PRIVATE METHODS
@@ -85,7 +66,6 @@ namespace Entrance.Games.Sequence
         {
             gameTime.Restart();
             gameTime.Resume();
-            scoreBoard.Clear();
             ranking.Restart();
             for (int i = 0; i < colorBoards.Length; i++)
             {

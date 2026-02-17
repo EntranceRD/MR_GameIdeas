@@ -15,6 +15,12 @@ namespace Entrance.Games.MarioKart
             Instance = this;
         }
 
+        private void Start()
+        {
+            instructionsDisplayer.OnEndDisplaying -= StartRace;
+            instructionsDisplayer.OnEndDisplaying += StartRace;
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.R))
@@ -32,6 +38,7 @@ namespace Entrance.Games.MarioKart
         [SerializeField] private Ranking ranking;
         [SerializeField] private GenericTimerComponent gameTime;
         [SerializeField] private LanesHolder lanesHolder;
+        [SerializeField] private InstructionsDisplayer instructionsDisplayer;
 
         [Header("Settings")]
         [SerializeField, Range(2, 7)] private int amountOfPlayers;
@@ -42,13 +49,20 @@ namespace Entrance.Games.MarioKart
         {
             Restart();
             lanesHolder.InitializeLanes(players);
+            instructionsDisplayer.DisplayInstructions();
+        }
+
+        public void StartRace()
+        {
+            lanesHolder.StartRace();
         }
 
         public void StopGame()
         {
-            OnGameStop?.Invoke();
             EndRace();
+            OnGameStop?.Invoke();
         }
+
         public int SetPlayers(int players)
         {
             return amountOfPlayers = players;
@@ -60,6 +74,7 @@ namespace Entrance.Games.MarioKart
         {
             lanesHolder.Restart();
             ranking.Restart();
+            instructionsDisplayer.Restart();
             RestartTimers();
         }
 

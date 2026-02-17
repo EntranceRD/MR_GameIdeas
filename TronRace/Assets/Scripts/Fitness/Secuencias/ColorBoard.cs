@@ -22,9 +22,9 @@ namespace Entrance.Games.Sequence
 
         #region VARIABLES
         [Header("References")]
-        public BoardDisplayer boardDisplayer;
-        [SerializeField] private SoundManager soundManager;
         public ScoreManager scoreManager;
+        [SerializeField] private BoardDisplayer boardDisplayer;
+        [SerializeField] private SoundManager soundManager;
         [SerializeField] private ColorSequence sequenceGenerator;
         public SequenceComparer sequenceComparer { get; private set; }
 

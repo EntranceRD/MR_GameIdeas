@@ -20,9 +20,12 @@ namespace Entrance.Games.Sequence
         #endregion
 
         #region VARIABLES
+        [Header("References")]
         [SerializeField] private ColorBoard[] colorBoards;
-        [SerializeField] private Dictionary<int, int> boardsRank = new Dictionary<int, int>();
         [SerializeField] private RankingDisplayer rankingDisplayer;
+
+        [Header("Dictionary")]
+        [SerializeField] private Dictionary<int, int> boardsRank = new Dictionary<int, int>();
         #endregion
 
         #region PUBLIC METHODS
@@ -34,21 +37,18 @@ namespace Entrance.Games.Sequence
 
         public void DisplayRanking()
         {
-            CollectPointsAndDisplay();
+            for (int i = 0; i < colorBoards.Length; i++)
+            {
+                boardsRank.Add(i + 1, colorBoards[i].scoreManager.currentPoints);
+            }
+            var orderedBoards = boardsRank.OrderByDescending(pair => pair.Value).ToList();
+            rankingDisplayer.Display(orderedBoards);
         }
         
         #endregion
 
         #region PRIVATE METHODS
-        private void CollectPointsAndDisplay()
-        {
-            for (int i = 0; i < colorBoards.Length; i++)
-            {
-                boardsRank.Add(i+1, colorBoards[i].scoreManager.currentPoints);
-            }
-            var orderedBoards = boardsRank.OrderByDescending(pair => pair.Value).ToList();
-            rankingDisplayer.Display(orderedBoards);
-        }
+
         #endregion
     }
 }

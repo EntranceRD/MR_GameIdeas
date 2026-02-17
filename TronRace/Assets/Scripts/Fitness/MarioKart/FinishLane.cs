@@ -13,13 +13,15 @@ namespace Entrance.Games.MarioKart
             {
                 ranking.AddPlayer(car.driverID);
                 car.CarMoveState(false);
+                explosionInstantiator.CreateExplosion(car.transform ,car.carColor);
             }
             ranking.DisplayRanking();
         }
         #endregion
 
         #region VARIABLES
-        public Ranking ranking;
+        [SerializeField] private Ranking ranking;
+        [SerializeField] private BalloonExplosionInstantiator explosionInstantiator;
         #endregion
 
         #region PUBLIC METHODS
