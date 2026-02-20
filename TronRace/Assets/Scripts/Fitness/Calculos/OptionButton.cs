@@ -35,13 +35,19 @@ namespace Entrance.Games.Mathematics
 
         public MaterialController colorController;
         public TMP_Text buttonText;
-        public GameManager_MathBoard gameManagerBoard;
-        public int contextIndex;
+        public int contextIndex = -1;
         public Action OnClick;
         //public Renderer rend;
         public Image image;
         private ClickableElement myButton;
         public Timer changeColorTimer;
+
+        public void Restart()
+        {
+            ChangeColor(image.color);
+            buttonText.text = string.Empty;
+            contextIndex = -1;
+        }
 
         public void Initialize<T>(int index, T textValue)
         {

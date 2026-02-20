@@ -1,58 +1,61 @@
 using Entrance.Games.Mathematics;
 using Entrance.Unity;
-using System.Collections;
 using UnityEngine;
 
-public class MiddleButton : MonoBehaviour
+namespace Entrance.Games.Mathematics
 {
-    public Timer releasedTimer;
-    public GameManager_MathBoard gameManager;
-    [SerializeField] public bool playerReleased = false;
-    [SerializeField] private bool timerFinish = false;
-
-    void Start()
+    public class MiddleButton : MonoBehaviour
     {
-        releasedTimer.OnFinish += CheckClickedButtons;
-        releasedTimer.Restart();
-    }
+        //public Timer releasedTimer;
+        public MathBoardManager gameManagerBoard;
+        //[SerializeField] public bool playerReleased = false;
+        //[SerializeField] private bool timerFinish = false;
 
-    void Update()
-    {
-        if (playerReleased)
+        void Start()
         {
-            releasedTimer.Tick(Time.deltaTime);
-        } 
-    }
-
-    private void FixedUpdate()
-    {
-        if (timerFinish)
-        {
-            CheckClickedButtons();
+            //releasedtimer.onfinish -= checkclickedbuttons;
+            //releasedtimer.onfinish += checkclickedbuttons;
+            //releasedtimer.restart();
         }
-    }
 
-    public void Restart()
-    {
-        gameObject.SetActive(false);
-        playerReleased = false;
-        timerFinish = false;
-        releasedTimer.Restart();
-    }
+        //void Update()
+        //{
+        //    if (playerReleased)
+        //    {
+        //        releasedTimer.Tick(Time.deltaTime);
+        //    }
+        //}
 
-    public void PlayerReleased()
-    {
-        playerReleased = true;
-    }
+        //private void FixedUpdate()
+        //{
+        //    if (timerFinish)
+        //    {
+        //        CheckClickedButtons();
+        //    }
+        //}
 
-    private void CheckClickedButtons()
-    { 
-        timerFinish = true;
-        releasedTimer.Restart();
-        if (gameManager.CheckAllPlayersInButtons())
+        public void Restart()
         {
-            gameManager.NewRound();
             gameObject.SetActive(false);
+            //playerReleased = false;
+            //timerFinish = false;
+            //releasedTimer.Restart();
+        }
+
+        //public void PlayerReleased()
+        //{
+        //    playerReleased = true;
+        //}
+
+        public void CheckClickedButtons()
+        {
+            //timerFinish = true;
+            //releasedTimer.Restart();
+            if (gameManagerBoard.CheckAllPlayersInButtons())
+            {
+                gameManagerBoard.NewRound();
+                gameObject.SetActive(false);
+            }
         }
     }
 }

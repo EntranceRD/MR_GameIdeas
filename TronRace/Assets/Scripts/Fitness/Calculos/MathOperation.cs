@@ -22,6 +22,12 @@ namespace Entrance.Games.Mathematics
         #endregion
 
         #region PUBLIC METHODS
+        public void Restart()
+        {
+            Operators.Clear();
+            Operands.Clear();
+            Result = 0;
+        }
         public void PrepareNewOperation(int totalOperations)
         {
             Operators.Clear();
