@@ -12,7 +12,8 @@ namespace Entrance.Games.Mathematics
             for (int i = 0; i < possibleResultsBtns.Length; i++)
             {
                 int idx = i;
-                possibleResultsBtns[i].OnClick += () => {
+                possibleResultsBtns[i].OnClick += () =>
+                {
                     VerifyAnswer(possibleResultsBtns[idx]);
                 };
             }
@@ -20,12 +21,15 @@ namespace Entrance.Games.Mathematics
         #endregion
 
         #region VARIABLES
-        public OptionButton[] possibleResultsBtns;
-        public int correctResultIndex = -1;
-        public int pointsForSolvedOperation = -1;
-        //private MathOperation operationController;
-        //public ScoreManager scoreManager;
         public Action OnOperationVerified;
+
+        [Header("References")]
+        [SerializeField] private OptionButton[] possibleResultsBtns;
+        [SerializeField] private SoundManager soundManager;
+
+        [Header("Settings")]
+        public int pointsForSolvedOperation = -1;
+        public int correctResultIndex = -1;
         #endregion
 
         #region PUBLIC METHODS
@@ -33,7 +37,7 @@ namespace Entrance.Games.Mathematics
         {
             correctResultIndex = -1;
             pointsForSolvedOperation = -1;
-            //scoreManager.Restart();
+            soundManager.StopSounds();
         }
         #endregion
 
@@ -43,15 +47,12 @@ namespace Entrance.Games.Mathematics
             if (correctResultIndex != btn.contextIndex)
             {
                 btn.ChangeColor(Color.red);
+                soundManager.PlaySound(1);
                 return;
             }
-
-            //pointsForSolvedOperation = operationController.Operators.Count;
-            //scoreManager.AddPoints(pointsForSolvedOperation);
             btn.ChangeColor(Color.green);
+            soundManager.PlaySound(0);
             OnOperationVerified?.Invoke();
-            //gameManagerBoard.middleButton.gameObject.SetActive(true);
-            //gameManagerBoard.LockOptionButtons();
         }
         #endregion
     }

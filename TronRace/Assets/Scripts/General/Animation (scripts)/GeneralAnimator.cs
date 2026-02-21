@@ -11,11 +11,6 @@ namespace Entrance
         {
             if(anim==null) { anim = GetComponent<Animator>(); }
         }
-
-        private void Update()
-        {
-            
-        }
         #endregion
 
         #region VARIABLES

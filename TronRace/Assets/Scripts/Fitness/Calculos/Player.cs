@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -35,5 +35,6 @@ public class Player : MonoBehaviour
     public void Restart()
     {
         transform.position = initialPos;
+        gameObject.SetActive(true);
     }
 }

@@ -10,6 +10,7 @@ namespace Entrance.Games.Mathematics
 
     public class OptionButton : MonoBehaviour
     {
+        #region UNITY METHODS
         private void Awake()
         {
             //rend = GetComponent<Renderer>();
@@ -32,7 +33,9 @@ namespace Entrance.Games.Mathematics
         {
             changeColorTimer.Tick(Time.fixedDeltaTime);
         }
+        #endregion
 
+        #region VARIABLES
         public MaterialController colorController;
         public TMP_Text buttonText;
         public int contextIndex = -1;
@@ -41,7 +44,9 @@ namespace Entrance.Games.Mathematics
         public Image image;
         private ClickableElement myButton;
         public Timer changeColorTimer;
+        #endregion
 
+        #region PUBLIC METHODS
         public void Restart()
         {
             ChangeColor(image.color);
@@ -60,5 +65,6 @@ namespace Entrance.Games.Mathematics
             colorController.ChangeColor(newColor);
             changeColorTimer.Restart();
         }
+        #endregion
     }
 }

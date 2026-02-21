@@ -13,46 +13,23 @@ namespace Entrance.Games.Mathematics
 
     public class Operation : MonoBehaviour
     {
-        //private void Awake()
-        //{
-        //    for (int i = 0; i < possibleResultsBtns.Length; i++)
-        //    {
-        //        int idx = i;
-        //        possibleResultsBtns[i].OnClick += ()=>{
-        //            VerifyAnswer(possibleResultsBtns[idx]);
-        //        };
-        //    }
-        //}
-
         #region VARIABLES
         [Header("References")]
-        //public TMPro.TMP_Text operationText;
-        //public MathBoardManager gameManagerBoard;
-        //public ScoreManager scoreManager;
-        public int correctResultIndex = -1;
-        [SerializeField] private DifficultyLevels difficulty;
         [SerializeField] private OptionButton[] possibleResultsBtns;
-        //[SerializeField] private OperationDisplayer operationDisplayer;
-        //[SerializeField] private OperationVerifier operationVerifier;
         private MathOperation operationController;
+
+        [Header("Settings")]
+        [SerializeField] private DifficultyLevels difficulty;
+        public int correctResultIndex = -1;
         public List<int> results;
         public List<int> operands;
         public List<int> operators;
         #endregion
 
         #region PUBLIC METHODS
-        //public void SetDifficulty(DifficultyLevels level) { difficulty = level; }
-
         public void Restart()
         {
-            //operationText.text = string.Empty;
             correctResultIndex = -1;
-            //for (int i = 0; i < possibleResultsBtns.Length; i++)
-            //{
-            //    possibleResultsBtns[i].Restart();
-            //}
-            //operationDisplayer.Restart();
-            //operationController.Restart();
             results.Clear();
         }
 
@@ -67,10 +44,6 @@ namespace Entrance.Games.Mathematics
             operands = operationController.Operands;
             operators = operationController.Operators;
             results = CalculatePossibleResults(operationController.Result, possibleResultsBtns.Length - 1);
-            //operationDisplayer.Display(results);
-            //operationVerifier.correctResultIndex = correctResultIndex;
-            //DisplayOperation();
-            //DisplayPossibleResults(results);
         }
         #endregion
 
@@ -98,22 +71,6 @@ namespace Entrance.Games.Mathematics
             }
             return results;
         }
-
-        //private void VerifyAnswer(OptionButton btn)
-        //{
-        //    if (correctResultIndex != btn.contextIndex)
-        //    {
-        //        btn.ChangeColor(Color.red);
-        //        return;
-        //    }
-
-        //    var pointsForSolvedOperation = operationController.Operators.Count;
-        //    scoreManager.AddPoints(pointsForSolvedOperation);
-        //    btn.ChangeColor(Color.green);
-        //    gameManagerBoard.middleButton.gameObject.SetActive(true);
-        //    gameManagerBoard.LockOptionButtons();
-        //}
-
         private int GetTotalOperationsForDifficulty()
         {
             switch (difficulty)
@@ -124,23 +81,6 @@ namespace Entrance.Games.Mathematics
                 default: return 1;
             }
         }
-
-        //private void DisplayPossibleResults(List<int> results)
-        //{
-        //    for (int i = 0; i < possibleResultsBtns.Length; i++)
-        //    {
-        //        possibleResultsBtns[i].Initialize(i, results[i].ToString());
-        //    }
-        //}
-
-        //private void DisplayOperation()
-        //{
-        //    operationText.text = $"{operationController.Operands[0]}";
-        //    for (int i = 0; i < operationController.Operators.Count; i++)
-        //    {
-        //        operationText.text += $" {MathOperation.operatorsSymbols[operationController.Operators[i]]} {operationController.Operands[i + 1]}";
-        //    }
-        //}
         #endregion
     }
 }

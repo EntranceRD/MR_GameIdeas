@@ -45,9 +45,11 @@ namespace Entrance.Games.Mathematics
             yield return new WaitForSeconds(displayInstructionsTime);
             GeneralAnimState(1,2);
             yield return new WaitForSeconds(displayWarningsTime);
-            RestartGeneralAnims();
+            GeneralAnimState(0,1);
+            GeneralAnimState(1,1);
             CountdownsState(true);
             yield return new WaitForSeconds(countdownTime);
+            RestartGeneralAnims();
             OnEndDisplaying?.Invoke();
         }
 

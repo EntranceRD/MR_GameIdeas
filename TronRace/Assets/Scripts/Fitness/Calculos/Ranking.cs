@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Entrance.Games.Mathematics;
 using System.Linq;
 
-namespace Entrance.Games.Sequence
+namespace Entrance.Games.Mathematics
 {
     public class Ranking : MonoBehaviour
     {
@@ -16,30 +17,31 @@ namespace Entrance.Games.Sequence
 
         #region VARIABLES
         [Header("References")]
-        [SerializeField] private ColorBoard[] colorBoards;
+        [SerializeField] private MathBoardManager[] mathBoardManagers;
         [SerializeField] private RankingDisplayer rankingDisplayer;
+        [SerializeField] private GeneralAnimator generalAnimator;
 
         [Header("Dictionary")]
-        [SerializeField] private Dictionary<int, int> boardsRank = new Dictionary<int, int>();
+        [SerializeField] private Dictionary<int, int> mathBoardsRank = new Dictionary<int, int>();
         #endregion
 
         #region PUBLIC METHODS
         public void Restart()
         {
             rankingDisplayer.Restart();
-            boardsRank.Clear();
+            mathBoardsRank.Clear();
+            generalAnimator.Restart();
         }
 
         public void DisplayRanking()
         {
-            for (int i = 0; i < colorBoards.Length; i++)
+            for (int i = 0; i < mathBoardManagers.Length; i++)
             {
-                boardsRank.Add(i + 1, colorBoards[i].scoreManager.currentPoints);
+                mathBoardsRank.Add(i + 1, mathBoardManagers[i].scoreManager.currentPoints);
             }
-            var orderedBoards = boardsRank.OrderByDescending(pair => pair.Value).ToList();
+            var orderedBoards = mathBoardsRank.OrderByDescending(pair => pair.Value).ToList();
             rankingDisplayer.Display(orderedBoards);
         }
-        
         #endregion
     }
 }
