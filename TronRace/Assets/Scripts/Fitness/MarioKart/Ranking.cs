@@ -27,7 +27,10 @@ namespace Entrance.Games.MarioKart
 
         public void AddPlayer(int driverID)
         {
-            driversRank.Add(driverID, stopwatch.SetFlag());
+            if (!driversRank.ContainsKey(driverID))
+            {
+                driversRank.Add(driverID, stopwatch.SetFlag());
+            }
         }
 
         public void DisplayRanking()

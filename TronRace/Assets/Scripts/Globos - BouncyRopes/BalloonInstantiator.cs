@@ -17,7 +17,6 @@ namespace Entrance
                 //instanceTimer.Target = Random.Range(1, 5);
                 instanceTimer.Restart();
             };
-            
             instanceTimer.Restart();
         }
 

@@ -8,13 +8,22 @@ namespace Entrance.Games.MarioKart
 {
     public class InstructionsDisplayer : MonoBehaviour
     {
+        #region UNITY METHODS
+        void Start()
+        {
+            GameManager.Instance.OnGameStop -= GameOverScreen;
+            GameManager.Instance.OnGameStop += GameOverScreen;
+        }
+        #endregion
+
         #region VARIABLES
         [Header("References")]
         [SerializeField] private VideoPlayer videoPlayer;
-        [SerializeField] private GameObject[] countdowns;
-        [SerializeField] private GameObject finishLine;
         [SerializeField] private RawImage videoTexture;
         [SerializeField] private TextMeshProUGUI instructionsTxt;
+        [SerializeField] private GameObject finishLine;
+        [SerializeField] private GameObject gameOverPanel;
+        [SerializeField] private GameObject[] countdowns;
 
         [Header("Settings")]
         [SerializeField] private float displayInstructionsTime = 3f;
@@ -30,6 +39,7 @@ namespace Entrance.Games.MarioKart
             InstructionsState(true);
             CountdownsState(false);
             finishLine.SetActive(false);
+            gameOverPanel.SetActive(false);
             displayingInstructions = false;
         }
 
@@ -66,6 +76,13 @@ namespace Entrance.Games.MarioKart
         {
             videoTexture.gameObject.SetActive(state);   
             instructionsTxt.gameObject.SetActive(state);
+        }
+
+        private void GameOverScreen()
+        {
+            CountdownsState(false);
+            InstructionsState(false);
+            gameOverPanel.SetActive(true);
         }
         #endregion
     }
