@@ -31,8 +31,6 @@ namespace Entrance.Games.Sequence
         [SerializeField] private ColorBoard[] colorBoards;
         [SerializeField] private FloorBoard floorBoard;
         [SerializeField] private Ranking ranking;
-        //public ScoreManager scoreManager;
-        //public ColorSequence colorSequence;
 
         [Header("Settings")]
         [SerializeField, Range(2,50)] private int amountOfPlayers;

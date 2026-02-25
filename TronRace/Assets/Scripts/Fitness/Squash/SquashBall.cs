@@ -1,6 +1,6 @@
+using Entrance.Games;
 using Entrance.Games.Demos;
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace EntranceGames.Squash 
@@ -24,13 +24,14 @@ namespace EntranceGames.Squash
 
         #region VARIABLES
         [SerializeField] private Teleport.TeleportableObject teleportable;
-        [SerializeField] private MovibleElement movible;
+        [SerializeField] private ScoreManager scoreManager;
+        public MovibleElement movible;
         #endregion
 
         #region PUBLIC METHODS
-        public void Restart()
+        public void SetDisplay(TextMeshProUGUI displayTxt)
         {
-            
+            scoreManager.displayPoints = displayTxt;
         }
         #endregion
 

@@ -46,14 +46,14 @@ namespace Entrance.Games.Squash
         #region PRIVATE METHODS
         private IEnumerator ShowInstructions()
         {
-            anims[0].SetAnimationStateValue(1);
-            yield return new WaitForSeconds(displayInstructionsTime);
             anims[0].SetAnimationStateValue(2);
-            anims[1].SetAnimationStateValue(1);
-            yield return new WaitForSeconds(displayPlayersShapesTime);
+            yield return new WaitForSeconds(displayInstructionsTime);
+            anims[0].SetAnimationStateValue(1);
             anims[1].SetAnimationStateValue(2);
+            yield return new WaitForSeconds(displayPlayersShapesTime);
             CountdownsState(true);
             yield return new WaitForSeconds(countdownTime);
+            anims[1].SetAnimationStateValue(1);
             displayingInstructions = true;
             OnEndDisplaying?.Invoke();
         }
