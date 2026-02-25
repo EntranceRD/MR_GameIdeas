@@ -29,7 +29,7 @@ namespace Entrance.Games
         private void UpdateUI()
         {
             var formattedScore = string.Format("{0:00}", currentPoints);
-            displayPoints.text = $"Puntos: {formattedScore}";
+            displayPoints.text = $"{formattedScore}";
         }
         #endregion
     }

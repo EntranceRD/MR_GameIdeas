@@ -7,13 +7,11 @@ namespace Entrance.Games.Demos
 {
     public class MovibleElement : MonoBehaviour
     {
-        [Range(0, 5f)] public float velocity;
-        [SerializeField] private Vector3 targetPos;
-        private Vector3 direction;
-        [SerializeField, Range(0, 1f)] private float distanceToTarget;
-
-        public List<Transform> targets = new List<Transform>();
         [SerializeField] private SurfacePoints surface;
+        [SerializeField,Range(0, 5f)] private float velocity;
+        [SerializeField] private Vector3 targetPos;
+        [SerializeField, Range(0, 1f)] private float distanceToTarget;
+        private Vector3 direction;
         public Action OnTargetReached;
 
         private void Start()
@@ -32,7 +30,7 @@ namespace Entrance.Games.Demos
         {
             if (targetPos == null) { return; }
 
-transform.position += direction * velocity * Time.deltaTime;
+            transform.position += direction * velocity * Time.deltaTime;
             //transform.position = Vector3.MoveTowards(transform.position, targetPos, velocity * Time.deltaTime);
             if (Vector3.Distance(transform.position, targetPos) < distanceToTarget)
             {
@@ -53,27 +51,14 @@ transform.position += direction * velocity * Time.deltaTime;
 
         public void SetSurface(SurfacePoints surface)
         {
-            Debug.Log("Teleporting");
             this.surface = surface;
         }
 
         public void FindNewTarget()
         {
-            Debug.Log("Finding new target");
             if (surface == null) return;
             targetPos = surface.GetRandomPoint().position;
-            direction= (targetPos - transform.position).normalized;
+            direction = (targetPos - transform.position).normalized;
         }
-
-        public void SetNewTargetList(List<Transform> newTargetList)
-        {
-            targets.Clear(); targets.AddRange(newTargetList);
-        }
-        //private void SetNewTarget()
-        //{
-        //    var randIndex= UnityEngine.Random.Range(0, targets.Count);
-        //    targetPosIndex = randIndex;
-        //    targetPos = targets[randIndex].position;
-        //}
     }
 }

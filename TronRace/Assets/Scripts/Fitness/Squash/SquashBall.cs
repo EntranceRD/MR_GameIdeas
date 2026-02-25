@@ -28,7 +28,7 @@ namespace EntranceGames.Squash
         #endregion
 
         #region PUBLIC METHODS
-        public void Method()
+        public void Restart()
         {
             
         }

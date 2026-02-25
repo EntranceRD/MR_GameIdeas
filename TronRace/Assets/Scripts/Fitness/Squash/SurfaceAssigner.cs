@@ -3,33 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entrance 
+namespace Entrance.Squash 
 {
-    public class RedirectMovibleElement : MonoBehaviour
+    public class SurfaceAssigner: MonoBehaviour
     {
         #region UNITY METHODS
-        private void Start()
-        {
-            
-        }
-
-        private void Update()
-        {
-            
-        }
-
-
         private void OnTriggerEnter(Collider other)
         {
             var movibleElement = other.gameObject.GetComponent<MovibleElement>();
-            if (movibleElement == null) return;
-            movibleElement.SetNewTargetList(newTargetList);
-            movibleElement.OnTargetReached?.Invoke();
+            if (movibleElement != null)
+            {
+                movibleElement.SetSurface(surfacePoints);
+                //movibleElement.FindNewTarget();
+            }
         }
         #endregion
 
         #region VARIABLES
-        public List<Transform> newTargetList = new List<Transform>();
+        [SerializeField] private SurfacePoints surfacePoints;
         #endregion
 
         #region PUBLIC METHODS

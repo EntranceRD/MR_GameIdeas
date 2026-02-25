@@ -54,7 +54,7 @@ namespace Entrance.Games.Demos
                     var movible = newMod.GetComponent<MovibleElement>();
                     if(movible != null )
                     {
-                        movible.targets = defaultTargetPoints;
+                        //movible.targets = defaultTargetPoints;
                     }
                 }
             }
