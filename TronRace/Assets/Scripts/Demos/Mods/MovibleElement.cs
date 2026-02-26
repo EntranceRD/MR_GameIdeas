@@ -38,6 +38,14 @@ namespace Entrance.Games.Demos
             }
         }
 
+        public void Restart()
+        {
+            surface = null;
+            targetPos = Vector3.zero;
+            direction = Vector3.zero;
+            SetSpeed(0);
+        }
+
         //public void ManualStart(List<Transform> points)
         //{
         //    targets = points;

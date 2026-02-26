@@ -7,7 +7,7 @@ using Entrance;
 
 public class BasketBall : MonoBehaviour
 {
-    public ScoreManager scoreManager;
+    public ScoreController scoreManager;
     public ButtonEvent OnScore;
 
 

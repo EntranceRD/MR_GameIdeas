@@ -30,7 +30,7 @@ namespace Entrance
 
         #region VARIABLES
         [SerializeField] private RandomAngleGenerator angleGenerator;
-        [SerializeField] private ScoreManager scoreManager;
+        [SerializeField] private ScoreController scoreManager;
         int pointHit = 1;
         #endregion
 

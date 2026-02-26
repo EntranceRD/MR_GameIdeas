@@ -23,7 +23,7 @@ namespace Entrance
         #endregion
 
         #region VARIABLES
-        public ScoreManager scoreManager;
+        public ScoreController scoreManager;
         [SerializeField] private ColorSequenceGenerator sequenceGenerator;
         [SerializeField] private ColorButtonsController buttonsController;
         [SerializeField] private ObjectGroup<UnityEngine.UI.Image> sequenceDisplay;

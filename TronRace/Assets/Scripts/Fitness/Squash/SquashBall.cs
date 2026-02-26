@@ -1,9 +1,12 @@
+using Entrance;
 using Entrance.Games;
 using Entrance.Games.Demos;
+using Entrance.Squash;
+using EntranceGames.Teleport;
 using TMPro;
 using UnityEngine;
 
-namespace EntranceGames.Squash 
+namespace Entrance.Games.Squash
 {
     public class SquashBall : MonoBehaviour
     {
@@ -18,27 +21,51 @@ namespace EntranceGames.Squash
 
         private void Update()
         {
-            
+
         }
         #endregion
 
         #region VARIABLES
-        [SerializeField] private Teleport.TeleportableObject teleportable;
-        [SerializeField] private ScoreManager scoreManager;
-        public MovibleElement movible;
+        [SerializeField] private TeleportableObject teleportable;
+        //public ScoreManager scoreManager;
+        [SerializeField] private MaterialController materialController;
+        [SerializeField] private MovibleElement movible;
         #endregion
 
         #region PUBLIC METHODS
-        public void SetDisplay(TextMeshProUGUI displayTxt)
+        public void Initialize(Color color, SurfacePoints surface, Vector3 position) 
         {
-            scoreManager.displayPoints = displayTxt;
+            transform.position = position;
+            materialController.ChangeColor(color);
+            movible.SetSurface(surface);
+            movible.SetSpeed(0);
+            gameObject.SetActive(true);
         }
+
+        public void Active(float value)
+        {
+            movible.SetSpeed(value);
+            movible.FindNewTarget();
+        }
+
+        public void Restart()
+        {
+            //scoreManager.Restart();
+            materialController.Restart();
+            movible.Restart();
+            gameObject.SetActive(false);
+        }
+
+        //public void SetDisplay(TextMeshProUGUI displayTxt)
+        //{
+        //    scoreManager.displayPoints = displayTxt;
+        //}
         #endregion
 
         #region PRIVATE METHODS
         private void method()
         {
-            
+
         }
         #endregion
     }

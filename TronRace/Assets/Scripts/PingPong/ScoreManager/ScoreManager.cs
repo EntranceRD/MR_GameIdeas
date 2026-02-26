@@ -1,36 +1,39 @@
 using TMPro;
 using UnityEngine;
 
-namespace Entrance.Games
+namespace Entrance
 {
-    public class ScoreManager : MonoBehaviour
+    public class ScoreController : MonoBehaviour
     {
+        public ScoreController()
+        {
+            score = new Counter();
+        }
+        public Counter score { get; protected set; }    
+    
         #region VARIABLES
-        public int currentPoints { get; private set; }
-        public TextMeshProUGUI displayPoints;
+        public int currentPoints { get { return (int)score; } }
+
+        public System.Action<int> OnPointsChanged;
+
         #endregion
 
         #region PUBLIC METHODS
 
         public void Restart()
         {
-            currentPoints = 0;
-            UpdateUI();
+            score.Restart();
         }
 
         public void AddPoints(int points)
         {
-            currentPoints += points;
-            UpdateUI();
+            score.Add(points);
+            OnPointsChanged?.Invoke(currentPoints);
         }
         #endregion
 
         #region PRIVATE METHODS
-        private void UpdateUI()
-        {
-            var formattedScore = string.Format("{0:00}", currentPoints);
-            displayPoints.text = $"{formattedScore}";
-        }
+
         #endregion
     }
 }

@@ -8,14 +8,16 @@ namespace Entrance.Games.Squash
         #region UNITY METHODS
         void Start()
         {
-
+            OnEndDisplaying -= ShowScoreBoards;
+            OnEndDisplaying += ShowScoreBoards;
         }
         #endregion
 
         #region VARIABLES
         [Header("References")]
         [SerializeField] private GameObject[] countdowns;
-        [SerializeField] private GeneralAnimator[] anims;
+        [SerializeField] private GeneralAnimator[] texts;
+        [SerializeField] private GeneralAnimator[] scoreBoards;
 
         [Header("Settings")]
         [SerializeField] private float displayInstructionsTime = 3f;
@@ -23,16 +25,23 @@ namespace Entrance.Games.Squash
         private float countdownTime = 3f;
         private bool displayingInstructions;
         public System.Action OnEndDisplaying;
+        public System.Action OnEndInstructions;
         #endregion
 
         #region PUBLIC METHODS
         public void Restart()
         {
             StopAllCoroutines();
-            anims[0].SetAnimationStateValue(0);
-            anims[1].SetAnimationStateValue(0);
             CountdownsState(false);
             displayingInstructions = false;
+            for (int i = 0; i < texts.Length; i++)
+            {
+                texts[i].Restart();    
+            }
+            for (int i = 0; i < scoreBoards.Length; i++)
+            {
+                scoreBoards[i].Restart();    
+            }
         }
 
         public void Display()
@@ -46,16 +55,26 @@ namespace Entrance.Games.Squash
         #region PRIVATE METHODS
         private IEnumerator ShowInstructions()
         {
-            anims[0].SetAnimationStateValue(2);
+            yield return new WaitForSeconds(countdownTime);
+            texts[0].SetAnimationStateValue(2);
             yield return new WaitForSeconds(displayInstructionsTime);
-            anims[0].SetAnimationStateValue(1);
-            anims[1].SetAnimationStateValue(2);
+            texts[0].SetAnimationStateValue(1);
+            texts[1].SetAnimationStateValue(2);
+            OnEndInstructions?.Invoke();
             yield return new WaitForSeconds(displayPlayersShapesTime);
             CountdownsState(true);
             yield return new WaitForSeconds(countdownTime);
-            anims[1].SetAnimationStateValue(1);
+            texts[1].SetAnimationStateValue(1);
             displayingInstructions = true;
             OnEndDisplaying?.Invoke();
+        }
+
+        private void ShowScoreBoards()
+        {
+            for (int i = 0; i < scoreBoards.Length; i++)
+            {
+                scoreBoards[i].SetAnimationStateValue(2);
+            }
         }
 
         private void CountdownsState(bool state)

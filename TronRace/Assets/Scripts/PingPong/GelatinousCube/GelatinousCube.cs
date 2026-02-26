@@ -40,7 +40,7 @@ namespace Entrance
         [SerializeField] private PoolableObject pool;
         [SerializeField] private Timer interactionTime;
         [SerializeField] private Renderer rend;
-        public ScoreManager scoreManager;
+        public ScoreController scoreManager;
         [SerializeField] private GelatinousCubeDrop drop;
 
         [SerializeField, Range(0, 100)] private int damagePerInteraction=20;

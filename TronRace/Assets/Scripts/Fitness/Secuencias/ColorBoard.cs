@@ -22,7 +22,7 @@ namespace Entrance.Games.Sequence
 
         #region VARIABLES
         [Header("References")]
-        public ScoreManager scoreManager;
+        public ScoreController scoreManager;
         [SerializeField] private BoardDisplayer boardDisplayer;
         [SerializeField] private SoundManager soundManager;
         [SerializeField] private ColorSequence sequenceGenerator;

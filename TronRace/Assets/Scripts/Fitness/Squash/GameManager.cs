@@ -1,5 +1,4 @@
 using Entrance.Unity;
-using EntranceGames.Squash;
 using System.Collections.Generic;
 using System.Data;
 using TMPro;
@@ -21,9 +20,14 @@ namespace Entrance.Games.Squash
 
         private void Start()
         {
-            instructionsDisplayer.OnEndDisplaying += () => {
+            instructionsDisplayer.OnEndDisplaying += () =>
+            {
                 gameTime.Resume();
-                InitializePlayersShapes();
+                ReleaseBalls();
+            };
+            instructionsDisplayer.OnEndInstructions += () =>
+            {
+                PreparePlayers();
             };
         }
 
@@ -33,10 +37,6 @@ namespace Entrance.Games.Squash
             {
                 StartGame();
             }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ClickAllBalls();
-            }
         }
         #endregion
 
@@ -45,10 +45,6 @@ namespace Entrance.Games.Squash
         [SerializeField] private GenericTimerComponent gameTime;
         [SerializeField] private InstructionsDisplayer instructionsDisplayer;
         [SerializeField] private SquashBallGenerator squashBallGenerator;
-        [SerializeField] private SpeedModifier[] balls;
-        [SerializeField] private List<SquashBall> ballsList = new List<SquashBall>();
-        [SerializeField] private SquashScoreBoard[] playerScoreBoards;
-        public int amount = 0;
         [SerializeField, Range(2, 10)] private int amountOfPlayers;
         #endregion
 
@@ -61,7 +57,7 @@ namespace Entrance.Games.Squash
 
         public void EndGame()
         {
-            
+
         }
         #endregion
 
@@ -69,38 +65,21 @@ namespace Entrance.Games.Squash
         private void Restart()
         {
             gameTime.Restart();
+            squashBallGenerator.Restart();
             instructionsDisplayer.Restart();
-            for (int i = 0; i < balls.Length; i++)
-            {
-                balls[i].Restart();
-            }
         }
 
-        private void InitializePlayersShapes()
+        private void PreparePlayers()
         {
             for (int i = 0; i < amountOfPlayers; i++)
             {
-                var newBall = squashBallGenerator.InstantiateBall();
-                var name = "Player " + (i + 1);
-                playerScoreBoards[i].InitializePlayer(name, newBall);
-                //AssingPlayerBoard(name, newBall.scoreManager.displayPoints);
+                squashBallGenerator.PreparePlayer(i);
             }
         }
 
-        //private void AssingPlayerBoard() 
-        //{
-        //    for (int i = 0; i < playerScoreBoards.Length; i++)
-        //    {
-        //        playerScoreBoards[i].InitializePlayer();
-        //    }
-        //}
-
-        private void ClickAllBalls()
+        private void ReleaseBalls()
         {
-            for (int i = 0; i < balls.Length; i++)
-            {
-                balls[i].MoveStep(amount);
-            }
+            squashBallGenerator.ReleasePlayers();
         }
         #endregion
     }

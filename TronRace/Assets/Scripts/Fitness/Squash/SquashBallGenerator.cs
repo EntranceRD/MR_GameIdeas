@@ -1,12 +1,12 @@
 using Entrance.Games.Demos;
 using Entrance.Instantiation;
 using Entrance.Squash;
-using EntranceGames.Squash;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entrance
+namespace Entrance.Games.Squash
 {
     public class SquashBallGenerator : MonoBehaviour
     {
@@ -23,44 +23,40 @@ namespace Entrance
         #endregion
 
         #region VARIABLES
-        [SerializeField] private List<Transform> instancePoints = new List<Transform>();
+        [SerializeField] private List<SpawnPosition> instancePoints = new List<SpawnPosition>();
         [SerializeField] private SurfacePoints initialSurfacePoint;
-        public SquashBall ballPrefab;
+        //public SquashBall ballPrefab;
+        [SerializeField] private ColorData[] colors;
+        [SerializeField] private PlayerController[] players;
+        //[SerializeField] private SquashBall[] balls;
         #endregion
 
         #region PUBLIC METHODS
         public void Restart()
         {
-
+            foreach (var player in players)
+            {
+                player.Restart();
+            }
         }
 
-        public SquashBall InstantiateBall()
+        public void PreparePlayer(int index)
         {
-            var position = GetRandomPosition();
-            if (position != null)
+            var color = colors[index].color;
+            var position = instancePoints[index].transform.position;
+            players[index].SetupGameStart(color, initialSurfacePoint, position);
+        }
+
+        public void ReleasePlayers()
+        {
+            foreach (var player in players)
             {
-                var newBall = Object.Instantiate(ballPrefab);
-                newBall.movible.SetSurface(initialSurfacePoint);
-                InitializeBall(newBall, position);
-                return newBall;
+                player.MoveBalls();
             }
-            return null;
         }
         #endregion
 
         #region PRIVATE METHODS
-
-        private void InitializeBall(SquashBall ball, Transform position)
-        {
-            ball.transform.position = position.position;
-            ball.transform.rotation = position.rotation;
-        }
-
-        private Transform GetRandomPosition()
-        {
-            var randomIndex = Random.Range(0, instancePoints.Count);
-            return instancePoints[randomIndex].gameObject.transform;
-        }
         #endregion
     }
 }

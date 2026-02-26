@@ -22,7 +22,7 @@ namespace Entrance.Games.Mathematics
 
         #region VARIABLES
         [Header("References")]
-        public ScoreManager scoreManager;
+        public ScoreController scoreManager;
         [SerializeField] private List<GeneralAnimator> generalAnimators;
         [SerializeField] private GameObject floor;
 
