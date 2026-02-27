@@ -53,6 +53,7 @@ namespace Entrance.Games.Squash
         {
             StartCoroutine(blink(blinkTime, blinkTimes));
         }
+
         public void Initialize(string name, Color color) {
             playerID.text = name;
             boardColor = color;

@@ -51,7 +51,15 @@ namespace Entrance.Games.Squash
         {
             foreach (var player in players)
             {
-                player.MoveBalls();
+                player.ReleaseBalls();
+            }
+        }
+
+        public void StopPlayers()
+        {
+            foreach(var player in players)
+            {
+                player.DiseableBalls();
             }
         }
         #endregion

@@ -16,6 +16,7 @@ namespace Entrance.Games.Squash
         #region VARIABLES
         [Header("References")]
         [SerializeField] private GameObject[] countdowns;
+        [SerializeField] private GameObject[] gameOverScreens;
         [SerializeField] private GeneralAnimator[] texts;
         [SerializeField] private GeneralAnimator[] scoreBoards;
 
@@ -33,6 +34,7 @@ namespace Entrance.Games.Squash
         {
             StopAllCoroutines();
             CountdownsState(false);
+            GameOverScreenState(false);
             displayingInstructions = false;
             for (int i = 0; i < texts.Length; i++)
             {
@@ -82,6 +84,14 @@ namespace Entrance.Games.Squash
             for (int i = 0; i < countdowns.Length; i++)
             {
                 countdowns[i].SetActive(state);
+            }
+        }
+
+        private void GameOverScreenState(bool state)
+        {
+            for (int i = 0; i < gameOverScreens.Length; i++)
+            {
+                gameOverScreens[i].SetActive(state);
             }
         }
         #endregion

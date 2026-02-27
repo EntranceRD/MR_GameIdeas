@@ -24,6 +24,7 @@ namespace Entrance.Games.Squash
         [SerializeField] private ScoreController scoreManager;
         [SerializeField] private SquashScoreBoard scoreBoard;
         [SerializeField] private SquashBall[] balls;
+        [SerializeField] private BalloonExplosionInstantiator explosionInstantiatior;
         [SerializeField] private string playerID;
         public int score { get { return scoreManager.currentPoints; } }
         #endregion
@@ -40,10 +41,19 @@ namespace Entrance.Games.Squash
             {
                 balls[i].Initialize(color, surface, position);
             }
+            explosionInstantiatior.Initialize(color);
             InitializeBoard(playerID, color);
         }
 
-        public void MoveBalls()
+        public void DiseableBalls()
+        {
+            foreach (var ball in balls)
+            {
+                ball.gameObject.SetActive(false);
+            }
+        }
+
+        public void ReleaseBalls()
         {
             foreach (var ball in balls)
             {

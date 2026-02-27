@@ -21,9 +21,16 @@ namespace Entrance
         #region VARIABLES
         public static BalloonExplosionInstantiator Instance;
         public ObjectInstantiator explosionInstantiator;
+        private Color mainColor;
+        
         #endregion
 
         #region PUBLIC METHODS
+        public void Initialize(Color color)
+        {
+            mainColor = color;
+        }
+
         public void CreateExplosion(Transform position, Color color)
         {
             var explosion = explosionInstantiator.Instantiate(position);
@@ -36,7 +43,7 @@ namespace Entrance
 
         public void GetExplosion(Transform position)
         {
-            CreateExplosion(position,Color.yellow);
+            CreateExplosion(position, mainColor);
         }
         #endregion
 
