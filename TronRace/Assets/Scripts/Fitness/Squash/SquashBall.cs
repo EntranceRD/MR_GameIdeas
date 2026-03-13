@@ -1,6 +1,7 @@
 using Entrance;
 using Entrance.Games;
 using Entrance.Games.Demos;
+using Entrance.Movible;
 using Entrance.Squash;
 using EntranceGames.Teleport;
 using TMPro;
@@ -11,6 +12,12 @@ namespace Entrance.Games.Squash
     public class SquashBall : MonoBehaviour
     {
         #region UNITY METHODS
+
+        private void Awake()
+        {
+            sphereCollider = GetComponent<SphereCollider>();
+            meshRenderer = GetComponent<MeshRenderer>();
+        }
         private void Start()
         {
             teleportable.OnTeleport += (newPoint) =>
@@ -27,9 +34,10 @@ namespace Entrance.Games.Squash
 
         #region VARIABLES
         [SerializeField] private TeleportableObject teleportable;
-        //public ScoreManager scoreManager;
         [SerializeField] private MaterialController materialController;
         [SerializeField] private MovibleElement movible;
+        [SerializeField] private SphereCollider sphereCollider;
+        [SerializeField] private MeshRenderer meshRenderer;
         #endregion
 
         #region PUBLIC METHODS
@@ -47,19 +55,14 @@ namespace Entrance.Games.Squash
             movible.SetSpeed(value);
             movible.FindNewTarget();
         }
-
         public void Restart()
         {
-            //scoreManager.Restart();
             materialController.Restart();
             movible.Restart();
             gameObject.SetActive(false);
+            meshRenderer.enabled = true;
+            sphereCollider.enabled = true;
         }
-
-        //public void SetDisplay(TextMeshProUGUI displayTxt)
-        //{
-        //    scoreManager.displayPoints = displayTxt;
-        //}
         #endregion
 
         #region PRIVATE METHODS

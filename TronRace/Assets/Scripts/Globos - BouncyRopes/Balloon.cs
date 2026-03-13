@@ -18,6 +18,9 @@ namespace Entrance
             OnDie += RecycleBalloon;
             OnDie += CallExplosion;
             }
+
+            OnValueChange -= UpdateValueTxt;
+            OnValueChange += UpdateValueTxt;
         }
 
         private void Update()
@@ -28,8 +31,10 @@ namespace Entrance
 
         #region VARIABLES
         public Action OnDie { get; set; }
+        public Action OnValueChange;
         public int Health { get; protected set; }
         public int value;
+        public int maxValue = 20;
         public TextMeshPro valueText;
         [SerializeField] private int MaxHealth = 1;
         [SerializeField] private PoolableObject poolable;

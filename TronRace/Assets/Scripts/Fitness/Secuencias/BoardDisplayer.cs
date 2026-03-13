@@ -15,14 +15,18 @@ namespace Entrance.Games.Sequence
         {
             //GameManager.Instance.OnGameStop -= GameOver;
             //GameManager.Instance.OnGameStop += GameOver;
-            displayer.OnFinishDisplaying = ()=> {
+            sequenceDisplayer.OnDisplayElement -= DisplaySequenceIndex;
+            sequenceDisplayer.OnDisplayElement += DisplaySequenceIndex;
+            sequenceDisplayer.OnFinishDisplaying -= EnableAllButtons;
+            sequenceDisplayer.OnFinishDisplaying += EnableAllButtons;
+            sequenceDisplayer.OnFinishDisplaying = ()=> {
                 ActiveWaitPanel(false);
             };
         }
 
         #region VARIABLES
         [Header("References")]
-        [SerializeField] private SequenceDisplayer displayer;
+        [SerializeField] private SequenceDisplayer sequenceDisplayer;
         [SerializeField] private SequenceButton[] sequenceButtons;
 
         [Header("Covers")]
@@ -45,11 +49,7 @@ namespace Entrance.Games.Sequence
             ActiveWaitPanel(false);
             StopAllCoroutines();
             SetGameOverPanel(false);
-            displayer.Restart();
-            displayer.OnDisplayElement -= DisplaySequenceIndex;
-            displayer.OnDisplayElement += DisplaySequenceIndex;
-            displayer.OnFinishDisplaying -= EnableAllButtons;
-            displayer.OnFinishDisplaying += EnableAllButtons;
+            sequenceDisplayer.Restart();
         }
 
         public void StartSequence(List<int> sequence)
@@ -74,14 +74,13 @@ namespace Entrance.Games.Sequence
             ActiveWaitPanel(true);
             yield return new WaitForSeconds(initialWaitTime);
             DisplaySequence(sequence);
-            //ActiveWaitPanel(false);
         }
 
         private void DisplaySequence(List<int> sequence)
         {
             SetButtonsInteraction(false);
             //yield return new WaitForSeconds(initialWaitTime);
-            displayer.DisplaySequence(sequence);
+            sequenceDisplayer.DisplaySequence(sequence);
         }
 
         private void ActiveWaitPanel(bool state)
@@ -110,7 +109,7 @@ namespace Entrance.Games.Sequence
 
         public void GameOver()
         {
-            displayer.ForceStop();
+            sequenceDisplayer.ForceStop();
             ActiveWaitPanel(false);
             SetGameOverPanel(true);
             DisableAllButtons();

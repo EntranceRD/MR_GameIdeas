@@ -1,6 +1,7 @@
 using Entrance;
 using UnityEngine;
 using Entrance.Games.Demos;
+using Entrance.Games;
 
 public class BounceBall_Manager : MonoBehaviour
 {

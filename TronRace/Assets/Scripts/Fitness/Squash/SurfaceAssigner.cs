@@ -1,6 +1,4 @@
-using Entrance.Games.Demos;
-using System.Collections;
-using System.Collections.Generic;
+using Entrance.Movible;
 using UnityEngine;
 
 namespace Entrance.Squash 

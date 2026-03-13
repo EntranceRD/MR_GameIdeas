@@ -1,72 +1,99 @@
-using DG.Tweening;
-using Entrance;
-using System;
-using System.Collections;
-using TMPro;
+using Entrance.Movible;
+using EntranceGames.Teleport;
 using UnityEngine;
 
-public class CoinModifier : MonoBehaviour
+public enum CoinModifierType
 {
-    #region UNITY METHODS
-    public void Initialize(ModifierClass newModifier)
-    {
-        modifier = newModifier;
-        modifierText.text = modifier.display;
-        GetComponent<Renderer>().material = modifier.material;
-    }
+    Upgrade,
+    Degrade
+}
 
-    void Start()
-    {
-        modifier = CoinModifierClass.Instance.GetNewModifier();
-        Initialize(modifier);
-        SelectNextColumn();
-    }
+namespace Entrance.Games.Coins
+{
 
-    void Update()
+    public class CoinModifier : Mod
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * modifierVelocity);
-
-        float dist = Vector3.Distance(transform.position, targetPosition);
-        if (dist < 0.2f)
+        #region UNITY METHODS
+        private void Start()
         {
-            SelectNextColumn();
+            teleportable.OnTeleport += (newPoint) =>
+            {
+                movible.FindNewTarget();
+            };
         }
+        #endregion
+
+
+        #region VARIABLES
+        public CoinModifierType modType;
+        [SerializeField] private TeleportableObject teleportable;
+        [SerializeField] private MovibleElement movible;
+        #endregion
+
+        #region PUBLIC METHODS
+
+        #endregion
+
+        #region PRIVATE METHODS
+        private int CoinModifierBehaviorByType(Balloon coinValue)
+        {
+            var value = coinValue.value;
+            switch (modType)
+            {
+                case CoinModifierType.Upgrade:
+                    switch (value)
+                    {
+                        case 1: return 2;
+                        case 2: return 5;
+                        case 5: return 10;
+                        case 10: return 20;
+                        case 20: return coinValue.maxValue;
+                        default: return value;
+                    }
+                case CoinModifierType.Degrade:
+                    switch (value)
+                    {
+                        case 1: return value;
+                        case 2: return 1;
+                        case 5: return 2;
+                        case 10: return 5;
+                        case 20: return 10;
+                        default: return value;
+                    }
+            }
+            return value;
+        }
+
+        private void ChangeCoinSize(Balloon coin)
+        {
+            var coinSize = coin.transform.localScale.x;
+            var coinValue = coin.value;
+            var newSize = 1f;
+
+            switch (coinValue)
+            {
+                case 1: newSize = .3f; break;
+                case 2: newSize = .7f; break;
+                case 5: newSize = 1f; break;
+                case 10: newSize = 1.3f; break;
+                case 20: newSize = 1.5f; break;
+                default: newSize = 1f; break;
+            }
+
+            var coinTransform = coin.transform;
+            coinTransform.localScale = Vector3.one * 0.3f * newSize;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var balloon = other.GetComponent<Balloon>();
+            if (balloon == null) return;
+
+            balloon.value = CoinModifierBehaviorByType(balloon);
+            ChangeCoinSize(balloon);
+            balloon.OnValueChange?.Invoke();
+            RecycleMod();
+        }
+        #endregion
     }
-    #endregion
-
-    #region VARIABLES
-    public ModifierClass modifier;
-    [SerializeField] private TextMeshPro modifierText;
-    [SerializeField, Range(0, 3)] private float modifierVelocity;
-    [SerializeField] private PoolableObject poolable;
-    [SerializeField] private Vector3 targetPosition;
-    public int previousColumn;
-    private int totalColumns = 3;
-    public int nextColumn;
-    #endregion
-
-    #region PUBLIC METHODS
-    #endregion
-
-    #region PRIVATE METHODS
-    private void SelectNextColumn()
-    {
-        previousColumn = nextColumn;
-        nextColumn = (previousColumn + 1) % totalColumns;
-        targetPosition = CoinModifiersMap.instance.GetNewPoint(nextColumn).position;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        var balloon = other.GetComponent<Balloon>();
-        if (balloon == null) return;
-
-        balloon.value = CoinModifierClass.Instance.ChangeCoinValue(balloon.value, modifier);
-        CoinModifierClass.Instance.ChangeCoinSize(balloon.transform,balloon.value, modifier);
-        balloon.UpdateValueTxt();
-
-        poolable.Recycle();
-    }
-
-    #endregion
 }

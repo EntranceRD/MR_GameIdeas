@@ -42,6 +42,11 @@ namespace Entrance
             for (int i = 0; i < createdObjects.Count; ++i)
                 createdObjects[i].Recycle();
         }
+
+        public List<PoolableObject> GetCreatedObj()
+        {
+            return createdObjects;
+        }
         #endregion
 
         #region PRIVATE METHODS

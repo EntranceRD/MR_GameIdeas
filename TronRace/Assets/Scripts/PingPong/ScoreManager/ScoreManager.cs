@@ -13,7 +13,6 @@ namespace Entrance
     
         #region VARIABLES
         public int currentPoints { get { return (int)score; } }
-
         public System.Action<int> OnPointsChanged;
 
         #endregion

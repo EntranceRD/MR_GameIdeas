@@ -1,6 +1,12 @@
 using UnityEngine;
 
-public enum ModifierType { PlusOne, PlusThree, TimesTwo, UpgradeCoin }
+public enum ModifierType {
+    PlusOne, 
+    PlusThree, 
+    TimesTwo,
+    Upgrade,
+    Degrade
+}
 
 public class ModifierClass
 {

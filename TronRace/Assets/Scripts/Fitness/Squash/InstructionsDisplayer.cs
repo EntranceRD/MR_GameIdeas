@@ -52,6 +52,15 @@ namespace Entrance.Games.Squash
             displayingInstructions = true;
             StartCoroutine(ShowInstructions());
         }
+
+        public void DisplayGameOver()
+        {
+            GameOverScreenState(true);
+            foreach (var board in scoreBoards)
+            {
+                board.SetAnimationStateValue(1);
+            }
+        }
         #endregion
 
         #region PRIVATE METHODS

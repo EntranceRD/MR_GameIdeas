@@ -150908,6 +150908,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 665955442693392418}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: Play
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   resumeOnRestart: 1
 --- !u!4 &782136708
 Transform:
@@ -223568,7 +223580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eccf82b40a5234395c946b8135089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayer: {fileID: 0}
+  sequenceDisplayer: {fileID: 0}
   sequenceButtons: []
   coverPanels: []
   gameOver: []
@@ -223585,7 +223597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1ba6c027a9714a93c17e35142add8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPoints: {fileID: 930161376}
 --- !u!1 &1133533784
 GameObject:
   m_ObjectHideFlags: 0
@@ -419717,7 +419728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1ba6c027a9714a93c17e35142add8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPoints: {fileID: 3164146649839284209}
 --- !u!1 &229508550603543477
 GameObject:
   m_ObjectHideFlags: 0
@@ -419952,7 +419962,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8731070930965670204}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a807f676d243d24590f38cecdd1427f, type: 3}
   m_Name: 
@@ -420561,7 +420571,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &529128138604315533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422143,7 +422153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eccf82b40a5234395c946b8135089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayer: {fileID: 6374776272925849946}
+  sequenceDisplayer: {fileID: 0}
   sequenceButtons:
   - {fileID: 4819769695287044298}
   - {fileID: 3706805976429045827}
@@ -424412,7 +424422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1ba6c027a9714a93c17e35142add8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPoints: {fileID: 8371964433167960056}
 --- !u!114 &2099308280513047360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425502,7 +425511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1ba6c027a9714a93c17e35142add8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPoints: {fileID: 374419344238231514}
 --- !u!114 &2506571299615513221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426118,7 +426126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1ba6c027a9714a93c17e35142add8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayPoints: {fileID: 8346790984134757103}
 --- !u!114 &2868415040755805128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427334,7 +427341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &3306845327443722476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430065,7 +430072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eccf82b40a5234395c946b8135089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayer: {fileID: 5270658625646060827}
+  sequenceDisplayer: {fileID: 0}
   sequenceButtons:
   - {fileID: 454480801672450904}
   - {fileID: 1550047299442827861}
@@ -434850,7 +434857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eccf82b40a5234395c946b8135089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayer: {fileID: 8065812388702091249}
+  sequenceDisplayer: {fileID: 0}
   sequenceButtons:
   - {fileID: 764558960935258561}
   - {fileID: 254560585023243707}
@@ -438296,7 +438303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &8535769655364120907
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -438844,7 +438851,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8776831987853733192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -440294,7 +440301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6eccf82b40a5234395c946b8135089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayer: {fileID: 4872920168849647655}
+  sequenceDisplayer: {fileID: 0}
   sequenceButtons:
   - {fileID: 3297863180189622516}
   - {fileID: 4820806962568171661}

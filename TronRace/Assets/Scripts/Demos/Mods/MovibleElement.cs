@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entrance.Games.Demos
+namespace Entrance.Movible
 {
     public class MovibleElement : MonoBehaviour
     {

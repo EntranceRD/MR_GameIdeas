@@ -1,8 +1,11 @@
+using Entrance.Games.Demos;
+using Entrance.Squash;
+using Entrance.Movible;
 using Entrance.Unity;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entrance.Games.Demos 
+namespace Entrance.Games 
 {
     public class ModsGenerator : MonoBehaviour
     {
@@ -13,29 +16,32 @@ namespace Entrance.Games.Demos
                 instanceTime.Restart();
                 InstantiateMod();
             };
-            Restart();
-            InstantiateMod();
+            //Restart();
+            //InstantiateMod();
         }
 
         private void Update()
         {
+            if(generatorState == false) { return; }
             instanceTime.Tick(Time.deltaTime);
         }
         #endregion
 
         #region VARIABLES
-        [SerializeField] private List<Transform> defaultTargetPoints = new List<Transform>();
         [SerializeField] private List<SpawnPosition> instancePoints = new List<SpawnPosition>();
+        [SerializeField] private SurfacePoints surfaceToGenerate;
         [SerializeField] private List<GameObject> availableMods = new List<GameObject>();
         [SerializeField] private ObjectInstantiator instantiator;
         [SerializeField] private Timer instanceTime;
         [SerializeField, Range(0, 10)] private int modsPerInstantiation;
         public ObjectPool objPool;
+        public bool generatorState = false;
         #endregion
 
         #region PUBLIC METHODS
         public void Restart()
         {
+            generatorState = false;
             instantiator.Restart();
             instanceTime.Restart();
         }
@@ -52,9 +58,9 @@ namespace Entrance.Games.Demos
                     instantiator.ObjectPrefab = mod;
                     var newMod = instantiator.Instantiate(position);
                     var movible = newMod.GetComponent<MovibleElement>();
-                    if(movible != null )
+                    if (movible != null)
                     {
-                        //movible.targets = defaultTargetPoints;
+                        movible.SetSurface(surfaceToGenerate);
                     }
                 }
             }

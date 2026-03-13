@@ -58,6 +58,7 @@ namespace Entrance.Games.Squash
         public void EndGame()
         {
             squashBallGenerator.StopPlayers();
+            instructionsDisplayer.DisplayGameOver();
         }
         #endregion
 
