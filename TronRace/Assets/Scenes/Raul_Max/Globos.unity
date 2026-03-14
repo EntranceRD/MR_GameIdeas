@@ -10525,6 +10525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreController: {fileID: 194930641}
   instantiator: {fileID: 1016037387}
+  modGenerator: {fileID: 0}
 --- !u!1 &196772736
 GameObject:
   m_ObjectHideFlags: 0
@@ -32762,6 +32763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreController: {fileID: 409603441}
   instantiator: {fileID: 1962369510}
+  modGenerator: {fileID: 0}
 --- !u!114 &409603441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58675,7 +58677,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 71cc6ab60df44ea44864aa6a38f898f6, type: 2}
   m_sharedMaterial: {fileID: -4074656352308089837, guid: 71cc6ab60df44ea44864aa6a38f898f6, type: 2}
@@ -68261,8 +68265,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1262537384}
-  - {fileID: 1449042681}
   - {fileID: 1164919185}
+  - {fileID: 1449042681}
   - {fileID: 777617951}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75172,17 +75176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a389b2aa1f8b44f9c655dedd90e756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountOfPlayers: 0
-  coinsInstantiators:
-  - {fileID: 1962369510}
-  - {fileID: 1016037387}
-  - {fileID: 784421548}
-  - {fileID: 184611795}
-  modGenerators:
-  - {fileID: 1052842197}
-  - {fileID: 1512466595}
-  - {fileID: 539935093}
-  - {fileID: 1733986982}
+  amountOfTeams: 0
+  playersPerTeam: 0
   gameTime:
     Target: 10
   boards:
@@ -104253,6 +104248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreController: {fileID: 1194041660}
   instantiator: {fileID: 184611795}
+  modGenerator: {fileID: 0}
 --- !u!1 &1199491607
 GameObject:
   m_ObjectHideFlags: 0
@@ -152551,6 +152547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreController: {fileID: 1865729963}
   instantiator: {fileID: 784421548}
+  modGenerator: {fileID: 0}
 --- !u!1 &1869533890
 GameObject:
   m_ObjectHideFlags: 0

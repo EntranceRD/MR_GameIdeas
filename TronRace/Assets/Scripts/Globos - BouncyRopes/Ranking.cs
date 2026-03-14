@@ -35,7 +35,7 @@ namespace Entrance.Games.Coins
         public void ShowRanking(Dictionary<int, int> data)
         {
             var orderedRanking = data.OrderByDescending(pair => pair.Value).ToList();
-            displayer.Display(orderedRanking);
+            displayer.DisplayIntValues(orderedRanking);
         }
         #endregion
 

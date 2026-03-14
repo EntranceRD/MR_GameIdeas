@@ -11,7 +11,7 @@ public enum RankType
     Teams,
 }
 
-namespace Entrance.Games.Mathematics
+namespace Entrance.Games
 {
     public class RankingDisplayer : MonoBehaviour
     {
@@ -33,7 +33,17 @@ namespace Entrance.Games.Mathematics
             }
         }
 
-        public void Display(List<KeyValuePair<int, int>> orderedPairs)
+        public void DisplayIntValues(List<KeyValuePair<int, int>> orderedPairs)
+        {
+            var text = TextBytype();
+            for (int i = 0; i < rankingTxt.Count; i++)
+            {
+                var pair = orderedPairs[i];
+                rankingTxt[i].text = $"{text} {pair.Key} - Puntos: {pair.Value}";
+            }
+        }
+
+        public void DisplayFloatValues(List<KeyValuePair<int, float>> orderedPairs)
         {
             var text = TextBytype();
             for (int i = 0; i < rankingTxt.Count; i++)

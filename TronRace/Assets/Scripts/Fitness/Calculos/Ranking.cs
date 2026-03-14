@@ -40,7 +40,7 @@ namespace Entrance.Games.Mathematics
                 mathBoardsRank.Add(i + 1, mathBoardManagers[i].scoreManager.currentPoints);
             }
             var orderedBoards = mathBoardsRank.OrderByDescending(pair => pair.Value).ToList();
-            rankingDisplayer.Display(orderedBoards);
+            rankingDisplayer.DisplayIntValues(orderedBoards);
         }
         #endregion
     }

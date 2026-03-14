@@ -29,20 +29,20 @@ namespace Entrance.Games.Coins
         #region VARIABLES
         public Action OnStartGame;
         public Action OnEndGame;
-
-        [SerializeField] private int amountOfPlayers;
-        [SerializeField] private Dictionary<int, int> scores = new Dictionary<int, int>();
-        [SerializeField] private BalloonInstantiator[] coinsInstantiators;
-        [SerializeField] private ModsGenerator[] modGenerators;
+        [Header("Settings")]
+        [SerializeField] private int amountOfTeams;
+        [SerializeField] private int playersPerTeam;
         [SerializeField] private Timer gameTime;
+
+        [Header("References")]
         [SerializeField] private CoinTeamBoard[] boards;
         [SerializeField] private Ranking ranking;
+        private Dictionary<int, int> scores = new Dictionary<int, int>();
         #endregion
 
         #region PUBLIC METHODS
         public void Restart()
         {
-            RestartGenerators();
             for (int i = 0; i < boards.Length; i++)
             {
                 boards[i].Restart();
@@ -55,16 +55,19 @@ namespace Entrance.Games.Coins
         public void StartGame()
         {
             Restart();
-            ModGeneratorsState(true);
-            CoinsInstantiatorsState(true);
+            for (int i = 0; i < boards.Length; i++)
+            {
+                boards[i].GeneratorsState(true);
+            }
         }
 
         public void EndGame()
         {
             GetBoardsScores();
-            RestartGenerators();
-            CoinsInstantiatorsState(false);
-            ModGeneratorsState(false);
+            for (int i = 0; i < boards.Length; i++)
+            {
+                boards[i].GeneratorsState(false);
+            }
         }
         #endregion
 
@@ -76,34 +79,6 @@ namespace Entrance.Games.Coins
                 scores.Add(i+1, boards[i].GetScore());
             }
             ranking.ShowRanking(scores);
-        }
-
-        private void ModGeneratorsState(bool state)
-        {
-            for (int i = 0; i < modGenerators.Length; i++)
-            {
-                modGenerators[i].generatorState = state;
-            }
-        }
-
-        private void CoinsInstantiatorsState(bool state)
-        {
-            for (int i = 0; i < coinsInstantiators.Length; i++)
-            {
-                coinsInstantiators[i].instantiatorState = state;
-            }
-        }
-
-        private void RestartGenerators()
-        {
-            for (int i = 0; i < modGenerators.Length; i++)
-            {
-                modGenerators[i].Restart();
-            }
-            for (int i = 0; i < coinsInstantiators.Length; i++)
-            {
-                coinsInstantiators[i].Restart();
-            }
         }
         #endregion
     }

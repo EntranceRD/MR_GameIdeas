@@ -1,4 +1,4 @@
-using Entrance;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,7 +35,8 @@ namespace Entrance.Games.MarioKart
 
         public void DisplayRanking()
         {
-            rankingDisplayer.Display(driversRank);
+            var orderedRanking = driversRank.OrderByDescending(pair => pair.Value).ToList();
+            rankingDisplayer.DisplayFloatValues(orderedRanking);
         }
         #endregion
     }
