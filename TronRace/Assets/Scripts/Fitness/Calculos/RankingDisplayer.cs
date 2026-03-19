@@ -8,7 +8,7 @@ public enum RankType
 {
     SinglePlayer,
     Players,
-    Teams,
+    Teams
 }
 
 namespace Entrance.Games
@@ -33,40 +33,25 @@ namespace Entrance.Games
             }
         }
 
-        public void DisplayIntValues(List<KeyValuePair<int, int>> orderedPairs)
+        public void DisplayIntValues(List<KeyValuePair<int, int>> orderedPairs, string text)
         {
-            var text = TextBytype();
+            //var text = TextBytype();
             for (int i = 0; i < rankingTxt.Count; i++)
             {
                 var pair = orderedPairs[i];
+                //rankingTxt[i].text = $"{text} {pair.Key} - Puntos: {pair.Value}";
                 rankingTxt[i].text = $"{text} {pair.Key} - Puntos: {pair.Value}";
             }
         }
 
         public void DisplayFloatValues(List<KeyValuePair<int, float>> orderedPairs)
         {
-            var text = TextBytype();
+            //var text = TextBytype();
             for (int i = 0; i < rankingTxt.Count; i++)
             {
                 var pair = orderedPairs[i];
-                rankingTxt[i].text = $"{text} {pair.Key} - Puntos: {pair.Value}";
+                //rankingTxt[i].text = $"{text} {pair.Key} - Puntos: {pair.Value}";
             }
-        }
-
-        private String TextBytype()
-        {
-            switch (type)
-            {
-                case RankType.SinglePlayer:
-                    return "Gladiador";
-                case RankType.Players:
-                    return "Jugador";
-                case RankType.Teams:
-                    return "Equipo";
-                default:
-                    break;
-            }
-            return "";
         }
         #endregion
 

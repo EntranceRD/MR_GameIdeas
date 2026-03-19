@@ -2,6 +2,7 @@ using Entrance.Unity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace Entrance.Games.Coins 
@@ -9,15 +10,19 @@ namespace Entrance.Games.Coins
     public class GameManager : MonoBehaviour
     {
         #region UNITY METHODS
+        private void Awake()
+        {
+
+        }
         private void Start()
         {
-            gameTime.OnFinish -= EndGame;
-            gameTime.OnFinish += EndGame;
+            //gameTime.OnFinish -= EndGame;
+            //gameTime.OnFinish += EndGame;
         }
 
         private void Update()
         {
-            gameTime.Tick(Time.deltaTime);
+            //gameTime.Tick(Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -32,7 +37,9 @@ namespace Entrance.Games.Coins
         [Header("Settings")]
         [SerializeField] private int amountOfTeams;
         [SerializeField] private int playersPerTeam;
-        [SerializeField] private Timer gameTime;
+
+        [Header("GameTime")]
+        [SerializeField] private GenericTimerComponent gameTime;
 
         [Header("References")]
         [SerializeField] private CoinTeamBoard[] boards;
@@ -59,6 +66,7 @@ namespace Entrance.Games.Coins
             {
                 boards[i].GeneratorsState(true);
             }
+            gameTime.Resume();
         }
 
         public void EndGame()

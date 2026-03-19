@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Entrance
 {
@@ -32,7 +33,7 @@ namespace Entrance
         [SerializeField] private GameObject TimerObject;
         [SerializeField] private bool useMinutes = false;
         [SerializeField] private bool useMillis = false;
-        [SerializeField] private TMPro.TMP_Text[] displays;
+        [SerializeField] private TMP_Text[] _displays;
         private ITimeCounter timeCounter;
         #endregion
 
@@ -48,12 +49,17 @@ namespace Entrance
             string millis_text = string.Format("{0:00}", millis);
             string text = (useMinutes ? $"{minutes_text}:" : string.Empty) + $"{seconds_text}" + (useMillis ? $":{millis_text}" : string.Empty);
 
-            foreach (var display in displays)
+            foreach (var display in _displays)
                 display.text = text;
         }
         public override void Restart()
         {
             throw new System.NotImplementedException();
+        }
+
+        public virtual void SetDisplays(TMP_Text[] displays)
+        {
+            _displays = displays;
         }
         #endregion
 

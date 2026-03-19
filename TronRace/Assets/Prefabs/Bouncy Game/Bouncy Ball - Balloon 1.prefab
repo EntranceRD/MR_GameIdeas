@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 7537295095152548864}
   - component: {fileID: 7537295095152548867}
   - component: {fileID: 7537295095152548922}
+  - component: {fileID: 5672596712483302883}
   m_Layer: 0
   m_Name: Bouncy Ball - Balloon 1
   m_TagString: Balloon
@@ -253,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 0
+  maxValue: 20
   valueText: {fileID: 4802750344959740875}
   MaxHealth: 1
   poolable: {fileID: 7537295095152548922}
@@ -405,3 +407,15 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &5672596712483302883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537295095152548866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5784aa3b4b9d543a30da27504cdfc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
