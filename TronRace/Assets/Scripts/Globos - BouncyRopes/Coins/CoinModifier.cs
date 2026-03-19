@@ -21,6 +21,11 @@ namespace Entrance.Games.Coins
                 movible.FindNewTarget();
             };
         }
+
+        private void Update()
+        {
+            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+        }
         #endregion
 
 
@@ -28,6 +33,7 @@ namespace Entrance.Games.Coins
         public CoinModifierType modType;
         [SerializeField] private TeleportableObject teleportable;
         [SerializeField] private MovibleElement movible;
+        [SerializeField] private float rotationSpeed = 180f;
         #endregion
 
         #region PUBLIC METHODS

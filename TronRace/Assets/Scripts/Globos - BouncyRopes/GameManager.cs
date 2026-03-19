@@ -5,7 +5,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Entrance.Games.Coins 
+public enum TeamColor
+{
+    Azul,
+    Rojo
+}
+
+namespace Entrance.Games.Coins
 {
     public class GameManager : MonoBehaviour
     {
@@ -37,6 +43,7 @@ namespace Entrance.Games.Coins
         [Header("Settings")]
         [SerializeField] private int amountOfTeams;
         [SerializeField] private int playersPerTeam;
+        [SerializeField] private bool BlueVsRed = false;
 
         [Header("GameTime")]
         [SerializeField] private GenericTimerComponent gameTime;
@@ -44,6 +51,7 @@ namespace Entrance.Games.Coins
         [Header("References")]
         [SerializeField] private CoinTeamBoard[] boards;
         [SerializeField] private Ranking ranking;
+        private Dictionary<TeamColor, int> boardsRank = new Dictionary<TeamColor, int>();
         private Dictionary<int, int> scores = new Dictionary<int, int>();
         #endregion
 
@@ -82,9 +90,18 @@ namespace Entrance.Games.Coins
         #region PRIVATE METHODS
         private void GetBoardsScores()
         {
+            if (BlueVsRed)
+            {
+                boardsRank.Clear();
+                boardsRank.Add(TeamColor.Azul, boards[0].GetScore());
+                boardsRank.Add(TeamColor.Rojo, boards[1].GetScore());
+                ranking.ShowBlueVsRedRanking(boardsRank);
+                return;
+            }
+
             for (int i = 0; i < boards.Length; i++)
             {
-                scores.Add(i+1, boards[i].GetScore());
+                scores.Add(i + 1, boards[i].GetScore());
             }
             ranking.ShowRanking(scores);
         }

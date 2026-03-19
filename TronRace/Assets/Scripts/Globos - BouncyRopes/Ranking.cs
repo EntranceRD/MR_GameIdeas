@@ -37,6 +37,12 @@ namespace Entrance.Games.Coins
             var orderedRanking = data.OrderByDescending(pair => pair.Value).ToList();
             displayer.DisplayIntValues(orderedRanking);
         }
+
+        public void ShowBlueVsRedRanking(Dictionary<TeamColor, int> data)
+        {
+            var orderedRanking = data.OrderByDescending(pair => pair.Value).ToList();
+            displayer.DisplayBlueVsRedValues(orderedRanking);
+        }
         #endregion
 
         #region PRIVATE METHODS
