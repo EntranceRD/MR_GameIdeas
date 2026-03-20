@@ -244868,7 +244868,7 @@ MonoBehaviour:
   - {fileID: 1010755015}
   - {fileID: 1406633362}
   - {fileID: 293818860}
-  activeFakePlayers: 1
+  activeFakePlayers: 0
 --- !u!4 &1241216726
 Transform:
   m_ObjectHideFlags: 0
@@ -403804,9 +403804,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108518910117124028, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2773315438809734116, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204836765448192359, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.94
       objectReference: {fileID: 0}

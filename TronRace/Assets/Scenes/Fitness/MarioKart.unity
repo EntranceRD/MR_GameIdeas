@@ -48088,6 +48088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MultipurposeCar
       objectReference: {fileID: 0}
+    - target: {fileID: 979247839857332670, guid: 28dbb67221a03b34384662cd2b9b1cb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1323960545196957118, guid: 28dbb67221a03b34384662cd2b9b1cb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.441
@@ -84316,7 +84320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer:
-    Target: 3
+    Target: 5
   OnFinish:
     event:
       m_PersistentCalls:
@@ -120695,7 +120699,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &655135439
 RectTransform:
   m_ObjectHideFlags: 0
@@ -188235,6 +188239,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Luces ambientales
       objectReference: {fileID: 0}
+    - target: {fileID: 1587607367160032879, guid: 1db674edf8b17c0429d473f653f9b1ff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6813590391912976917, guid: 1db674edf8b17c0429d473f653f9b1ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.47
@@ -244159,7 +244167,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &1285869090
 Canvas:
   m_ObjectHideFlags: 0
@@ -244956,7 +244964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108518910117124028, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619232573487279072, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -244982,9 +244990,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -3.6
       objectReference: {fileID: 0}
+    - target: {fileID: 2773315438809734116, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.94
+      objectReference: {fileID: 0}
     - target: {fileID: 3288260800719413825, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_LocalPosition.z
       value: 3.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 6204836765448192359, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.94
       objectReference: {fileID: 0}
     - target: {fileID: 6740810292083987329, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -245025,6 +245041,10 @@ PrefabInstance:
     - target: {fileID: 6740810292083987329, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980991879645795235, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.94
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -273351,7 +273371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f7eeda4753b8143aedd608ca990781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
   rankingTxt:
   - {fileID: 192309459}
   - {fileID: 1160064414}

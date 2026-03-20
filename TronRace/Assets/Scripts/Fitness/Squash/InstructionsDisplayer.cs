@@ -58,7 +58,7 @@ namespace Entrance.Games.Squash
             GameOverScreenState(true);
             foreach (var board in scoreBoards)
             {
-                board.SetAnimationStateValue(1);
+                //board.SetAnimationStateValue(1);
             }
         }
         #endregion

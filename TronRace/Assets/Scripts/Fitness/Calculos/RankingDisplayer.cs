@@ -50,7 +50,7 @@ namespace Entrance.Games
             for (int i = 0; i < rankingTxt.Count; i++)
             {
                 var pair = orderedPairs[i];
-                rankingTxt[i].text = $"{text} {pair.Key} - Puntos: {pair.Value}";
+                rankingTxt[i].text = $"{text} {pair.Key} - Tiempo: {pair.Value}";
             }
         }
 
