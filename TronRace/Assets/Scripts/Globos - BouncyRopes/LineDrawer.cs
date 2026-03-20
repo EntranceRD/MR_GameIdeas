@@ -1,12 +1,15 @@
+using Entrance;
+using Entrance.Interaction;
 using Entrance.Unity;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineDrawer : MonoBehaviour
+public class LineDrawer : MonoBehaviour, IInteractible
 {
     #region UNITY METHODS
-    void Awake()
+    public void Awake()
     {
         if (lines == null) lines = new List<PhysicalLine>();
     }
@@ -30,7 +33,7 @@ public class LineDrawer : MonoBehaviour
         }
     }
 
-    void Update()
+    public  void Update()
     {
         if (recording) { 
         timer += Time.deltaTime;
@@ -58,6 +61,8 @@ public class LineDrawer : MonoBehaviour
     public System.Action<GameObject> OnLineSegmentSpawn;
     private Entrance.ObjectPool linePool = new Entrance.ObjectPool();
     [SerializeField] private Transform SurfaceReference;
+
+    public Action<Entrance.Interaction.Touch> OnInteract { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
     #endregion
 
     #region PUBLIC METHODS
@@ -110,6 +115,12 @@ public class LineDrawer : MonoBehaviour
             drawPoints.Add(rPoint);
             timer = 0f;
         }
+    }
+
+    public void Interact(Entrance.Interaction.Touch touch)
+    {
+        Vector3 pos = new Vector3(touch.position.x, touch.position.y, touch.position.z);
+        Draw(pos);
     }
     #endregion
 }

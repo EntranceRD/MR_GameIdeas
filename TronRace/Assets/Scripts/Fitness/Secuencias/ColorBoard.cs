@@ -10,7 +10,7 @@ namespace Entrance.Games.Sequence
         #region UNITY METHODS
         private void Awake()
         {
-            SetButtonsInteraction(false);
+            SetButtonsInteraction(true);
         }
 
         private void Start()

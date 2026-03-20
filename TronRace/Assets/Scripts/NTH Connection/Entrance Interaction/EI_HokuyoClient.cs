@@ -53,6 +53,8 @@ namespace Entrance.Network
         #endregion
 
         #region VARIABLES
+        public string configFileName = "HokuyoConfig";
+        public bool callibrating = false;
         public bool RenderRays = false;
         public Vector3 sensorPosition;
         public Vector3 displacement;
@@ -62,7 +64,7 @@ namespace Entrance.Network
         private SurfaceIDs[] surfaces;
         private bool on = true;
         private HokuyoResponse resp;
-        [Range(0,7)]
+        [Range(0,12)]
         public int sensorRequestIndex=0;
         public string[] hokuyoIPrequests;
         #endregion
@@ -106,8 +108,15 @@ namespace Entrance.Network
                 try
                 {
                     #region send request
-                    var request = new HokuyoRequest(surfaces);
-                    //var request = new HokuyoRequest(new SurfaceIDs[] { SurfaceIDs.Hokuyo_Sensor }) { AdditionalInfo = hokuyoIPrequests[sensorRequestIndex] };
+                    HokuyoRequest request;
+                    if (callibrating)
+                    {
+                        request = new HokuyoRequest(new SurfaceIDs[] { SurfaceIDs.Hokuyo_Sensor }) { AdditionalInfo = hokuyoIPrequests[sensorRequestIndex] };
+                    }
+                    else { 
+                        request = new HokuyoRequest(surfaces);
+                    }
+
                     if (!RenderRays) {
                         request.surfaces = surfaces;
                         request.AdditionalInfo = string.Empty;
@@ -145,7 +154,7 @@ namespace Entrance.Network
         {
             try
             {
-                var path = Application.streamingAssetsPath + "/Entrance Network/HokuyoConfig.json";
+                var path = Application.streamingAssetsPath + $"/Entrance Network/{configFileName}.json";
                 var json = File.ReadAllText(path);
                 return JsonUtility.FromJson<NTHConfig>(json);
             }
