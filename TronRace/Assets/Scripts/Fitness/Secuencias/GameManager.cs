@@ -76,8 +76,8 @@ namespace Entrance.Games.Sequence
         {
             for (int i = 0; i < colorBoards.Length; i++)
             {
-                colorBoards[i].DisplaySequence();
                 colorBoards[i].InitializeBoard(totalPlayers);
+                colorBoards[i].DisplaySequence();
             }
         }
         #endregion

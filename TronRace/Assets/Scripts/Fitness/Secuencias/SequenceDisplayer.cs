@@ -85,6 +85,7 @@ namespace Entrance.Games.Sequence
                 highlightableObjects[mySequence[i]].Highlight(dispTime);
                 yield return new WaitForSeconds(dispTime+tbd);
             }
+
             displayingSequence = false;
             OnFinishDisplaying?.Invoke();
         }

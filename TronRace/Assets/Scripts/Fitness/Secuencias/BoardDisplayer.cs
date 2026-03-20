@@ -17,10 +17,11 @@ namespace Entrance.Games.Sequence
             //GameManager.Instance.OnGameStop += GameOver;
             sequenceDisplayer.OnDisplayElement -= DisplaySequenceIndex;
             sequenceDisplayer.OnDisplayElement += DisplaySequenceIndex;
-            sequenceDisplayer.OnFinishDisplaying -= EnableAllButtons;
-            sequenceDisplayer.OnFinishDisplaying += EnableAllButtons;
+            //sequenceDisplayer.OnFinishDisplaying -= EnableAllButtons;
+            //sequenceDisplayer.OnFinishDisplaying += EnableAllButtons;
             sequenceDisplayer.OnFinishDisplaying = ()=> {
                 ActiveWaitPanel(false);
+                EnableAllButtons();
             };
         }
 

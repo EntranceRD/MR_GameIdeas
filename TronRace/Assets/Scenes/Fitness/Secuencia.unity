@@ -210561,6 +210561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hokuyo Obj
       objectReference: {fileID: 0}
+    - target: {fileID: 108518910117124028, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 544446097922212986, guid: 3861c11748a837c4eb49fab0f72543d2, type: 3}
       propertyPath: RenderRays
       value: 0
