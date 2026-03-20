@@ -17,12 +17,15 @@ namespace Entrance.Games.Sequence
         {
             GameManager.Instance.OnGameStop -= GameStop;
             GameManager.Instance.OnGameStop += GameStop;
+            scoreManager.OnPointsChanged -= DisplayScore;
+            scoreManager.OnPointsChanged += DisplayScore;
         }
         #endregion
 
         #region VARIABLES
         [Header("References")]
         public ScoreController scoreManager;
+        [SerializeField] private ScoreTextDisplayer scoreTextDisplayer;
         [SerializeField] private BoardDisplayer boardDisplayer;
         [SerializeField] private SoundManager soundManager;
         [SerializeField] private ColorSequence sequenceGenerator;
@@ -44,6 +47,7 @@ namespace Entrance.Games.Sequence
             RestartSequenceButtons();
             RestartUserSequence();
             //RestartAnimations();
+            scoreTextDisplayer.Restart();
             sequenceGenerator.Restart();
         }
 
@@ -170,6 +174,11 @@ namespace Entrance.Games.Sequence
             var seqValue = correctSequence[buttonIndex];
             userButtons[seqValue].Highlight(1f);
             //userButtons[buttonIndex].Highlight(1f);
+        }
+
+        private void DisplayScore(int score)
+        {
+            scoreTextDisplayer.UpdateDisplayWithValue(score);
         }
         #endregion
     }

@@ -27,6 +27,7 @@ namespace Entrance
         {
             UpdateDisplayWithValue(0);
         }
+
         public void UpdateDisplayWithValue(int value)
         {
             for (int i = 0; i < displays.Length; i++)

@@ -33,11 +33,13 @@ namespace Entrance.Games.Sequence
 
         public void DisplayRanking()
         {
+            boardsRank.Clear();
             for (int i = 0; i < colorBoards.Length; i++)
             {
                 boardsRank.Add(i + 1, colorBoards[i].scoreManager.currentPoints);
             }
             var orderedBoards = boardsRank.OrderByDescending(pair => pair.Value).ToList();
+            rankingDisplayer.DisplayIntValues(orderedBoards);
         }
         #endregion
     }

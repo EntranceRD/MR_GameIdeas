@@ -24,6 +24,7 @@ namespace Entrance.Games.MarioKart
         [SerializeField] private GameObject finishLine;
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private GameObject[] countdowns;
+        [SerializeField] private AudioSource audioSource;
 
         [Header("Settings")]
         [SerializeField] private float displayInstructionsTime = 3f;
@@ -58,6 +59,7 @@ namespace Entrance.Games.MarioKart
             yield return new WaitForSeconds(displayInstructionsTime);
             videoPlayer.Stop();
             CountdownsState(true);
+            audioSource.Play();
             InstructionsState(false);
             yield return new WaitForSeconds(countdownTime);
             finishLine.SetActive(true);

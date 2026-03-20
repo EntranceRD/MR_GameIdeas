@@ -110,6 +110,7 @@ namespace Entrance.Games.Sequence
 
         public void GameOver()
         {
+            StopAllCoroutines();
             sequenceDisplayer.ForceStop();
             ActiveWaitPanel(false);
             SetGameOverPanel(true);

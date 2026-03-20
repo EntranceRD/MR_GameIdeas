@@ -41,7 +41,7 @@ namespace Entrance.Games.MarioKart
         [SerializeField] private InstructionsDisplayer instructionsDisplayer;
 
         [Header("Settings")]
-        [SerializeField, Range(2, 7)] private int amountOfPlayers;
+        [SerializeField, Range(1, 5)] private int amountOfPlayers;
         #endregion
 
         #region PUBLIC METHODS

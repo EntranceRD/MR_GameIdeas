@@ -36,11 +36,13 @@ namespace Entrance.Games.Squash
             //ball.SetDisplay(playerScore);
         }
 
-        public void SetupGameStart(Color color, SurfacePoints surface, Vector3 position) {
+        public void SetupGameStart(Color color, SurfacePoints surface, Vector3 position)
+        {
             for (int i = 0; i < balls.Length; i++)
             {
                 balls[i].Initialize(color, surface, position);
             }
+
             explosionInstantiatior.Initialize(color);
             InitializeBoard(playerID, color);
         }
