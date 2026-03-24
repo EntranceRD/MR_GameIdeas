@@ -46,14 +46,14 @@ namespace Entrance.Games.Squash
         [SerializeField] private AudioSource squashMusic;
         [SerializeField] private AudioSource backgroundMusic;
         [SerializeField, Range(2, 10)] private int amountOfPlayers;
-        [SerializeField] private bool instructionsOneByOne = false;
+        [SerializeField] private GeneralAnimator[] animScores;
         #endregion
 
         #region PUBLIC METHODS
         public void StartGame()
         {
             Restart();
-            instructionsDisplayer.Display(instructionsOneByOne);
+            instructionsDisplayer.Display();
         }
 
         public void EndGame()
@@ -71,6 +71,10 @@ namespace Entrance.Games.Squash
             squashBallGenerator.Restart();
             instructionsDisplayer.Restart();
             backgroundMusic.Play();
+            foreach (var anim in animScores)
+            {
+                anim.Restart();
+            }
         }
 
         public void PreparePlayers()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Entrance.UI
         #endregion
 
         #region VARIABLES
+
+        [SerializeField] private ButtonEvent eventsOnDisplayShow;
         [SerializeField] private GameObject panel;
         [SerializeField] private TMPro.TMP_Text dataDisplay;
 
@@ -34,12 +37,13 @@ namespace Entrance.UI
         public void Hide()
         {
             //panel.SetActive(false);
-            animator.SetAnimationStateValue(1);
+            animator.SetAnimationStateValue(0);
         }
 
         public void Show() {
             //panel.SetActive(true);
-            animator.SetAnimationStateValue(2);
+            animator.SetAnimationStateValue(1);
+            eventsOnDisplayShow.Call();
         }
 
         public void SetData(string text, int cap=-1) {

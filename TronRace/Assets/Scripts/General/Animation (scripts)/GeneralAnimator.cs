@@ -22,6 +22,7 @@ namespace Entrance
         public void Restart()
         {
             if (anim == null) { return; }
+            //SetAnimationStateValue(0);
             anim.SetInteger(animationStateID, 0);
         }
 

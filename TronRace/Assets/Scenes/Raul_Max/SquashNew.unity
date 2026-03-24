@@ -29671,7 +29671,7 @@ RectTransform:
   m_GameObject: {fileID: 1095046499}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 92664231}
@@ -29756,7 +29756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationStateID: State
-  anim: {fileID: 0}
+  anim: {fileID: 1095046503}
 --- !u!1 &1095947410
 GameObject:
   m_ObjectHideFlags: 0
@@ -33641,7 +33641,7 @@ RectTransform:
   m_GameObject: {fileID: 1255569814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1580312931}
@@ -33711,6 +33711,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd656f8c460f5e44936252a8c427e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventsOnDisplayShow:
+    event:
+      m_PersistentCalls:
+        m_Calls: []
   panel: {fileID: 1255569814}
   dataDisplay: {fileID: 1580312932}
   animator: {fileID: 1255569816}
@@ -38535,7 +38539,7 @@ RectTransform:
   m_GameObject: {fileID: 1442465551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 86467251}
@@ -38621,7 +38625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationStateID: State
-  anim: {fileID: 0}
+  anim: {fileID: 1442465555}
 --- !u!1 &1443634834
 GameObject:
   m_ObjectHideFlags: 0
@@ -42499,6 +42503,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd656f8c460f5e44936252a8c427e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventsOnDisplayShow:
+    event:
+      m_PersistentCalls:
+        m_Calls: []
   panel: {fileID: 0}
   dataDisplay: {fileID: 0}
   animator: {fileID: 0}
@@ -45686,7 +45694,7 @@ RectTransform:
   m_GameObject: {fileID: 1672674047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 794614943}
@@ -45771,7 +45779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationStateID: State
-  anim: {fileID: 0}
+  anim: {fileID: 1672674051}
 --- !u!1 &1676445375
 GameObject:
   m_ObjectHideFlags: 0
@@ -46064,6 +46072,7 @@ MonoBehaviour:
   - {fileID: 1255569819}
   - {fileID: 2109898797}
   displayTime: 10
+  instructionsOneByOne: 1
   eventsOnStartDisplay:
     event:
       m_PersistentCalls:
@@ -46071,19 +46080,7 @@ MonoBehaviour:
   eventsDuringDisplay:
     event:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2024031636}
-          m_TargetAssemblyTypeName: Entrance.Games.Squash.GameManager, Assembly-CSharp
-          m_MethodName: PreparePlayers
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
   eventsAfterDisplay:
     event:
       m_PersistentCalls:
@@ -46095,7 +46092,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -46107,7 +46104,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -46119,7 +46116,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 1
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -53497,7 +53494,10 @@ MonoBehaviour:
   squashMusic: {fileID: 1940323737}
   backgroundMusic: {fileID: 695471293}
   amountOfPlayers: 3
-  instructionsOneByOne: 1
+  animScores:
+  - {fileID: 1442465556}
+  - {fileID: 1095046504}
+  - {fileID: 1672674052}
 --- !u!4 &2024031637
 Transform:
   m_ObjectHideFlags: 0
@@ -56458,7 +56458,7 @@ RectTransform:
   m_GameObject: {fileID: 2109898791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 605570484}
@@ -56550,6 +56550,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd656f8c460f5e44936252a8c427e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventsOnDisplayShow:
+    event:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2024031636}
+          m_TargetAssemblyTypeName: Entrance.Games.Squash.GameManager, Assembly-CSharp
+          m_MethodName: PreparePlayers
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   panel: {fileID: 2109898791}
   dataDisplay: {fileID: 0}
   animator: {fileID: 2109898794}

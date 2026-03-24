@@ -47,6 +47,7 @@ namespace Entrance.Games
 
         [Header("Settings")]
         [SerializeField] private float displayTime;
+        [SerializeField] private bool instructionsOneByOne = false;
         [SerializeField] private ButtonEvent eventsOnStartDisplay;
         [SerializeField] private ButtonEvent eventsDuringDisplay;
         [SerializeField] private ButtonEvent eventsAfterDisplay;
@@ -67,36 +68,36 @@ namespace Entrance.Games
             }
         }
 
-        public void Display(bool oneByOne)
+        public void Display()
         {
             if (displayingInstructions) { return; };
             OnStartDisplaying?.Invoke();
-            StartCoroutine(ShowInstructions(oneByOne));
+            StartCoroutine(ShowInstructions());
         }
         #endregion
 
         #region PRIVATE METHODS
-        private IEnumerator ShowInstructions(bool oneByOne)
+        private IEnumerator ShowInstructions()
         {
-            if (oneByOne)
+            if (instructionsOneByOne)
             {
                 float eachTime = displayTime / displayTexts.Length;
 
-                eventsDuringDisplay.Call();
                 foreach (var text in displayTexts)
                 {
                     text.Show();
                     yield return new WaitForSeconds(eachTime);
                     text.Hide();
                 }
+                eventsDuringDisplay.Call();
             }
             else
             {
-                eventsDuringDisplay.Call();
                 foreach (var text in displayTexts)
                     text.Show();
 
                 yield return new WaitForSeconds(displayTime);
+                eventsDuringDisplay.Call();
             }
 
             foreach (var text in displayTexts)
