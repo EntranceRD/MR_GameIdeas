@@ -22,6 +22,10 @@ namespace Entrance.Games
         [Header("References")]
         [SerializeField] private RankType type;
         [SerializeField] private List<TextMeshProUGUI> rankingTxt = new List<TextMeshProUGUI>();
+
+        [SerializeField] private EventCaller eventsAfterDisplay;
+        [SerializeField] private EventCaller eventsOnStartDisplay;
+
         #endregion
 
         #region PUBLIC METHODS

@@ -19,18 +19,29 @@ namespace Entrance.UI
         #endregion
 
         #region VARIABLES
-        [SerializeField]private GameObject panel;
-        [SerializeField]private TMPro.TMP_Text dataDisplay;
+        [SerializeField] private GameObject panel;
+        [SerializeField] private TMPro.TMP_Text dataDisplay;
+
+        [SerializeField] private GeneralAnimator animator;
         #endregion
 
         #region PUBLIC METHODS
+        public void Restart()
+        {
+            animator.Restart();
+        }
+
         public void Hide()
         {
-            panel.SetActive(false);
+            //panel.SetActive(false);
+            animator.SetAnimationStateValue(1);
         }
+
         public void Show() {
-            panel.SetActive(true);
+            //panel.SetActive(true);
+            animator.SetAnimationStateValue(2);
         }
+
         public void SetData(string text, int cap=-1) {
             if (cap > 0) {
                 text = text.Substring(0, Mathf.Min(cap, text.Length));
