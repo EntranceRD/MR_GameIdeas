@@ -143,7 +143,7 @@ namespace Entrance.Games
             }
         }
 
-        public void Display<T>(List<KeyValuePair<T, float>> floatData = null, List<KeyValuePair<T, int>> intData = null)
+        public void Display(List<KeyValuePair<int, float>> floatData = null, List<KeyValuePair<int, int>> intData = null)
         {
             if (displaying) return;
 
@@ -166,7 +166,7 @@ namespace Entrance.Games
         #endregion
 
         #region PRIVATE METHODS
-        private IEnumerator ShowRanking<T>(List<KeyValuePair<T, float>> floatData, List<KeyValuePair<T, int>> intData)
+        private IEnumerator ShowRanking(List<KeyValuePair<int, float>> floatData, List<KeyValuePair<int, int>> intData)
         {
             float eachTime = oneByOne ? displayTime / rankingTxt.Count : displayTime;
 
@@ -210,7 +210,7 @@ namespace Entrance.Games
             eventsAfterDisplay.Call();
         }
 
-        private string GetFormattedText<T>(int index, List<KeyValuePair<T, float>> floatData, List<KeyValuePair<T, int>> intData)
+        private string GetFormattedText(int index, List<KeyValuePair<int, float>> floatData, List<KeyValuePair<int, int>> intData)
         {
             string prefix = TextByType();
 
@@ -220,7 +220,7 @@ namespace Entrance.Games
                     if (intData != null && index < intData.Count)
                     {
                         var pair = intData[index];
-                        return $"Equipo {pair.Key} - Puntos: {pair.Value}";
+                        return $"Equipo {pair.Key +1} - Puntos: {pair.Value}";
                     }
                     break;
 
@@ -230,13 +230,13 @@ namespace Entrance.Games
                     if (floatData != null && index < floatData.Count)
                     {
                         var pair = floatData[index];
-                        return $"{prefix} {pair.Key} - Tiempo: {pair.Value}";
+                        return $"{prefix} {pair.Key +1} - Tiempo: {pair.Value}";
                     }
 
                     if (intData != null && index < intData.Count)
                     {
                         var pair = intData[index];
-                        return $"{prefix} {pair.Key} - Puntos: {pair.Value}";
+                        return $"{prefix} {pair.Key +1} - Puntos: {pair.Value}";
                     }
                     break;
             }

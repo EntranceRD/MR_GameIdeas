@@ -48,7 +48,7 @@ namespace Entrance.Games.Sequence
         {
             for (int i = 0; i < colorBoards.Length; i++)
             {
-                colorBoards[i].GameStop();
+                //colorBoards[i].GameStop();
             }
             OnGameStop?.Invoke();
         }

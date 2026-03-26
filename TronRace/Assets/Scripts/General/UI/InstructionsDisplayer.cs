@@ -11,12 +11,14 @@ namespace Entrance.Games
         #region UNITY METHODS
         private void Awake()
         {
-            OnStartDisplaying = () => { 
-                displayingInstructions = true; 
+            OnStartDisplaying = () =>
+            {
+                displayingInstructions = true;
                 eventsOnStartDisplay.Call();
             };
 
-            OnFinishDisplaying = () => { 
+            OnFinishDisplaying = () =>
+            {
                 displayingInstructions = false;
                 eventsAfterDisplay.Call();
             };
@@ -53,6 +55,7 @@ namespace Entrance.Games
         [SerializeField] private ButtonEvent eventsAfterDisplay;
         private bool displayingInstructions = false;
         private float countdownsTime = 3f;
+        private bool deactiveCountdowns = false;
         #endregion
 
         #region PUBLIC METHODS
@@ -62,6 +65,7 @@ namespace Entrance.Games
             CountdownsState(false);
             displayingInstructions = false;
             audioSource.Stop();
+            deactiveCountdowns = false;
             foreach (var text in displayTexts)
             {
                 text.Restart();
@@ -70,6 +74,14 @@ namespace Entrance.Games
 
         public void Display()
         {
+            if (displayingInstructions) { return; };
+            OnStartDisplaying?.Invoke();
+            StartCoroutine(ShowInstructions());
+        }
+
+        public void DisplayWithoutCountDown()
+        {
+            deactiveCountdowns = true;
             if (displayingInstructions) { return; };
             OnStartDisplaying?.Invoke();
             StartCoroutine(ShowInstructions());
@@ -103,7 +115,11 @@ namespace Entrance.Games
             foreach (var text in displayTexts)
                 text.Hide();
 
-            DisplayCountdowns(true, countdownSound);
+            if (!deactiveCountdowns)
+            {
+                DisplayCountdowns(true, countdownSound);
+            }
+
             yield return new WaitForSeconds(countdownsTime);
 
             OnFinishDisplaying?.Invoke();

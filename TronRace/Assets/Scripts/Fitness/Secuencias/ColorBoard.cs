@@ -1,4 +1,5 @@
 using Entrance.Games.Sequence;
+using Entrance.Games.Squash;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,8 @@ namespace Entrance.Games.Sequence
 
         private void Start()
         {
-            GameManager.Instance.OnGameStop -= GameStop;
-            GameManager.Instance.OnGameStop += GameStop;
+            //SquashGameManager.Instance.OnGameStop -= GameStop;
+            //SquashGameManager.Instance.OnGameStop += GameStop;
             scoreManager.OnPointsChanged -= DisplayScore;
             scoreManager.OnPointsChanged += DisplayScore;
         }
@@ -29,6 +30,8 @@ namespace Entrance.Games.Sequence
         [SerializeField] private BoardDisplayer boardDisplayer;
         [SerializeField] private SoundManager soundManager;
         [SerializeField] private ColorSequence sequenceGenerator;
+
+        [SerializeField] private InstructionsDisplayer insDisp;
         public SequenceComparer sequenceComparer { get; private set; }
         public int score { get { return scoreManager.currentPoints; } }
 
@@ -128,11 +131,15 @@ namespace Entrance.Games.Sequence
                     CleanBoard();
 
                     correctSequence = sequenceGenerator.GrowSequenceBy(1);
+                    //Quitar si falla
+
                     DisplaySequence();
+                    insDisp.DisplayWithoutCountDown();
                     break;
 
                 case SequenceComparisonResult.Incorrect:
-
+                    //Quitar si falla
+                    insDisp.DisplayWithoutCountDown();
                     IncorrectSequence();
                     break;
 

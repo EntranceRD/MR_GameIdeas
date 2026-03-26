@@ -20,10 +20,10 @@ namespace Entrance.Games
 
         private void Start()
         {
-            instructionsDisplayer.OnFinishDisplaying += () =>
-            {
-                gameTime.Resume();
-            };
+            //instructionsDisplayer.OnFinishDisplaying += () =>
+            //{
+            //    gameTime.Resume();
+            //};
         }
 
         private void Update()
@@ -50,14 +50,15 @@ namespace Entrance.Games
         [SerializeField] private FloorBoard floorBoard;
 
         [Header("Instructions")]
-        [SerializeField] private InstructionsDisplayer instructionsDisplayer;
+        [SerializeField] private InstructionsDisplayer[] instructionsDisplayer;
 
         [Header("Audio")]
 
         [Header("GameOver")]
-        [SerializeField] private GameOverController gameOverController;
+        [SerializeField] private GameOverController[] gameOverController;
 
-        //[Header("Others")]
+        [Header("Others")]
+        [SerializeField] private GeneralAnimator[] anims;
         #endregion
 
         #region PUBLIC METHODS
@@ -65,7 +66,12 @@ namespace Entrance.Games
         {
             Restart();
             InitializeBoards();
-            instructionsDisplayer.Display();
+            foreach (var insDips in instructionsDisplayer)
+            {
+                insDips.Display();
+            }
+            //quitar luego test
+            //gameTime.Resume();
         }
 
         public void EndGame()
@@ -75,7 +81,11 @@ namespace Entrance.Games
                 colorBoards[i].GameStop();
             }
             ranking.ShowRanking(GetBoardsScores());
-            gameOverController.Display();
+
+            foreach (var gameOverDisp in gameOverController)
+            {
+                gameOverDisp.Display();
+            }
         }
         #endregion
 
@@ -83,14 +93,24 @@ namespace Entrance.Games
         private void Restart()
         {
             gameTime.Restart();
-            instructionsDisplayer.Restart();
+            foreach (var insDisp in instructionsDisplayer)
+            {
+                insDisp.Restart();
+            }
             ranking.Restart();
-            gameOverController.Restart();
+            foreach (var gameOverDips in gameOverController)
+            {
+                gameOverDips.Restart();
+            }
             for (int i = 0; i < colorBoards.Length; i++)
             {
                 colorBoards[i].Restart();
             }
             floorBoard.Restart();
+            foreach (var anim in anims)
+            {
+                anim.Restart();
+            }
         }
 
         public void InitializeBoards()
