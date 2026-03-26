@@ -23,7 +23,8 @@ namespace Entrance.Games.Squash
         #region VARIABLES
         [SerializeField] private ScoreController scoreManager;
         [SerializeField] private SquashScoreBoard scoreBoard;
-        [SerializeField] private SquashBall[] balls;
+        //[SerializeField] private SquashBall[] balls;
+        [SerializeField] private SquashBall balls;
         [SerializeField] private BalloonExplosionInstantiator explosionInstantiatior;
         [SerializeField] private string playerID;
         public int score { get { return scoreManager.currentPoints; } }
@@ -38,39 +39,42 @@ namespace Entrance.Games.Squash
 
         public void SetupGameStart(Color color, SurfacePoints surface, Vector3 position)
         {
-            for (int i = 0; i < balls.Length; i++)
-            {
-                balls[i].Initialize(color, surface, position);
-            }
-
+            //for (int i = 0; i < balls.Length; i++)
+            //{
+            //    balls[i].Initialize(color, surface, position);
+            //}
+            balls.Initialize(color, surface, position);
             explosionInstantiatior.Initialize(color);
             InitializeBoard(playerID, color);
         }
 
         public void DiseableBalls()
         {
-            foreach (var ball in balls)
-            {
-                ball.gameObject.SetActive(false);
-            }
+            //foreach (var ball in balls)
+            //{
+            //    ball.gameObject.SetActive(false);
+            //}
+            balls.gameObject.SetActive(false);
         }
 
         public void ReleaseBalls()
         {
-            foreach (var ball in balls)
-            {
-                ball.Active(0.5f);
-            }
+            //foreach (var ball in balls)
+            //{
+            //    ball.Active(0.5f);
+            //}
+            balls.Active(0.5f);
         }
 
         public void Restart()
         {
             scoreManager.Restart();
             scoreBoard.Restart();
-            foreach (var ball in balls)
-            {
-                ball.Restart();
-            }
+            //foreach (var ball in balls)
+            //{
+            //    ball.Restart();
+            //}
+            balls.Restart();
         }
         #endregion
 

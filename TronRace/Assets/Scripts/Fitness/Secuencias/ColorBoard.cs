@@ -30,6 +30,7 @@ namespace Entrance.Games.Sequence
         [SerializeField] private SoundManager soundManager;
         [SerializeField] private ColorSequence sequenceGenerator;
         public SequenceComparer sequenceComparer { get; private set; }
+        public int score { get { return scoreManager.currentPoints; } }
 
         [Header("Settings")]
         [SerializeField] private SequenceButton[] userButtons;

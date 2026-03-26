@@ -50,7 +50,7 @@ namespace Entrance.Games.Coins
 
         [Header("References")]
         [SerializeField] private CoinTeamBoard[] boards;
-        [SerializeField] private Ranking ranking;
+        [SerializeField] private TheRanking ranking;
         private Dictionary<TeamColor, int> boardsRank = new Dictionary<TeamColor, int>();
         private Dictionary<int, int> scores = new Dictionary<int, int>();
         #endregion

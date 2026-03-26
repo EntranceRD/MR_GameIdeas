@@ -62,6 +62,17 @@ namespace Entrance.Games.Squash
                 player.DiseableBalls();
             }
         }
+
+        public Dictionary<int,int> GetPlayersScores()
+        {
+            var dictionary = new Dictionary<int,int>();
+
+            for (int i = 0; i < players.Length; i++)
+            {
+                dictionary.Add(i, players[i].score);
+            }
+            return dictionary;
+        }
         #endregion
 
         #region PRIVATE METHODS

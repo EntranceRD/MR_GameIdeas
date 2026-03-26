@@ -1,12 +1,10 @@
-using Entrance.Games.Mathematics;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Entrance.Games.Coins 
+namespace Entrance.Games
 {
-    public class Ranking : MonoBehaviour
+    public class TheRanking : MonoBehaviour
     {
         #region UNITY METHODS
         private void Start()
@@ -21,7 +19,7 @@ namespace Entrance.Games.Coins
         #endregion
 
         #region VARIABLES
-        [SerializeField] private Dictionary<int, int> ranking = new Dictionary<int, int>();
+        [SerializeField] private List<KeyValuePair<int, int>> ranking = new List<KeyValuePair<int, int>>();
         [SerializeField] private RankingDisplayer displayer;
         #endregion
 
@@ -34,8 +32,9 @@ namespace Entrance.Games.Coins
 
         public void ShowRanking(Dictionary<int, int> data)
         {
-            var orderedRanking = data.OrderByDescending(pair => pair.Value).ToList();
-            displayer.DisplayIntValues(orderedRanking);
+            ranking = data.OrderByDescending(pair => pair.Value).ToList();
+            //displayer.DisplayIntValues(orderedRanking);
+            displayer.Display(intData: ranking);
         }
 
         public void ShowBlueVsRedRanking(Dictionary<TeamColor, int> data)

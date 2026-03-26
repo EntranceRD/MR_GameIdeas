@@ -1,12 +1,9 @@
 using Entrance.Games;
-using System.Collections.Generic;
-using System.Data;
-using TMPro;
 using UnityEngine;
 
 namespace Entrance.Games.Squash
 {
-    public class GameManager : MonoBehaviour
+    public class SquashGameManager : MonoBehaviour
     {
         #region UNITY METHODS
         private void Awake()
@@ -39,13 +36,28 @@ namespace Entrance.Games.Squash
         #endregion
 
         #region VARIABLES
-        public static GameManager Instance;
+        public static SquashGameManager Instance;
+        [Header("Settings")]
+        [SerializeField, Range(2, 10)] private int amountOfPlayers;
         [SerializeField] private GenericTimerComponent gameTime;
+
+        [Header("Instructions")]
         [SerializeField] private Entrance.Games.InstructionsDisplayer instructionsDisplayer;
+
+        [Header("GameOver")]
+        [SerializeField] private GameOverController gameOverController;
+
+        [Header("Logic")]
         [SerializeField] private SquashBallGenerator squashBallGenerator;
+
+        [Header("Rank")]
+        [SerializeField] private TheRanking ranking;
+
+        [Header("Audio")]
         [SerializeField] private AudioSource squashMusic;
         [SerializeField] private AudioSource backgroundMusic;
-        [SerializeField, Range(2, 10)] private int amountOfPlayers;
+
+        [Header("Others")]
         [SerializeField] private GeneralAnimator[] animScores;
         #endregion
 
@@ -59,7 +71,8 @@ namespace Entrance.Games.Squash
         public void EndGame()
         {
             squashBallGenerator.StopPlayers();
-            //instructionDisplayer.DisplayGameOver();
+            ranking.ShowRanking(squashBallGenerator.GetPlayersScores());
+            gameOverController.Display();
         }
         #endregion
 
@@ -70,7 +83,9 @@ namespace Entrance.Games.Squash
             gameTime.Restart();
             squashBallGenerator.Restart();
             instructionsDisplayer.Restart();
+            ranking.Restart();
             backgroundMusic.Play();
+            gameOverController.Restart();
             foreach (var anim in animScores)
             {
                 anim.Restart();

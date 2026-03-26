@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Entrance.Games.Sequence
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour, IGameManager
     {
         #region UNITY METHODS
         private void Awake()
@@ -19,7 +19,7 @@ namespace Entrance.Games.Sequence
         {
             if (Input.GetKeyDown(KeyCode.R))
             {
-                StartGame(amountOfPlayers);
+                StartGame();
             }
         }
         #endregion
@@ -38,18 +38,13 @@ namespace Entrance.Games.Sequence
         #endregion
 
         #region PUBLIC METHODS
-        public int SetPlayers(int players)
-        {
-            return amountOfPlayers = players;
-        }
-
-        public void StartGame(int amountOfPLayers)
+        public void StartGame()
         {
             Restart();
-            InitializeBoards(amountOfPLayers);
+            InitializeBoards(amountOfPlayers);
         }
 
-        public void StopGame()
+        public void EndGame()
         {
             for (int i = 0; i < colorBoards.Length; i++)
             {
@@ -60,7 +55,7 @@ namespace Entrance.Games.Sequence
         #endregion
 
         #region PRIVATE METHODS
-        private void Restart()
+        public void Restart()
         {
             gameTime.Restart();
             gameTime.Resume();

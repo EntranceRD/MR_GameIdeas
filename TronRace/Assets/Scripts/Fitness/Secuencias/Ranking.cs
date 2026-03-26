@@ -39,7 +39,7 @@ namespace Entrance.Games.Sequence
                 boardsRank.Add(i + 1, colorBoards[i].scoreManager.currentPoints);
             }
             var orderedBoards = boardsRank.OrderByDescending(pair => pair.Value).ToList();
-            rankingDisplayer.DisplayIntValues(orderedBoards);
+            rankingDisplayer.Display(intData: orderedBoards);
         }
         #endregion
     }

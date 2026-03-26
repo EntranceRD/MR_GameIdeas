@@ -1,0 +1,80 @@
+using UnityEngine;
+
+namespace Entrance.Games
+{
+    public class TheGameManager : MonoBehaviour
+    {
+        #region UNITY METHODS
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject); return;
+            }
+            Instance = this;
+        }
+
+        private void Start()
+        {
+            instructionsDisplayer.OnFinishDisplaying += () =>
+            {
+                gameTime.Resume();
+            };
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartGame();
+            }
+        }
+        #endregion
+
+        #region VARIABLES
+        public static TheGameManager Instance;
+        [Header("Settings")]
+        [SerializeField, Range(2, 10)] private int amountOfPlayers;
+        [SerializeField] private GenericTimerComponent gameTime;
+
+        [Header("Logic")]
+
+        [Header("Rank")]
+        [SerializeField] private TheRanking ranking;
+
+        [Header("Instructions")]
+        [SerializeField] private InstructionsDisplayer instructionsDisplayer;
+
+        [Header("Audio")]
+
+        [Header("GameOver")]
+        [SerializeField] private GameOverController gameOverController;
+
+        //[Header("Others")]
+
+        #endregion
+
+        #region PUBLIC METHODS
+        public void StartGame()
+        {
+            Restart();
+            instructionsDisplayer.Display();
+        }
+
+        public void EndGame()
+        {
+            gameOverController.Display();
+        }
+        #endregion
+
+        #region PRIVATE METHODS
+        private void Restart()
+        {
+            gameTime.Restart();
+            instructionsDisplayer.Restart();
+            ranking.Restart();
+            gameOverController.Restart();
+        }
+        #endregion
+    }
+}

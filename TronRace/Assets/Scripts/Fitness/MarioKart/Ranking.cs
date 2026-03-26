@@ -36,7 +36,7 @@ namespace Entrance.Games.MarioKart
         public void DisplayRanking()
         {
             var orderedRanking = driversRank.OrderBy(pair => pair.Value).ToList();
-            rankingDisplayer.DisplayFloatValues(orderedRanking);
+            rankingDisplayer.Display(floatData: orderedRanking);
         }
         #endregion
     }

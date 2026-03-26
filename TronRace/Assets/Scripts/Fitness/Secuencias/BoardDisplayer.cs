@@ -8,7 +8,7 @@ namespace Entrance.Games.Sequence
     {
         public void Awake()
         {
-            SetGameOverPanel(false);
+            //SetGameOverPanel(false);
         }
 
         private void Start()
@@ -20,7 +20,7 @@ namespace Entrance.Games.Sequence
             //sequenceDisplayer.OnFinishDisplaying -= EnableAllButtons;
             //sequenceDisplayer.OnFinishDisplaying += EnableAllButtons;
             sequenceDisplayer.OnFinishDisplaying = ()=> {
-                ActiveWaitPanel(false);
+                //ActiveWaitPanel(false);
                 EnableAllButtons();
             };
         }
@@ -30,9 +30,9 @@ namespace Entrance.Games.Sequence
         [SerializeField] private SequenceDisplayer sequenceDisplayer;
         [SerializeField] private SequenceButton[] sequenceButtons;
 
-        [Header("Covers")]
-        [SerializeField] private List<GameObject> coverPanels = new List<GameObject>();
-        [SerializeField] private List<GameObject> gameOver = new List<GameObject>();
+        //[Header("Covers")]
+        //[SerializeField] private List<GameObject> coverPanels = new List<GameObject>();
+        //[SerializeField] private List<GameObject> gameOver = new List<GameObject>();
 
         [Header("Settings")]
         [SerializeField] private float initialWaitTime = 3f;
@@ -47,9 +47,9 @@ namespace Entrance.Games.Sequence
         public void Restart()
         {
             //InitializeButtonsColors();
-            ActiveWaitPanel(false);
+            //ActiveWaitPanel(false);
             StopAllCoroutines();
-            SetGameOverPanel(false);
+            //SetGameOverPanel(false);
             sequenceDisplayer.Restart();
         }
 
@@ -72,7 +72,7 @@ namespace Entrance.Games.Sequence
         #region PRIVATE METHODS   
         private IEnumerator DisplayGameInstructions(List<int> sequence)
         {
-            ActiveWaitPanel(true);
+            //ActiveWaitPanel(true);
             yield return new WaitForSeconds(initialWaitTime);
             DisplaySequence(sequence);
         }
@@ -84,13 +84,13 @@ namespace Entrance.Games.Sequence
             sequenceDisplayer.DisplaySequence(sequence);
         }
 
-        private void ActiveWaitPanel(bool state)
-        {
-            for (int i = 0; i < coverPanels.Count; ++i)
-            {
-                coverPanels[i].SetActive(state);
-            }
-        }
+        //private void ActiveWaitPanel(bool state)
+        //{
+        //    for (int i = 0; i < coverPanels.Count; ++i)
+        //    {
+        //        coverPanels[i].SetActive(state);
+        //    }
+        //}
 
         private void DisplaySequenceIndex(int buttonIndex, int index)
         {
@@ -112,18 +112,18 @@ namespace Entrance.Games.Sequence
         {
             StopAllCoroutines();
             sequenceDisplayer.ForceStop();
-            ActiveWaitPanel(false);
-            SetGameOverPanel(true);
+            //ActiveWaitPanel(false);
+            //SetGameOverPanel(true);
             DisableAllButtons();
         }
 
-        private void SetGameOverPanel(bool state)
-        {
-            for (int i = 0; i < gameOver.Count; ++i)
-            {
-                gameOver[i].SetActive(state);
-            }
-        }
+        //private void SetGameOverPanel(bool state)
+        //{
+        //    for (int i = 0; i < gameOver.Count; ++i)
+        //    {
+        //        gameOver[i].SetActive(state);
+        //    }
+        //}
         #endregion
     }
 }
